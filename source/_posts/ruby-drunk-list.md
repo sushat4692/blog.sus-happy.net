@@ -2,7 +2,7 @@
 title: "Ruby on Railsの勉強がてらに呑んだくれリストを作ってみた（その１ Rails環境構築編）"
 date: 2015-09-23T00:43:47.000Z
 updated: 2016-04-08T13:23:12.000Z
-tags: 
+tags:
   - Ruby
   - Ruby on Rails
 ---
@@ -19,7 +19,7 @@ Ruby on Railsを少し勉強しておこうと思っていたところで、友�
 
 まずは必要最低限だと思われる情報を登録し、一覧で確認できる所まで作ってみました。
 
-[とりあえず出来たものはこんな感じのモノです（スマホ推奨）](http://drunk.sus-happy.net/)。だれでも適当に登録できてしまうとアレなので、一応データの登録・削除は認証が必要になっています。
+~~とりあえず出来たものはこんな感じのモノです（スマホ推奨）~~。だれでも適当に登録できてしまうとアレなので、一応データの登録・削除は認証が必要になっています。
 
 
 ## 雑談（読み飛ばしOK）
@@ -49,7 +49,7 @@ OSについてはいつも使っているCentOSにしました。CoreOSも選択
 
 ## Railsの準備
 
-まず、rbenvを利用してRubyを用意します。  
+まず、rbenvを利用してRubyを用意します。
  （rvmとドチラが良いのだろう？と調べた所、rvmはシェルを上書きしてしまうそうなので、rbenvの方が最近は流行ってるんだと思います。）
 
 ```shell
@@ -131,7 +131,7 @@ Modelにカラムを追加する
 rails g migration AddColumnBazToModelname column_baz:string
 ```
 
-一度作ったModelにカラムを追加したい時に。正確にはmigrationを作成する処理です。  
+一度作ったModelにカラムを追加したい時に。正確にはmigrationを作成する処理です。
  「AddColumnBazToModelname」の部分は、「Add(追加するカラム名のキャメルケース)To（追加するモデル名のキャメルケース）」というような指定になります。
 
 migrationを実行する
@@ -170,5 +170,5 @@ rails s -b 0.0.0.0 -p 8080 -d
 
 ## シリーズ
 
-- [その２ 「Unicorn+Nginx編」](https://blog.sus-happy.net/201509/ruby-drunk-list-2/)
-- [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/201510/ruby-drunk-list-3/)
+- [その２ 「Unicorn+Nginx編」](https://blog.sus-happy.net/ruby-drunk-list-2/)
+- [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/ruby-drunk-list-3/)

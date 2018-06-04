@@ -2,7 +2,7 @@
 title: "jquery-pjax + WordPressでスニペット集を作ってみた"
 date: 2012-02-19T23:39:29.000Z
 updated: 2016-04-03T14:43:06.000Z
-tags: 
+tags:
   - JavaScript
   - jQuery
   - PHP
@@ -13,7 +13,7 @@ Ajaxを利用しつつ、戻る・進むリンクが効くような作りで、T
 
 また、ちょっとしたコードをメモして置く場所が欲しかったので、WordPressと組み合わせてスニペット集を作ってみました。
 
-こんな感じです » [Snippets | SUSH-i LOG](http://blog.sus-happy.net/snippets/)
+こんな感じです » ~~Snippets | SUSH-i LOG~~
 
 まだまだ分類分けが中途半端だったり、導線が不十分だったり、ブラウザの進む・戻るを使った時に少し不具合がありますが、何とか形になったかな？と思っています。
 

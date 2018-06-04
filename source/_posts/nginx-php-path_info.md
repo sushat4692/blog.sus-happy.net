@@ -2,12 +2,12 @@
 title: "nginx+php-fpmでPATH_INFOを取得してみた"
 date: 2012-02-08T01:13:29.000Z
 updated: 2016-04-03T14:44:34.000Z
-tags: 
+tags:
   - nginx
   - PHP
 ---
 
-[前回の設定](http://blog.sus-happy.net/201202/nginx-php/)ではPATH_INFOが取得できず、404になってしまっていたので、修正を行いました。
+[前回の設定](http://blog.sus-happy.net/nginx-php/)ではPATH_INFOが取得できず、404になってしまっていたので、修正を行いました。
 
 その他、`DOCUMENT_ROOT`の値も変だったりしたので色々と見直しをしています。
 
@@ -32,5 +32,5 @@ location ~ \.php($|/) {
 }
 ```
 
-`DOCUMENT_ROOT`や`SCRIPT_NAME`を指定しても中々上手く設定されない！、と思っていたら、「`include fastcgi_params`」を「`fastcgi_param～`」より下に記述していたので上書きされている事に気づきました。  
+`DOCUMENT_ROOT`や`SCRIPT_NAME`を指定しても中々上手く設定されない！、と思っていたら、「`include fastcgi_params`」を「`fastcgi_param～`」より下に記述していたので上書きされている事に気づきました。
  （このことに気づくのに地味に時間をかけてしまった･･･。

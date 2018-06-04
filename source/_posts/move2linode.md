@@ -2,7 +2,7 @@
 title: "サーバをLinodeに移管してみた"
 date: 2014-09-28T18:43:33.000Z
 updated: 2016-04-03T10:55:00.000Z
-tags: 
+tags:
   - CentOS
   - MariaDB
   - MySQL
@@ -12,7 +12,7 @@ tags:
 ---
 
 
-[何度か](http://blog.sus-happy.net/200911/server-move-2/ "サーバを移転しました。") [移管を](http://blog.sus-happy.net/201010/sakura-vps/ "さくらのVPSに移管完了") [繰り返してきている](http://blog.sus-happy.net/201211/aws-ec2-nginx/ "サーバをAWS EC2+nginx+PHP+MySQLに乗り換えてみた")当サイトですが、今回は[Linode](https://www.linode.com/)に移管をしてみました。
+[何度か](http://blog.sus-happy.net/server-move-2/ "サーバを移転しました。") [移管を](http://blog.sus-happy.net/sakura-vps/ "さくらのVPSに移管完了") [繰り返してきている](http://blog.sus-happy.net/aws-ec2-nginx/ "サーバをAWS EC2+nginx+PHP+MySQLに乗り換えてみた")当サイトですが、今回は[Linode](https://www.linode.com/)に移管をしてみました。
 
 t1.microからt2.microという手もあったのですが、AWSを利用する理由も特にないかなぁということでまたVPSに舞い戻っています。
 
@@ -38,7 +38,7 @@ rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 ```
 
 
-自動的にレポジトリ見に行くのは微妙なのでenabledを0にしてから、PHP、MySQL、nginxをインストールします。  
+自動的にレポジトリ見に行くのは微妙なのでenabledを0にしてから、PHP、MySQL、nginxをインストールします。
  と、言いたいところでしたが、PHP5.5をインストールする時にlibgd.soが無いよって言われてしまったので、gd-lastもインストールします。
 
 ```shell
@@ -51,9 +51,9 @@ yum install --enablerepo=epel nginx
 
 ## MariaDBの初期設定
 
-とは言っても事前調査なしなので、MySQLの初期設定と同様です。[前回の記事と変わりません](http://blog.sus-happy.net/201211/aws-ec2-nginx/ "サーバをAWS EC2+nginx+PHP+MySQLに乗り換えてみた")。
+とは言っても事前調査なしなので、MySQLの初期設定と同様です。[前回の記事と変わりません](http://blog.sus-happy.net/aws-ec2-nginx/ "サーバをAWS EC2+nginx+PHP+MySQLに乗り換えてみた")。
 
-MariaDBを実行するコマンドだけ異なります。CentOS7からは「systemctl」が採用されたそうなので、「/etc/rc.d/init.d/***」では無くなりました。  
+MariaDBを実行するコマンドだけ異なります。CentOS7からは「systemctl」が採用されたそうなので、「/etc/rc.d/init.d/***」では無くなりました。
 [systemctlについてはコチラのページで色々詳しく記載がされていました](http://qiita.com/tukiyo3/items/092fc32318bd3d1a0846)ので参考にさせて頂いています。
 
 ```shell

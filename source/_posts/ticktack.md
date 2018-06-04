@@ -2,12 +2,12 @@
 title: "TickTack.js - requestAnimationFrameをもうちょっと使いやすいモノにしてみた"
 date: 2014-09-23T18:55:06.000Z
 updated: 2016-04-03T10:56:47.000Z
-tags: 
+tags:
   - JavaScript
 ---
 
 
-以前に「[setTimeoutの代替関数？requestAnimationFrameを試してみた](http://blog.sus-happy.net/201404/settimeout2requestanimationframe/ "setTimeoutの代替関数？requestAnimationFrameを試してみた")」という記事を書きましたが、ちょっと実行時間に狂いが激しかったので、色々と試してみてラッパークラスを作ってみたのでメモ。
+以前に「[setTimeoutの代替関数？requestAnimationFrameを試してみた](http://blog.sus-happy.net/settimeout2requestanimationframe/ "setTimeoutの代替関数？requestAnimationFrameを試してみた")」という記事を書きましたが、ちょっと実行時間に狂いが激しかったので、色々と試してみてラッパークラスを作ってみたのでメモ。
 
 
 ## 改善点

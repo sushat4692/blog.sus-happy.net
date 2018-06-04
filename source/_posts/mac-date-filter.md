@@ -2,7 +2,7 @@
 title: "Macで特定日時以降に編集したファイルを抽出してみた"
 date: 2013-01-05T03:25:15.000Z
 updated: 2016-04-03T13:38:36.000Z
-tags: 
+tags:
   - Mac
 ---
 
@@ -45,7 +45,7 @@ find $3 -type d -empty -delete
 echo 'completed!'
 ```
 
-最初に`cp -r -p`で全てコピーをし、`find`の条件式の所を反対にして、`xargs`の`cp`を`rm`にした感じです。 
+最初に`cp -r -p`で全てコピーをし、`find`の条件式の所を反対にして、`xargs`の`cp`を`rm`にした感じです。
 後は空っぽのフォルダが出てきてしまうので、`find -type d -empty -delete`で削除しています。
 
 正直な所、無駄なコマンドがあるんじゃないかと思うのですが、動いているので触っていません…。
@@ -85,7 +85,7 @@ echo 'completed!'
 
 ## 追記 13/05/14
 
-MacでもGUIのアプリが見つかりましたので、紹介記事を書きました。  
+MacでもGUIのアプリが見つかりましたので、紹介記事を書きました。
  こちらもご確認下さい。
 
-[Win/Mac両対応の更新ファイルを抽出して書き出すAIRアプリ「Cowsee」が便利](http://blog.sus-happy.net/201305/updated-file-cowsee/)
+[Win/Mac両対応の更新ファイルを抽出して書き出すAIRアプリ「Cowsee」が便利](http://blog.sus-happy.net/updated-file-cowsee/)

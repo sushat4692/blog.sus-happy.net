@@ -2,7 +2,7 @@
 title: "スマホ用の下からニュッとGoogleマップを表示するjQueryライブラリ"
 date: 2011-12-23T23:57:28.000Z
 updated: 2012-01-11T11:07:18.000Z
-tags: 
+tags:
   - jQuery
   - スマートフォン
 ---
@@ -27,10 +27,6 @@ Googleマップ側の仕様？なのか、マップをページ上部に表示�
 
 
 ## 詳細説明・デモ
-
-[機能説明はこちらのページをご確認ください。](http://blog.sus-happy.net/jquery-spgmaps-js/)
-
-[デモページ（スマートフォンでご覧ください）](http://demo.sus-happy.net/javascript/SPGMaps/)はこちらから
 
 [ダウンロード（GitHub）](https://github.com/sus-happy/jquery.SPGMaps.js)
 

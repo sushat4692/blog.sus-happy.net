@@ -2,20 +2,20 @@
 title: "Ruby on RailsをH2O上で動くようにしてみた"
 date: 2015-10-04T21:27:12.000Z
 updated: 2016-04-03T10:03:06.000Z
-tags: 
+tags:
   - H2O
   - Ruby on Rails
 ---
 
 
-[その２ Unicorn+Nginx編](https://blog.sus-happy.net/201509/ruby-drunk-list-2/)ではNginx上で動かしていましたが、もしかしたらH2O上でも動くんじゃないかと思い試し見たところ動いたのでメモを残しておきます。
+[その２ Unicorn+Nginx編](https://blog.sus-happy.net/ruby-drunk-list-2/)ではNginx上で動かしていましたが、もしかしたらH2O上でも動くんじゃないかと思い試し見たところ動いたのでメモを残しておきます。
 
 ちなみに、Unicornの設定については以前の方法から変更はありませんので、今回のメモには残していません。
 
 
 ## H2Oをインストール
 
-[H2Oのインストールの手順はほぼ変わりません](https://blog.sus-happy.net/201506/h2o_php7/#h2o-ready)が、一部だけ手順が変わっています。
+[H2Oのインストールの手順はほぼ変わりません](https://blog.sus-happy.net/h2o_php7/#h2o-ready)が、一部だけ手順が変わっています。
 
 以前の方法では、`cmake`をyumでインストールしていましたが、バージョンが足りなくなったのでソースからインストールする必要があります。
 
@@ -34,7 +34,7 @@ ln -s /usr/local/bin/cmake /bin/cmake
 
 ## H2Oの設定
 
-簡単に考えれば、H2OからUnicornのsocketを叩ければOKなので、`proxy.reverse.url`で設定を行います。  
+簡単に考えれば、H2OからUnicornのsocketを叩ければOKなので、`proxy.reverse.url`で設定を行います。
  「url」ですが、unix socketも渡せるみたいです。便利便利。
 
 ```yaml
@@ -75,12 +75,12 @@ hosts:
 
 `/path/to/unicorn.sock`は、`unicorn.rb`で設定した、`listen`の値を指定します。
 
-これで、現在動いている（はず）です。  
+これで、現在動いている（はず）です。
 [呑んだくれリスト](https://drunk.sus-happy.net/)もhttp/2になりました！
 
 
 ## 参考
 
-- [CentOS6.x – CentOS6.3でMySQL5.6.14をソースからインストール – Qiita](http://qiita.com/nobu_blast/items/dfe92a7c14136d1dafe9#3-2)  
+- [CentOS6.x – CentOS6.3でMySQL5.6.14をソースからインストール – Qiita](http://qiita.com/nobu_blast/items/dfe92a7c14136d1dafe9#3-2)
 （の中の「cmakeソースファイルのダウンロード&インストール」）
 - [connect to application server via unix-domain socket by kazuho · Pull Request #383 · h2o/h2o](https://github.com/h2o/h2o/pull/383)

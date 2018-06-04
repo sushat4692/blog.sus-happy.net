@@ -2,7 +2,7 @@
 title: "Google AJAX Feed API用のjQuery独自関数"
 date: 2010-08-14T01:54:17.000Z
 updated: 2016-04-03T15:55:42.000Z
-tags: 
+tags:
   - Google
   - JavaScript
   - jQuery
@@ -12,14 +12,12 @@ tags:
 
 もう少し便利に使えないかな？と、jQueryを用いて汎用性高める目的で作ってみました。
 
-[ダウンロードはこちらから](http://blog.sus-happy.net/wp-content/uploads/2010/08/jquery.google-rss.js)、[デモページはこちらから](http://demo.sus-happy.net/javascript/grss/)確認できます。
-
 
 ## 関数概要
 
 `{target}.gRssFeed({url}, {num}, {option});`
 
-<dl><dt>{target}</dt><dd>適用する対象</dd><dt>{url}</dt><dd>読み込むRSSのURL</dd><dt>{num}</dt><dd>表示させるエントリー数</dd><dt>{option}</dt><dd><dl><dt>[bdate](string) = "&lt;li&gt;"</dt><dd>日付の前に挿入する文字列</dd><dt>[edate](string) = ""</dt><dd>日付の後に挿入する文字列</dd><dt>[btitle](string) = ""</dt><dd>エントリータイトルの前に挿入する文字列</dd><dt>[etitle](string) = "&lt;li&gt;"</dt><dd>エントリータイトルの後に挿入する文字列</dd><dt>[etitle](dformat) = "y/m/d"</dt><dd>日付のフォーマット  
+<dl><dt>{target}</dt><dd>適用する対象</dd><dt>{url}</dt><dd>読み込むRSSのURL</dd><dt>{num}</dt><dd>表示させるエントリー数</dd><dt>{option}</dt><dd><dl><dt>[bdate](string) = "&lt;li&gt;"</dt><dd>日付の前に挿入する文字列</dd><dt>[edate](string) = ""</dt><dd>日付の後に挿入する文字列</dd><dt>[btitle](string) = ""</dt><dd>エントリータイトルの前に挿入する文字列</dd><dt>[etitle](string) = "&lt;li&gt;"</dt><dd>エントリータイトルの後に挿入する文字列</dd><dt>[etitle](dformat) = "y/m/d"</dt><dd>日付のフォーマット
  y:年、m:月、d:日にそれぞれ置き換えられる</dd></dl></dd></dl>
 
 ## サンプルコード
