@@ -2,18 +2,18 @@
 title: "YAMLについてもう少し調べてみた"
 date: 2012-06-25T23:09:07.000Z
 updated: 2016-04-03T14:16:44.000Z
-tags: 
+tags:
   - YAML
 ---
 
-以前[PHPを使ってYAMLを扱う方法](http://blog.sus-happy.net/201104/spyc-yaml/ "spycを使ってYAMLを利用してみた")についてメモをしていましたが、もう少しYAMLについて調べてみました。
+以前[PHPを使ってYAMLを扱う方法](http://blog.sus-happy.net/spyc-yaml/ "spycを使ってYAMLを利用してみた")についてメモをしていましたが、もう少しYAMLについて調べてみました。
 
 
 ## 基本的な記述
 
 ### 配列とハッシュ
 
-YAMLは配列かハッシュによってデータを表現することが出来ます。  
+YAMLは配列かハッシュによってデータを表現することが出来ます。
  頭に「-」を付けた場合は配列、「キー: 値」の様に「:」で区切った場合にハッシュとなります。
 
 ```yaml
@@ -24,14 +24,14 @@ hoge: fuga
 
 ### 階層化
 
-半角スペースでインデントをすることで、配列・ハッシュを階層化することが出来ます。  
+半角スペースでインデントをすることで、配列・ハッシュを階層化することが出来ます。
  また、インデントを行う際にタブ文字は使えません。
 
 ```yaml
 -
   - foo
   - bar
-hoge: 
+hoge:
   - fuga
   - piyo
 ```
@@ -66,7 +66,7 @@ break : |
 break : >
   Lorem Ipsum is simply dummy text
   of the printing and typesetting industry.
-  
+
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,...
 ```
 

@@ -2,13 +2,13 @@
 title: "Ruby on Railsの勉強がてらに呑んだくれリストを作ってみた（その３ Railsアプリ構築編）"
 date: 2015-10-01T00:55:20.000Z
 updated: 2016-04-08T13:21:05.000Z
-tags: 
+tags:
   - Ruby
   - Ruby on Rails
 ---
 
 
-[その１](https://blog.sus-happy.net/201509/ruby-drunk-list/)、[その２](https://blog.sus-happy.net/201509/ruby-drunk-list-2/)に引き続き、Ruby on Railsのメモです。（ちなみに[呑んだくれリストとはこんな感じのモノ](http://drunk.sus-happy.net/)です。）
+[その１](https://blog.sus-happy.net/ruby-drunk-list/)、[その２](https://blog.sus-happy.net/ruby-drunk-list-2/)に引き続き、Ruby on Railsのメモです。（ちなみに~~呑んだくれリストとはこんな感じのモノ~~です。）
 
 今回は、Ruby on Railsのアプリ構築時に調べた・躓いた点についてのメモです。
 
@@ -71,7 +71,7 @@ $(document).on 'ready page:load', ->
 
 ### 最終手段
 
-最終手段として、Turbolinksを切ってしまうという手もあります。  
+最終手段として、Turbolinksを切ってしまうという手もあります。
  アプリケーションを生成する際に、`--skip-turbolinks`オプションを追加します。
 
 ```bash
@@ -87,7 +87,7 @@ rails new app_name --skip-turbolinks
 
 ひとまずは、環境構築からアプリ制作までの一通りを試してみました。
 
-PHPのFWでも同様にコマンドから開発の補助をしてくれるモノはたくさんありますが、一際補助される範囲が広いように感じました。  
+PHPのFWでも同様にコマンドから開発の補助をしてくれるモノはたくさんありますが、一際補助される範囲が広いように感じました。
  特にscaffoldは一通りの画面まで揃えてくれるので、簡易的なものであればサクッと用意できると感じます。
 
 Rubyならではのシンプルな記法も、慣れるまでは大変ですが慣れてしまえば簡易的に記述できるのは面白いですね。
@@ -105,5 +105,5 @@ Rubyならではのシンプルな記法も、慣れるまでは大変ですが�
 
 ## <a name="series">シリーズ</a>
 
-- [その１ 「Rails環境構築編」](https://blog.sus-happy.net/201509/ruby-drunk-list/)
-- [その２ 「Unicorn+Nginx編」](https://blog.sus-happy.net/201509/ruby-drunk-list-2/)
+- [その１ 「Rails環境構築編」](https://blog.sus-happy.net/ruby-drunk-list/)
+- [その２ 「Unicorn+Nginx編」](https://blog.sus-happy.net/ruby-drunk-list-2/)

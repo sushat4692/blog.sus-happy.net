@@ -2,7 +2,7 @@
 title: "Ruby on Railsの勉強がてらに呑んだくれリストを作ってみた（その２ Unicorn+Nginx編）"
 date: 2015-09-23T22:10:59.000Z
 updated: 2016-04-08T13:21:55.000Z
-tags: 
+tags:
   - nginx
   - Ruby
   - Ruby on Rails
@@ -10,7 +10,7 @@ tags:
 ---
 
 
-[その１](https://blog.sus-happy.net/201509/ruby-drunk-list/)に引き続き、Ruby on Railsのメモを残しておきます。（ちなみに[呑んだくれリストとはこんな感じのモノ](http://drunk.sus-happy.net/)です。）
+[その１](https://blog.sus-happy.net/ruby-drunk-list/)に引き続き、Ruby on Railsのメモを残しておきます。（ちなみに~~呑んだくれリストとはこんな感じのモノ~~です。）
 
 今回は、Rails + Unicorn + Nginxの設定メモです。
 
@@ -75,7 +75,7 @@ after_fork do |server, worker|
 end
 ```
 
-working_directory、listen、pid、stdout_path、stderr_pathは、環境に合わせて変更を行ってください。  
+working_directory、listen、pid、stdout_path、stderr_pathは、環境に合わせて変更を行ってください。
  listenで指定したパスはNginxの設定時に必要ですので、どこかにメモをしておきましょう。
 
 ### Unicornの実行
@@ -160,7 +160,7 @@ server {
 }
 ```
 
-upstream rails-unicornのserverには、unicory.rbで記述した際のlistenに指定したパスを記述します。  
+upstream rails-unicornのserverには、unicory.rbで記述した際のlistenに指定したパスを記述します。
  その他、各locationのパラメータは環境に合わせて変更を行ってください。
 
 また、コチラの設定ファイルは参考サイトと同様に、assetsファイルを毎回作成しないように直接読みに行くようにしています。
@@ -192,5 +192,5 @@ systemctl start nginx
 
 ## シリーズ
 
-- [その１ 「Rails環境構築編」](https://blog.sus-happy.net/201509/ruby-drunk-list/)
-- [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/201510/ruby-drunk-list-3/)
+- [その１ 「Rails環境構築編」](https://blog.sus-happy.net/ruby-drunk-list/)
+- [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/ruby-drunk-list-3/)

@@ -2,7 +2,7 @@
 title: "モリサワのTypeSquareを試してみた"
 date: 2012-02-26T23:22:07.000Z
 updated: 2016-04-03T14:40:23.000Z
-tags: 
+tags:
   - Webフォント
 ---
 
@@ -32,7 +32,7 @@ TypeSquareのサイトの右上のボタンから、ご利用申込みを行い�
 }
 ```
 
-この辺りは[Google Font API](http://blog.sus-happy.net/201005/google-font-api/)の使い方と殆ど変わりませんね。
+この辺りは[Google Font API](http://blog.sus-happy.net/google-font-api/)の使い方と殆ど変わりませんね。
 
 
 ## その他

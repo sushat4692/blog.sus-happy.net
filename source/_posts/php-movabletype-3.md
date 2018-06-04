@@ -2,12 +2,12 @@
 title: "PHPでMovableTypeのデータを扱ってみた その3"
 date: 2014-01-30T22:27:50.000Z
 updated: 2016-04-03T11:15:52.000Z
-tags: 
+tags:
   - MovableType
   - PHP
 ---
 
-[その1](http://blog.sus-happy.net/201209/php-movabletype/ "PHPでMovableTypeのデータを扱ってみた")、[その2](http://blog.sus-happy.net/201209/php-movabletype-2/ "PHPでMovableTypeのデータを扱ってみた その2")でPHPで記事内容を取得する方法を掲載してきましたが、実はあれだけではカスタムフィールドのメディアファイルを取得出来ていませんでした。
+[その1](http://blog.sus-happy.net/php-movabletype/ "PHPでMovableTypeのデータを扱ってみた")、[その2](http://blog.sus-happy.net/php-movabletype-2/ "PHPでMovableTypeのデータを扱ってみた その2")でPHPで記事内容を取得する方法を掲載してきましたが、実はあれだけではカスタムフィールドのメディアファイルを取得出来ていませんでした。
 
 今回はPHPライブラリを利用してメディアファイルの情報を取得する方法を探した所見つかったのでメモしておきます。
 
@@ -16,14 +16,14 @@ tags:
 
 ### MT5の場合
 
-[その2](http://blog.sus-happy.net/201209/php-movabletype-2/ "PHPでMovableTypeのデータを扱ってみた その2")の書き方で、メディアファイルのIDを取得します。
+[その2](http://blog.sus-happy.net/php-movabletype-2/ "PHPでMovableTypeのデータを扱ってみた その2")の書き方で、メディアファイルのIDを取得します。
 
 ```php
 // メディアファイルのカスタムフィールド [field_name] を宣言
 Entry::install_meta( 'entry', 'field_name', 'vclob' ); // メディアファイルは [vclob] 形式
 ```
 
-メディアファイルのIDを取得した後は、詳細情報を取りに行きます。  
+メディアファイルのIDを取得した後は、詳細情報を取りに行きます。
  メディアファイルの詳細は「fetch_assets」というメソッドで取得出来ます。
 
 ```php
@@ -31,7 +31,7 @@ $args = array( 'id' => $asset_id );
 $asset = $mt_class->db()->fetch_assets( $args );
 ```
 
-また、PHPライブラリ側にもサムネイル画像を生成する関数が用意されていますので、リサイズも可能です。  
+また、PHPライブラリ側にもサムネイル画像を生成する関数が用意されていますので、リサイズも可能です。
  ただ、何故かブログIDだけじゃなくブログ情報を要求されます。
 
 ```php
@@ -70,7 +70,7 @@ foreach( $result as $post ) {
 
 ### MT4の場合
 
-[その2](http://blog.sus-happy.net/201209/php-movabletype-2/ "PHPでMovableTypeのデータを扱ってみた その2")の書き方で、メディアファイルのIDを取得します。
+[その2](http://blog.sus-happy.net/php-movabletype-2/ "PHPでMovableTypeのデータを扱ってみた その2")の書き方で、メディアファイルのIDを取得します。
 
 ```php
 global $mt;
@@ -86,7 +86,7 @@ MT4の場合、メディアファイルのカスタムフィールドには、HT
 <form mt:asset-id="***"></form>
 ```
 
-なので、正規表現を使って頑張ってメディアファイルのIDを抽出します。  
+なので、正規表現を使って頑張ってメディアファイルのIDを抽出します。
  上記HTMLからIDを抽出し、fetch_assetsに代入するまでの関数を用意してみました。
 
 ```php
