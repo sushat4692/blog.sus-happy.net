@@ -22,7 +22,7 @@ https://github.com/sus-happy/blog.sus-happy.net/tree/master/convert
 
 ## GitHub Pagesへのデプロイ
 
-CMAKEは自動で生成されないので、デプロイ処理の間にCNAMEを作成するようにしました。
+CNAMEは自動で生成されないので、デプロイ処理の間にCNAMEを作成するようにしました。
 
 ```json
 "scripts": {
