@@ -1,3 +1,4 @@
+---
 title: "FlashとJavaScriptを連動させてみる"
 date: 2010-07-23T01:38:00.000Z
 updated: 2016-04-03T16:03:57.000Z

@@ -1,3 +1,4 @@
+---
 title: "WordPressのコメントをDisqusに変更してみた"
 date: 2011-06-10T00:12:23.000Z
 updated: 2016-04-03T15:00:49.000Z

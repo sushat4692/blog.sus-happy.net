@@ -1,3 +1,4 @@
+---
 title: "nginx+php-fpmでPATH_INFOを取得してみた"
 date: 2012-02-08T01:13:29.000Z
 updated: 2016-04-03T14:44:34.000Z

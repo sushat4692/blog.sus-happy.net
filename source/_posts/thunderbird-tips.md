@@ -1,3 +1,4 @@
+---
 title: "Thunderbirdの設定色々"
 date: 2009-11-24T01:30:04.000Z
 updated: 2009-11-24T01:30:04.000Z

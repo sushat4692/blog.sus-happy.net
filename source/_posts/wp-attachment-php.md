@@ -1,3 +1,4 @@
+---
 title: "WordPressのテーマにattachment.phpを追加して、添付ファイルページを失くしてみた"
 date: 2013-02-07T02:54:13.000Z
 updated: 2016-04-03T13:31:08.000Z

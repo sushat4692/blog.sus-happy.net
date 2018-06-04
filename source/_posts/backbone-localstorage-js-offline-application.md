@@ -1,3 +1,4 @@
+---
 title: "Backbone.localStorage.jsを使ってオフラインWebアプリケーションを作ってみた"
 date: 2014-01-26T01:26:26.000Z
 updated: 2016-04-03T11:18:37.000Z

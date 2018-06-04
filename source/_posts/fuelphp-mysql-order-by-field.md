@@ -1,3 +1,4 @@
+---
 title: "FuelPHPのクエリビルダでMySQLのorder by fieldを利用するためにDB::expr()を使ってみた"
 date: 2013-04-08T23:23:48.000Z
 updated: 2016-04-03T13:24:54.000Z

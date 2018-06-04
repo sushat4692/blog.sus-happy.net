@@ -1,3 +1,4 @@
+---
 title: "Apache 2 + mod_dav_svnでSubversionを試してみた"
 date: 2011-02-11T14:32:41.000Z
 updated: 2016-04-03T15:19:39.000Z

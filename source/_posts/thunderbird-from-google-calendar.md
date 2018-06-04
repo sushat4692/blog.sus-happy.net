@@ -1,3 +1,4 @@
+---
 title: "ThunderbirdとGoogleカレンダーを同期させてみた"
 date: 2011-03-24T01:18:57.000Z
 updated: 2011-03-24T01:19:25.000Z

@@ -1,3 +1,4 @@
+---
 title: "フィリピンのAndroid OneブランドのiPhoneならぬMyPhoneを買ってみた"
 date: null
 updated: 2017-07-19T07:49:45.000Z

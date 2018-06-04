@@ -1,3 +1,4 @@
+---
 title: "TickTack.js - requestAnimationFrameをもうちょっと使いやすいモノにしてみた"
 date: 2014-09-23T18:55:06.000Z
 updated: 2016-04-03T10:56:47.000Z

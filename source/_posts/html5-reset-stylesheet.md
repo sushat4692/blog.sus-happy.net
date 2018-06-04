@@ -1,3 +1,4 @@
+---
 title: "HTML5 Reset Stylesheetを適用"
 date: 2010-06-29T00:43:57.000Z
 updated: 2010-06-29T00:43:57.000Z

@@ -1,3 +1,4 @@
+---
 title: "setTimeoutの代替関数？requestAnimationFrameを試してみた"
 date: 2014-04-02T02:42:04.000Z
 updated: 2016-04-03T11:06:28.000Z

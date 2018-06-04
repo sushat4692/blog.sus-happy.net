@@ -1,3 +1,4 @@
+---
 title: "サーバの構成をCentOS7+H2O+php-fpm(PHP7)にしてみた"
 date: 2015-06-30T22:01:30.000Z
 updated: 2016-04-03T10:27:04.000Z

@@ -1,3 +1,4 @@
+---
 title: "WordPressにiPhone用テーマを適用するプラグイン"
 date: 2010-08-20T01:24:28.000Z
 updated: 2010-08-20T01:24:28.000Z

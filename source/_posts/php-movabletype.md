@@ -1,3 +1,4 @@
+---
 title: "PHPでMovableTypeのデータを扱ってみた"
 date: 2012-09-08T18:11:43.000Z
 updated: 2016-04-03T13:58:32.000Z

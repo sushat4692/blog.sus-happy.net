@@ -1,3 +1,4 @@
+---
 title: "WordPressからGhostに移管してみた"
 date: 2016-04-08T16:54:02.000Z
 updated: 2016-04-08T16:55:13.000Z

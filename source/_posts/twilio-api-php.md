@@ -1,3 +1,4 @@
+---
 title: "Twilio APIを使ってPHP経由でSMSを送信してみた"
 date: 2014-06-15T00:38:20.000Z
 updated: 2016-04-03T11:01:11.000Z

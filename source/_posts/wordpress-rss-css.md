@@ -1,3 +1,4 @@
+---
 title: "WordPressのRSSの見た目をCSSで変更してみる"
 date: 2012-04-08T21:56:36.000Z
 updated: 2016-04-03T14:30:40.000Z
