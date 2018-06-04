@@ -1,3 +1,4 @@
+---
 title: "WordPressに投稿したメディアをAWS S3に自動的にアップロードする「Nephila clavata (絡新婦)」をインストールしてみた"
 date: 2013-04-20T13:15:18.000Z
 updated: 2016-04-03T13:18:21.000Z

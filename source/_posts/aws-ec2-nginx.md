@@ -1,3 +1,4 @@
+---
 title: "サーバをAWS EC2+nginx+PHP+MySQLに乗り換えてみた"
 date: 2012-11-20T02:09:20.000Z
 updated: 2016-04-03T13:49:37.000Z

@@ -1,3 +1,4 @@
+---
 title: "Amazon EC2（t1.micro）のPHP実行環境をHHVMにしてみた"
 date: 2014-05-16T00:54:26.000Z
 updated: 2016-04-03T11:03:35.000Z

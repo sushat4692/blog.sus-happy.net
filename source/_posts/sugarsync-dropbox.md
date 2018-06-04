@@ -1,3 +1,4 @@
+---
 title: "SugarSyncとDropBox"
 date: 2010-12-10T01:56:38.000Z
 updated: 2010-12-10T01:56:38.000Z

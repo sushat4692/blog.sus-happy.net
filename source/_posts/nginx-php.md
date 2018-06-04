@@ -1,3 +1,4 @@
+---
 title: "CentOS+nginx+PHPの環境をたててみた"
 date: 2012-02-02T01:55:12.000Z
 updated: 2016-04-03T14:45:47.000Z

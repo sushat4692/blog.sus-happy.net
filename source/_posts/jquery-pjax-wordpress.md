@@ -1,3 +1,4 @@
+---
 title: "jquery-pjax + WordPressでスニペット集を作ってみた"
 date: 2012-02-19T23:39:29.000Z
 updated: 2016-04-03T14:43:06.000Z

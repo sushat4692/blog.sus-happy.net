@@ -1,3 +1,4 @@
+---
 title: "spl_autoload_registerを試してみる"
 date: 2014-03-04T00:49:10.000Z
 updated: 2016-04-03T11:07:58.000Z

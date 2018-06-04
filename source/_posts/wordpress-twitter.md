@@ -1,3 +1,4 @@
+---
 title: "WordPressとTwitterを連動させてみる"
 date: 2010-05-29T21:41:48.000Z
 updated: 2010-05-29T21:41:48.000Z

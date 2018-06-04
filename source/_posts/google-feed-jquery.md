@@ -1,3 +1,4 @@
+---
 title: "Google AJAX Feed API用のjQuery独自関数"
 date: 2010-08-14T01:54:17.000Z
 updated: 2016-04-03T15:55:42.000Z

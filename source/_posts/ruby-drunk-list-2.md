@@ -1,3 +1,4 @@
+---
 title: "Ruby on Railsの勉強がてらに呑んだくれリストを作ってみた（その２ Unicorn+Nginx編）"
 date: 2015-09-23T22:10:59.000Z
 updated: 2016-04-08T13:21:55.000Z

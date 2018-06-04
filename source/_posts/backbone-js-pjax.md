@@ -1,3 +1,4 @@
+---
 title: "Backbone.jsのpjaxを試してみた"
 date: 2012-12-05T00:14:38.000Z
 updated: 2016-04-03T13:44:24.000Z

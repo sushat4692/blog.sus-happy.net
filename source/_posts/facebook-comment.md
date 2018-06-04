@@ -1,3 +1,4 @@
+---
 title: "WordPressのコメントをFacebookコメントに変更してみた"
 date: 2011-04-26T04:11:03.000Z
 updated: 2016-04-03T15:12:06.000Z

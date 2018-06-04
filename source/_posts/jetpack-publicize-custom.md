@@ -1,3 +1,4 @@
+---
 title: "Jetpack for WordPressのパブリサイズ共有を色々カスタマイズしてみた"
 date: 2014-10-17T22:16:43.000Z
 updated: 2016-04-03T10:52:41.000Z

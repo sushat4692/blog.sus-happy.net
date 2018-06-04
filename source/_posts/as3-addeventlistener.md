@@ -1,3 +1,4 @@
+---
 title: "AS3でaddEventListenerに変数を渡してみた"
 date: 2011-01-08T01:46:30.000Z
 updated: 2016-04-03T15:28:29.000Z
