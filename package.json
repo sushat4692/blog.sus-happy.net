@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "convert": "cd convert && tsc && node ./dist/convert.js && cd ../",
-    "deploy": "hexo generate && echo 'blog.sus-happy.net' > public/CNAME && hexo deploy"
+    "serve": "hexo server",
+    "deploy": "hexo clean && hexo generate && echo 'blog.sus-happy.net' > public/CNAME && hexo deploy"
   },
   "hexo": {
     "version": "3.7.1"
