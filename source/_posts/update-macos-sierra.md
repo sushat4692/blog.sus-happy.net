@@ -1,10 +1,13 @@
 ---
 title: "やっとこさmacOS Sierraにバージョンアップしてみた"
 date: 2017-01-08T15:52:54.000Z
-updated: 2017-01-09T13:26:19.000Z
-tags: 
+updated: 2017-06-10T13:26:19.000Z
+tags:
   - Mac
 ---
+
+* **2018/06/10**
+  * Karabiner-Elementsが色々対応してくれていましたので、内容を修正しました。
 
 明けましておめでとうございます。いつの間にやら2017年になっていました。今年もよろしくお願いいたします。
 
@@ -24,8 +27,8 @@ tags:
 
 * [VPN接続方式を変更](#change-vpn)
 * [Karabinerの代替ソフト](#change-karabiner)
-  * [⌘英かなを利用する](#cmd-eikana)
-  * [QBlockerを利用する](#qblocker)
+  * ~~[⌘英かなを利用する](#cmd-eikana)~~ （Karabiner-Elementsが対応しました）
+  * ~~[QBlockerを利用する](#qblocker)~~ （Karabiner-Elementsが対応しました）
   * [キーリピートを早くしたい](#key-repeat)
 * [Karabiner-Elementsについて](#karabiner-elements)
 * [macOS Sierraについて](#macos-sierra)
@@ -47,37 +50,45 @@ macOS Sierraだけでなく、iOS10でもPPTP接続は非サポートになっ�
 
 自分がUSキーボードを愛用していることもあり、特にかな変換キーを`⌘`キーに割り当てたい、という点についてKarabinerを利用していました。
 
-### <a name="cmd-eikana">⌘英かなを利用する</a>
+### ~~<a name="cmd-eikana">⌘英かなを利用する</a>~~ （Karabiner-Elementsが対応しました）
 
-まずはかな変換キーのリマップには**[⌘英かな](https://ei-kana.appspot.com/)**を利用することにしました。
+[Karabner-Elementsが対応しました。](https://pqrs.org/osx/karabiner/complex_modifications/#japanese)
 
-初期設定時に自動的に、`左⌘`で英数、`右⌘`でかなに切り替える設定がされますので、基本的にはインストールして起動するだけで大丈夫です。
+上記ページから「Import」ボタンを押すと、Karabiner-Elementsに遷移して英/かな切り替えの設定項目が追加されます。
 
-また、他のキーについてもリマップを設定することが出来るので、Karabinerで色々リマップの設定を行っていた人は、このソフトで代替出来ると思います。
+~~まずはかな変換キーのリマップには**[⌘英かな](https://ei-kana.appspot.com/)**を利用することにしました。~~
 
-インストール方法については、公式サイトからダウンロードするか、`brew cask`を利用している場合は、そちらからでもインストールが可能です。
+~~初期設定時に自動的に、`左⌘`で英数、`右⌘`でかなに切り替える設定がされますので、基本的にはインストールして起動するだけで大丈夫です。~~
+
+~~また、他のキーについてもリマップを設定することが出来るので、Karabinerで色々リマップの設定を行っていた人は、このソフトで代替出来ると思います。~~
+
+~~インストール方法については、公式サイトからダウンロードするか、`brew cask`を利用している場合は、そちらからでもインストールが可能です。~~
 
 ```shell
 brew cask install cmd-eikana
 ```
 
-かな変換対応はコチラで問題ありませんでした。
+~~かな変換対応はコチラで問題ありませんでした。~~
 
-### <a name="qblocker">QBlockerを利用する</a>
+### <a name="qblocker">QBlockerを利用する</a> （Karabiner-Elementsが対応しました）
 
-もう一つ、`Cmd+Q`によるアプリケーションを終了するショートカットを二回叩くことで実行する様にKarabinerで設定していました。
+[Karabner-Elementsが対応しました。](https://pqrs.org/osx/karabiner/complex_modifications/#command_q)
 
-`Cmd+W`を押そうとして間違って`Cmd+Q`押してしまう、みたいな悲しい事がたまによくあるため、コチラもどうにか実現しておきたかったので色々探してみた所、`Cmd+Q`を長押しに変更する事が出来る**[QBlocker](https://qblocker.com/)**というソフトを見つけました。
+上記ページから「Import」ボタンを押すと、Karabiner-Elementsに遷移して`Cmd+Q`関連の設定項目が追加されます。
 
-インストール方法は、コチラも公式サイトからダウンロードするか、`brew cask`にも対応しています。
+~~もう一つ、`Cmd+Q`によるアプリケーションを終了するショートカットを二回叩くことで実行する様にKarabinerで設定していました。~~
+
+~~`Cmd+W`を押そうとして間違って`Cmd+Q`押してしまう、みたいな悲しい事がたまによくあるため、コチラもどうにか実現しておきたかったので色々探してみた所、`Cmd+Q`を長押しに変更する事が出来る**[QBlocker](https://qblocker.com/)**というソフトを見つけました。~~
+
+~~インストール方法は、コチラも公式サイトからダウンロードするか、`brew cask`にも対応しています。~~
 
 ```shell
 brew cask install qblocker
 ```
 
-若干操作が変わってしまいましたが、防ぎたい事象を防ぐことは出来るので、コチラもOKとしました。
+~~若干操作が変わってしまいましたが、防ぎたい事象を防ぐことは出来るので、コチラもOKとしました。~~
 
-ただし、メニューバーに表示されているQBlockerのアイコンをクリックするとアプリケーションが落ちてしまう、という不具合があるっぽいので要注意です。（基本的には触らないので不要といえば不要ですが）
+~~ただし、メニューバーに表示されているQBlockerのアイコンをクリックするとアプリケーションが落ちてしまう、という不具合があるっぽいので要注意です。（基本的には触らないので不要といえば不要ですが）~~
 
 ### <a name="key-repeat">キーリピートを早くしたい</a>
 
@@ -87,7 +98,7 @@ brew cask install qblocker
 
 ```shell
 # 入力開始までの時間
-defaults write NSGlobalDomain KeyRepeat -int 0.02 
+defaults write NSGlobalDomain KeyRepeat -int 0.02
 # リピートの間隔
 defaults write NSGlobalDomain InitialKeyRepeat -int 12
 ```
@@ -105,13 +116,15 @@ defaults delete NSGlobalDomain InitialKeyRepeat
 
 現在macOS Sierraの対応も含めて、後継ソフトの**[Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)**というソフトを開発している様です。
 
-しかし、コチラのソフトの問題点としては、
+個人的に必要な機能は出揃いましたので、Karabiner-Elementsを再度使用し始めました。
 
-* 複合キーのリマップが出来ない
-* リマップしか出来ない
-  * 旧Karabinerでは複合キーとして利用した場合は通常の`⌘`としても利用できた
+~~しかし、コチラのソフトの問題点としては、~~
 
-といった点が挙げられると思います。左右のどちらかを`⌘`キーとして残しておく、といった対処を行っている方もいらっしゃるようですが、個人的にはちょっとNGでした。
+* ~~複合キーのリマップが出来ない~~
+* ~~リマップしか出来ない~~
+  * ~~旧Karabinerでは複合キーとして利用した場合は通常の`⌘`としても利用できた~~
+
+~~といった点が挙げられると思います。左右のどちらかを`⌘`キーとして残しておく、といった対処を行っている方もいらっしゃるようですが、個人的にはちょっとNGでした。~~
 
 
 ## <a name="macos-sierra">macOS Sierraについて</a>
@@ -128,7 +141,7 @@ defaults delete NSGlobalDomain InitialKeyRepeat
 * Vimeo
 * Amazon Prime Video
 
-くらいでした。他にも[Netfilixとかも利用できるらしい？](http://www.redmondpie.com/enable-picture-in-picture-pip-for-netflix-in-macos-sierra-heres-how/)です。（登録してないので実際に試してはいませんが）  
+くらいでした。他にも[Netfilixとかも利用できるらしい？](http://www.redmondpie.com/enable-picture-in-picture-pip-for-netflix-in-macos-sierra-heres-how/)です。（登録してないので実際に試してはいませんが）
 他の動画サービスでも利用できるようになると嬉しいですねぇ。
 
 
