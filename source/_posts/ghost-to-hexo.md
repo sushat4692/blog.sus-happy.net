@@ -4,6 +4,7 @@ date: 2018-06-04 18:12:50
 tags:
   - Ghost
   - Hexo
+  - GitHub
 ---
 
 WordPress -> Ghostとブログを使っていたのですが、それ以外でサーバをあまり使うことがなかったので、GitHub Pagesに乗り換えようと思い、Hexoを使うことにしました。
