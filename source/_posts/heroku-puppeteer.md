@@ -63,10 +63,25 @@ const height = 768
 
 ### Basic認証下のページにアクセスする
 
-node-webshotと同様に、[`setExtraHTTPHeaders`](https://pptr.dev/#?product=Puppeteer&version=master&show=api-pagesetextrahttpheadersheaders)によってheaderを追加することで対応が可能です。
-（前回に引き続きCryptoJSでBase64エンコードしてます）
+Puppeteerには、[`authenticate`](https://pptr.dev/#?product=Puppeteer&version=v1.6.0&show=api-pageauthenticatecredentials)メソッドがありました。
 
 ```TypeScript
+// 省略
+const userId = 'user_id'
+const passWord = 'password'
+
+(async () => {
+  // 省略
+  await page.authenticate(userId, passWord)
+  // 省略
+})()
+```
+
+~~node-webshotと同様に、[`setExtraHTTPHeaders`](https://pptr.dev/#?product=Puppeteer&version=master&show=api-pagesetextrahttpheadersheaders)によってheaderを追加することで対応が可能です。
+（前回に引き続きCryptoJSでBase64エンコードしてます）~~
+
+```TypeScript
+/* 下記の様な記述はしなくてもOK
 import * as CryptoJS from 'crypto-js';
 
 // 省略
@@ -81,6 +96,7 @@ const passWord = 'password'
   })
   // 省略
 })()
+*/
 ```
 
 
