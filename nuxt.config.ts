@@ -66,7 +66,7 @@ const config: NuxtConfiguration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/date-fns.ts'],
+  plugins: ['~/plugins/date-fns.ts', { src: '~plugins/ga.js', ssr: false }],
   /*
    ** Nuxt.js modules
    */
