@@ -10,7 +10,7 @@
     "precommit": "npm run lint",
     "test": "ava",
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "npm run processmd && nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "processmd": "processmd posts/*.md --stdout --outputDir .posts/json > .posts/summary.json"
