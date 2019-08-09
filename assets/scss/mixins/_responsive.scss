@@ -1,0 +1,17 @@
+@mixin mq_pc_big {
+  @media screen and (min-width: $pc-big-width) {
+    @content;
+  }
+}
+
+@mixin mq_pc {
+  @media screen and (min-width: ($sp-width-breakpoint + 1) + px) {
+    @content;
+  }
+}
+
+@mixin mq_sp {
+  @media screen and (max-width: $sp-width-breakpoint + px) {
+    @content;
+  }
+}
