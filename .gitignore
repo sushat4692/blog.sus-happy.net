@@ -87,4 +87,5 @@ sw.*
 # Mac OSX
 .DS_Store
 
-.posts
+.posts/*
+!.gitkeep
