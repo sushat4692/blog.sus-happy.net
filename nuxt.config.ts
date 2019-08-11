@@ -29,7 +29,8 @@ const config: NuxtConfiguration = {
         const row = summary.fileMap[key]
         return row.base.split('.')[0]
       })
-    }
+    },
+    concurrency: 10
   },
 
   /*
