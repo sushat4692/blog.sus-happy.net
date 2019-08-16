@@ -28,6 +28,6 @@ Googleマップ側の仕様？なのか、マップをページ上部に表示�
 
 ## 詳細説明・デモ
 
-[ダウンロード（GitHub）](https://github.com/sus-happy/jquery.SPGMaps.js)
+[ダウンロード（GitHub）](https://github.com/sushat4692/jquery.SPGMaps.js)
 
 

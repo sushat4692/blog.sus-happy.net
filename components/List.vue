@@ -2,7 +2,7 @@
 .g-container
   .c-archive
     nuxt-link.c-archive__item(
-      v-for="post, key in posts"
+      v-for="post, key in list"
       :key="key"
       :to="link(post)"
     )
@@ -20,26 +20,17 @@
             | {{ tag }}
       p.c-archive__body {{ post.preview }}
 
-  .g-pagination
-    nuxt-link.g-pagination__link.g-pagination__link--prev(
-      :to="{name: path, params: {'p': prev}}"
-      v-if="prev > 0"
+  no-ssr
+    infinite-loading(
+        v-if="next > 0"
+        @infinite="infiniteHandler"
     )
-      font-awesome-icon(:icon="['fas', 'chevron-left']")
-      | Prev
-    span.g-pagination__empty(v-else)
-
-    nuxt-link.g-pagination__link.g-pagination__link--next(
-      :to="{name: path, params: {'p': next}}"
-      v-if="next > 0"
-    )
-      | Next
-      font-awesome-icon(:icon="['fas', 'chevron-right']")
-    span.g-pagination__empty(v-else)
 </template>
 
 <script lang="ts">
 //- {name: 'slug', params: {'slug': post.slug}}
+import PostListInterface from '../interface/PostListInterface'
+import PostSummaryInterface from '../interface/PostSummaryInterface'
 
 export default {
   props: {
@@ -53,6 +44,10 @@ export default {
       type: String,
       default: ''
     },
+    param: {
+      type: String,
+      default: ''
+    },
     prev: {
       type: Number,
       default: 0
@@ -62,10 +57,41 @@ export default {
       default: 0
     }
   },
+  data(): { list: PostSummaryInterface[]; nextNum: number } {
+    return {
+      list: [],
+      nextNum: 0
+    }
+  },
+  mounted() {
+    ;(this as any).list = (this as any).$props.posts
+    ;(this as any).nextNum = (this as any).$props.next
+  },
   methods: {
     link: function(post) {
       const path = (this as any).$router.resolve({ name: 'slug', params: { slug: post.slug } })
       return path.href
+    },
+
+    async infiniteHandler($state) {
+      const per_page = process.env.POSTS_PER_PAGE ? parseInt(process.env.POSTS_PER_PAGE, 10) : 10
+      let result: PostListInterface
+      if ((this as any).$props.path === 'page-p') {
+        result = (this as any).$store.getters['posts/recent']((this as any).nextNum, per_page)
+      } else {
+        result = (this as any).$store.getters['posts/tags']((this as any).$props.param, (this as any).nextNum, per_page)
+      }
+
+      result.posts.forEach(post => {
+        ;(this as any).list.push(post)
+      })
+      ;(this as any).nextNum = result.next
+
+      if ((this as any).nextNum) {
+        $state.loaded()
+      } else {
+        $state.complete()
+      }
     }
   }
 }
@@ -76,6 +102,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 40px;
 
   &__item {
     display: block;

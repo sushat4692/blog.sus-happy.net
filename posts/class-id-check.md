@@ -15,6 +15,6 @@ jQueryで制作を行っている時に、classやIDを要素に追加する事�
 $("foo").addIC(".var");
 ```
 
-[ダウンロード（Github）](https://github.com/sus-happy/jquery.addIC.js)
+[ダウンロード（Github）](https://github.com/sushat4692/jquery.addIC.js)
 
 しかしこのプラグインの需要なんてあるのだろうか。

@@ -15,10 +15,10 @@ div
           a(href="https://twitter.com/sushat4692" target="_blank")
             font-awesome-icon(:icon="['fab', 'twitter']")
         li
-          a(href="https://www.facebook.com/sushappy" target="_blank")
+          a(href="https://www.facebook.com/sushat4692" target="_blank")
             font-awesome-icon(:icon="['fab', 'facebook-f']")
         li
-          a(href="https://github.com/sus-happy" target="_blank")
+          a(href="https://github.com/sushat4692" target="_blank")
             font-awesome-icon(:icon="['fab', 'github-alt']")
         li
           a(href="https://sus-happy.net" target="_blank")

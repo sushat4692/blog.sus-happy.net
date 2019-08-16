@@ -2,7 +2,7 @@
 title: "Ansibleを使って自分用のVagrant環境構築の自動化をしてみた"
 date: 2016-02-13T00:44:04.000Z
 updated: 2016-04-04T10:38:21.000Z
-tags: 
+tags:
   - Ansible
   - Apache
   - Vagrant
@@ -174,7 +174,7 @@ ApacheのVirtualDocumentRootを利用すると、ディレクトリを分ける�
 
 ## <a name="data">今回のデータ</a>
 
-[GitHubにコミットしました。](https://github.com/sus-happy/VagrantAnsible)使い方間違ってるよ、であったり、ここマズイよ、という点がありましたらご指摘いただけると助かります。
+[GitHubにコミットしました。](https://github.com/sushat4692/VagrantAnsible)使い方間違ってるよ、であったり、ここマズイよ、という点がありましたらご指摘いただけると助かります。
 
 
 ## <a name="other">雑感</a>

@@ -2,7 +2,7 @@
 title: "スマホ用の下からニュッとGoogleマップを表示するJavaScriptライブラリ"
 date: 2012-10-10T23:31:08.000Z
 updated: 2012-10-10T23:31:08.000Z
-tags: 
+tags:
   - JavaScript
   - スマートフォン
 ---
@@ -24,6 +24,6 @@ tags:
 
 [デモページ（スマートフォンでご覧ください）](http://demo.sus-happy.net/javascript/SPGMaps2/)はこちらから
 
-[ダウンロード（GitHub）](https://github.com/sus-happy/SPGMaps.js)
+[ダウンロード（GitHub）](https://github.com/sushat4692/SPGMaps.js)
 
 

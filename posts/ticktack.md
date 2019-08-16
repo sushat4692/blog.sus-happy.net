@@ -45,4 +45,4 @@ tick.stop();
 
 ## ダウンロード
 
-[GitHubで公開しています。](https://github.com/sus-happy/TickTack.js)
+[GitHubで公開しています。](https://github.com/sushat4692/TickTack.js)

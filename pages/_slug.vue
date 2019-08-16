@@ -123,10 +123,24 @@ export default {
 <style lang="scss" scoped>
 .p-detail {
   &__thumb {
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 50%;
+      background: rgb(0, 0, 0);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    }
+
     img {
       width: 100%;
-      height: 300px;
+      height: 400px;
       object-fit: cover;
+      vertical-align: top;
 
       @include mq_sp {
         height: 15rem;
