@@ -2,7 +2,7 @@
 title: "JavaScript非同期ローダーを試しに作ってみた"
 date: 2012-01-28T00:17:43.000Z
 updated: 2016-04-03T14:47:52.000Z
-tags: 
+tags:
   - JavaScript
 ---
 
@@ -11,7 +11,7 @@ tags:
 
 ## デモ
 
-まずは、通常の呼び出し、defer属性、async属性、非同期ローダーを使った呼び出しのそれぞれのデモを置いておきます。  
+まずは、通常の呼び出し、defer属性、async属性、非同期ローダーを使った呼び出しのそれぞれのデモを置いておきます。
  初めにjqueryと、ダミーのテキストをコメントアウトして無理やりファイルサイズを大きくした10個のJSファイルを呼び出しています。
 
 ※同じJavaScriptを呼び出しているので、キャッシュを削除してから次のデモを見ると比較しやすいと思います。
@@ -35,7 +35,7 @@ XMLHttpRequestを利用して非同期通信をしています。そのためロ
 
 ## 実行処理
 
-[こちらのページ](http://fdays.blogspot.com/2010/05/javascript-script.html)を参考に読み込み完了後、実行する際はinnerHTMLで実行しようとしたのですが、Mac Safari4でエラーが発生しました。  
+[こちらのページ](http://fdays.blogspot.com/2010/05/javascript-script.html)を参考に読み込み完了後、実行する際はinnerHTMLで実行しようとしたのですが、Mac Safari4でエラーが発生しました。
  失敗したときのコードはこんな感じ。
 
 ```javascript
@@ -50,7 +50,7 @@ cs.parentNode.insertBefore(s, cs);
 
 原因は恐らくJS内の不等号や、HTMLの記述で、HTMLデータと誤認識したのかな？と思っています。
 
-そこで、HTMLデータと認識させない様にcreateTextNodeを使ってscriptタグに挿入しています。  
+そこで、HTMLデータと認識させない様にcreateTextNodeを使ってscriptタグに挿入しています。
  成功したときのコードはこんな感じ。
 
 ```javascript
@@ -94,7 +94,7 @@ if( document.uniqueID ) {
 
 GitHubにアップしましたので、下記リンクよりダウンロード出来ます。
 
-[ダウンロード（GitHub）](https://github.com/sus-happy/parallel-loader.js)
+[ダウンロード（GitHub）](https://github.com/sushat4692/parallel-loader.js)
 
 ただ、あまり検証はしていないので業務に利用するのはお勧めしません。
 
@@ -107,7 +107,7 @@ GitHubにアップしましたので、下記リンクよりダウンロード�
 
 ## 追記 2012/01/30
 
-「実行処理」内のソースで記述を間違えておりました。申し訳ありません。  
+「実行処理」内のソースで記述を間違えておりました。申し訳ありません。
  “currentscript” -> “is”
 
 また、「is」という変数名もなんだか怪しい気がする（予約語になりそう）ので、「cs」に変更しました。

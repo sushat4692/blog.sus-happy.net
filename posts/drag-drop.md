@@ -2,7 +2,7 @@
 title: "ローカルファイルをブラウザにドラッグするJavaScriptを試してみた"
 date: 2015-01-16T00:06:29.000Z
 updated: 2016-04-03T10:38:20.000Z
-tags: 
+tags:
   - JavaScript
 ---
 
@@ -26,7 +26,7 @@ tags:
 
 ## オレオレライブラリ
 
-[ライブラリ全体はGistにアップ](https://gist.github.com/sus-happy/d24bf9d801a18f0dd591)してあります。
+[ライブラリ全体はGistにアップ](https://gist.github.com/sushat4692/d24bf9d801a18f0dd591)してあります。
 
 使い方はこんな感じ。
 

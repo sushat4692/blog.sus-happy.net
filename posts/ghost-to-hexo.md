@@ -17,7 +17,7 @@ VuePressやNuxt.jsもちょっと気になったのですが、サッと移行�
 
 GhostのエクスポートファイルをNodeで無理やりMarkdownファイルに変換をすることで対応しました。そんなに使う人も居ないと思いますが、GitHubのリポジトリに残してあります。
 
-https://github.com/sus-happy/blog.sus-happy.net/tree/master/convert
+https://github.com/sushat4692/blog.sus-happy.net/tree/master/convert
 
 とりあえず動くように、と書いてるので結構汚いですが…
 

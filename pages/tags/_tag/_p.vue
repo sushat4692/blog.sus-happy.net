@@ -10,6 +10,7 @@ div
     :posts="posts"
     :prev="prev"
     :next="next"
+    :param="$route.params.tag"
     path="tags-tag-p"
   )
 </template>

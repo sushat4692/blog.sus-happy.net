@@ -67,7 +67,11 @@ const config: NuxtConfiguration = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/date-fns.ts', { src: '~plugins/ga.js', ssr: false }],
+  plugins: [
+    '~/plugins/date-fns.ts',
+    { src: '~plugins/ga.js', ssr: false },
+    { src: '~/plugins/vue-infinite-loading.ts', ssr: false }
+  ],
   /*
    ** Nuxt.js modules
    */
@@ -85,7 +89,7 @@ const config: NuxtConfiguration = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
+    extend(config, _ctx) {
       if (!config.module) {
         return
       }

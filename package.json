@@ -71,7 +71,7 @@
     "require-extension-hooks": "^0.3.3",
     "require-extension-hooks-babel": "^1.0.0",
     "require-extension-hooks-vue": "^3.0.0",
-    "ress": "git+https://github.com/sus-happy/ress.git",
+    "ress": "git+https://github.com/sushat4692/ress.git",
     "sass-loader": "^7.1.0",
     "ts-loader": "^6.0.2",
     "vue-infinite-loading": "^2.4.4"

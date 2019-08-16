@@ -2,7 +2,7 @@
 title: "投稿してから何日経ったのか表示するWordPressプラグイン"
 date: 2012-01-22T22:53:27.000Z
 updated: 2016-04-03T14:49:01.000Z
-tags: 
+tags:
   - PHP
   - Plugins
   - WordPress
@@ -12,7 +12,7 @@ tags:
 
 ↑のタイトルの下に出ている表示がそうです。
 
-[ダウンロード（GitHub）](https://github.com/sus-happy/Elapsed-Days)
+[ダウンロード（GitHub）](https://github.com/sushat4692/Elapsed-Days)
 
 いつもの如くとりあえずダウンロード先だけ･･･ちなみに表示のさせ方は、表示させたい箇所に、
 

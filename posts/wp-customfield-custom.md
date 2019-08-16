@@ -2,7 +2,7 @@
 title: "WordPressのカスタムフィールドをカスタムしてみた"
 date: 2014-11-15T16:38:47.000Z
 updated: 2016-04-03T10:43:18.000Z
-tags: 
+tags:
   - PHP
   - WordPress
 ---
@@ -59,7 +59,7 @@ function _save_custom_field( $post_id )
 {
     // 投稿ID, カスタムフィールド名, 値
     update_post_meta( $post_id, 'field', $_POST&#91; 'field' &#93; );
-    
+
     return $post_id;
 }
 add_action( 'save_post', '_save_custom_field' );
@@ -67,7 +67,7 @@ add_action( 'save_post', '_save_custom_field' );
 ?>
 ```
 
-これで保存はされますが、何でもかんでも保存してしまうとマズイので、WPのnonceを使って投稿元のチェックをします。  
+これで保存はされますが、何でもかんでも保存してしまうとマズイので、WPのnonceを使って投稿元のチェックをします。
  先ほどの追加の処理も少し書き換えて…。
 
 ```php
@@ -84,7 +84,7 @@ function _add_meta_box( $post )
 {
     $value = get_post_meta( $post->ID, 'field', TRUE );
     echo '<input type="text" name="field" value="'.esc_attr( $value ).'">';
-    
+
     wp_nonce_field( 'custom_key', 'custom_nonce' );
 }
 
@@ -96,10 +96,10 @@ function _save_custom_field( $post_id )
           || ! current_user_can( 'edit_post', $post_id ) ) {
             return $post_id;
         }
-        
+
     // 投稿ID, カスタムフィールド名, 値
     update_post_meta( $post_id, 'field', $_POST[ 'field' ] );
-    
+
     return $post_id;
 }
 add_action( 'save_post', '_save_custom_field' );
@@ -107,7 +107,7 @@ add_action( 'save_post', '_save_custom_field' );
 ?>
 ```
 
-_add_meta_boxに[wp_nonce_field](https://developer.wordpress.org/reference/functions/wp_nonce_field/)を追加し、_save_custom_fieldで[check_admin_referer](https://developer.wordpress.org/reference/functions/check_admin_referer/)を使って検証しています。  
+_add_meta_boxに[wp_nonce_field](https://developer.wordpress.org/reference/functions/wp_nonce_field/)を追加し、_save_custom_fieldで[check_admin_referer](https://developer.wordpress.org/reference/functions/check_admin_referer/)を使って検証しています。
  これで、安心、のはず。
 
 さて、カスタムフィールドの追加方法は分かったので、ここから入力欄をカスタマイズしていきます。
@@ -117,7 +117,7 @@ _add_meta_boxに[wp_nonce_field](https://developer.wordpress.org/reference/funct
 
 カスタムフィールドにもWYSIWYGを使いたい事があるので、いっその事用意されている通常の本文と同じ機能を持ってきたいと思います。
 
-リファレンスをあさっていると、**wp_editor**という素敵な関数がありましたので、そちらを利用します。  
+リファレンスをあさっていると、**wp_editor**という素敵な関数がありましたので、そちらを利用します。
 <small>_WP_Editors::editorを先に見つけて、あとでwp_editorの存在に気づいたなんて気のせいです。</small>
 
 ```php
@@ -130,14 +130,14 @@ function _add_meta_box( $post )
     $value = get_post_meta( $post->ID, 'field', TRUE );
     // 初期値, フィールド名, 設定情報
     wp_editor( $value, 'field' );
-    
+
     wp_nonce_field( 'custom_key', 'custom_nonce' );
 }
 
 ?>
 ```
 
-**wp_editor**を呼ぶだけで本文同様のTinyMCEを引っ張ってくることが出来ます。便利！  
+**wp_editor**を呼ぶだけで本文同様のTinyMCEを引っ張ってくることが出来ます。便利！
  また、第三引数に配列で値を渡すことでエディターの設定をいじることも出来るようです。（コチラは試していません）
 
 設定できるパラメータは[コチラに記載されていました](http://codex.wordpress.org/Function_Reference/wp_editor)。
@@ -145,13 +145,13 @@ function _add_meta_box( $post )
 
 ## <a name="media">メディアアップロードボタンを使う</a>
 
-続いて、WYSIWYGを配置するまでもないけど、画像を選択させたい、という入力欄も時にはあると思います。  
+続いて、WYSIWYGを配置するまでもないけど、画像を選択させたい、という入力欄も時にはあると思います。
  アイキャッチ画像の設定みたいな感じですね。
 
 そんな時に、WPのメディアアップロード画面を再利用できたら、と思って調べていたら[詳しく説明しているページを見つけました](http://www.sitepoint.com/adding-a-media-button-to-the-content-editor/)ので読んでいくと、**wp.media**というメソッドが用意されているようですね。
 
-ということで、自分用に画像をアップロードするカスタムフィールド用のJSを作ってみました。  
- ちょっと長いので、[コチラはGistにアップしました](https://gist.github.com/sus-happy/33df8a65474798fca0c6)。
+ということで、自分用に画像をアップロードするカスタムフィールド用のJSを作ってみました。
+ ちょっと長いので、[コチラはGistにアップしました](https://gist.github.com/sushat4692/33df8a65474798fca0c6)。
 
 
 ## <a name="other">雑感</a>
