@@ -52,9 +52,17 @@ const config: NuxtConfiguration = {
       { hid: 'og:url', property: 'og:url', content: envConfig.URL },
       { hid: 'og:title', property: 'og:title', content: 'SUSH-i BLOG' },
       { hid: 'og:description', property: 'og:description', content: process.env.npm_package_description || '' },
-      { hid: 'og:image', property: 'og:image', content: envConfig.URL + '/content/background.gif' }
+      { hid: 'og:image', property: 'og:image', content: envConfig.URL + '/content/background.gif' },
+      { name: 'msapplication-TileColor', content: '#ffffff' },
+      { name: 'theme-color', content: '#ffffff' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
+    ]
   },
   /*
    ** Customize the progress-bar color
