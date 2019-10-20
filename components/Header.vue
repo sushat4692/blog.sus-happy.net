@@ -31,13 +31,13 @@ export default {
   top: 0;
   height: $header-height;
   width: $header-height;
-  background: $color-base-red;
   overflow: hidden;
   z-index: 99;
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: linear-gradient(135deg, $color-base-red, darken($color-base-red, 15));
 
   &__trigger {
     position: absolute;

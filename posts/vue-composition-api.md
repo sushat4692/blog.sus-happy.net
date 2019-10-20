@@ -6,6 +6,7 @@ tags:
   - JavaScript
   - Vue.js
   - Nuxt.js
+thumbnail: "/content/images/2019/10/vue.png"
 ---
 
 Vue3がそろそろ公開されそうな雰囲気なので、ちょっと先にVue Composition APIをつかってみました。

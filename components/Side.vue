@@ -120,7 +120,7 @@ export default {
 
       &:hover {
         color: #fff;
-        background: $color-base-red;
+        background-image: linear-gradient(135deg, $color-base-red, darken($color-base-red, 15));
       }
     }
   }
