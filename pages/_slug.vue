@@ -323,8 +323,28 @@ export default {
     /**
      * Code
      */
+    code {
+      border: 1px solid #000;
+      padding: 0.1em 0.25em;
+      border-color: $color-base-red;
+      color: $color-base-red;
+      border-radius: 0.3em;
+      font-weight: bold;
+      display: inline-block;
+      line-height: 1.2;
+      vertical-align: middle;
+      margin: 0 0.2em;
+    }
     pre {
       line-height: 1.2;
+      code {
+        border: none;
+        color: inherit;
+        display: block;
+        line-height: 1.4;
+        margin: 0;
+        font-weight: inherit;
+      }
     }
 
     /**
