@@ -2,7 +2,7 @@
 title: "GoogleMapを画像として呼び出す方法"
 date: 2010-08-29T22:41:03.000Z
 updated: 2016-04-03T15:42:58.000Z
-tags: 
+tags:
   - Google
   - GoogleMap
 ---
@@ -32,6 +32,6 @@ Google Static Maps APIと呼ばれるもので、[こちらの公式ページ](h
 &key=&#91;GoogleMap API Key&#93;" />
 ```
 
-のように記述することで、以下のように表示されます。  
+のように記述することで、以下のように表示されます。
 
-![](http://maps.google.com/staticmap?center=35.170694,136.881637&markers=35.170694,136.881637,red&zoom=16&size=300x300&key=ABQIAAAAA5qkCGkJOwdXk8tYusa7ZBRg6S1mwwG_hVilJduEoXtSoPPcqBQLk8iG7Gi6iNz0AnnFnSO8mX-Rkg)
+![](https://maps.google.com/staticmap?center=35.170694,136.881637&markers=35.170694,136.881637,red&zoom=16&size=300x300&key=ABQIAAAAA5qkCGkJOwdXk8tYusa7ZBRg6S1mwwG_hVilJduEoXtSoPPcqBQLk8iG7Gi6iNz0AnnFnSO8mX-Rkg)
