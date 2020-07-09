@@ -1,0 +1,48 @@
+.c-header {
+  @apply fixed flex bottom-0 left-0 z-10 overflow-hidden;
+
+  @screen md {
+    @apply bottom-auto top-0;
+  }
+
+  &__button {
+    transition: transform var(--transition-speed), opacity var(--transition-speed);
+    transform: translateX(calc(-3rem + 1px));
+    background-image: linear-gradient(135deg, #f56565, #c53030);
+    @apply flex items-center justify-center text-white relative h-12 w-12 appearance-none border-none bg-transparent cursor-pointer p-0 outline-none pointer-events-none opacity-0;
+
+    & + & {
+      margin-left: 1px;
+    }
+
+    &.is-show {
+      transform: translateX(0);
+      @apply pointer-events-auto opacity-100;
+    }
+  }
+
+  &__trigger {
+    &::before, &::after {
+      content: '';
+      height: 1px;
+      transition: transform var(--transition-speed);
+      @apply block absolute inset-0 m-auto block w-6 bg-white;
+    }
+
+    &::before {
+      transform: translateY(-0.25rem);
+    }
+    &::after {
+      transform: translateY(0.25rem);
+    }
+
+    &.is-active {
+      &::before {
+        transform: rotate(45deg);
+      }
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

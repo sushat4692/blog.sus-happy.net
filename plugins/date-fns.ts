@@ -1,11 +1,14 @@
-import { distanceInWordsToNow, parse } from 'date-fns'
+import { Plugin } from '@nuxt/types'
+import { formatDistanceToNow, parseISO } from 'date-fns'
 
-export default ({ app }, inject) => {
-  inject('distanceInWordsToNow', (string: string) => {
-    const date = parse(string)
+const plugin: Plugin = (_context, inject) => {
+  inject('formatDistanceToNow', (string: string) => {
+    const date = parseISO(string)
     if (!date) {
       return ''
     }
-    return distanceInWordsToNow(date)
+    return formatDistanceToNow(date)
   })
 }
+
+export default plugin
