@@ -1,0 +1,32 @@
+.c-meta {
+  @apply text-gray-600;
+
+  &__time {
+    @apply flex justify-start items-center;
+
+    svg {
+      @apply mr-1;
+    }
+  }
+
+  &__tags {
+    @apply flex flex-wrap m-0 p-0 list-none;
+
+    &__item {
+      @apply mt-2 mr-2 flex justify-start items-center;
+
+      svg {
+        @apply mr-1;
+      }
+    }
+
+    &__anchor {
+      @apply no-underline;
+      color: inherit;
+
+      &:hover {
+        @apply underline;
+      }
+    }
+  }
+}

@@ -1,64 +1,85 @@
 <template lang="pug">
 div
-  .g-hero.g-hero--large
-    .g-hero__img
-      img(src="/content/background.gif")
-    div.g-hero__inner
-      h1.g-hero__title SUSH-i BLOG
-      h2.g-hero__sub-title
-        | 名古屋のWeb制作会社につとめる
-        br
-        | プログラマーのつぶやき
+  part-hero(is-large)
+    template(v-slot:title) SUSH-i BLOG
+    template(v-slot:subTitle)
+      | 名古屋のWeb制作会社につとめる
+      br
+      | プログラマーのつぶやき
 
-      ul.g-hero__socials
-        li
-          a(href="https://twitter.com/sushat4692" target="_blank")
-            font-awesome-icon(:icon="['fab', 'twitter']")
-        li
-          a(href="https://www.facebook.com/sushat4692" target="_blank")
-            font-awesome-icon(:icon="['fab', 'facebook-f']")
-        li
-          a(href="https://github.com/sushat4692" target="_blank")
-            font-awesome-icon(:icon="['fab', 'github-alt']")
-        li
-          a(href="https://sus-happy.net" target="_blank")
-            font-awesome-icon(:icon="['fas', 'link']")
+    part-social(is-white)
 
-  List(
-    :posts="posts"
-    :prev="prev"
-    :next="next"
-    path="page-p"
-  )
+  list(:posts="posts")
+
+  no-ssr
+    infinite-loading(
+      @infinite="infiniteHandler"
+    )
 </template>
 
 <script lang="ts">
-// Mixins
-import Visual from '~/assets/mixins/visual'
+import {
+  defineComponent,
+  useContext,
+  useFetch,
+  ref,
+} from 'nuxt-composition-api'
+import { Result } from '@nuxt/content'
 
-// Component
+// Components
+import PartHero from '@/components/Parts/Hero.vue'
+import PartSocial from '@/components/Parts/Social.vue'
 import List from '@/components/List.vue'
 
-export default {
+export default defineComponent({
   components: {
-    List
+    PartHero,
+    PartSocial,
+    List,
   },
-  mixins: [Visual],
-  asyncData({ store }) {
-    const per_page = process.env.POSTS_PER_PAGE ? parseInt(process.env.POSTS_PER_PAGE, 10) : 10
-    return store.getters['posts/recent'](1, per_page)
-  },
-  head() {
-    return {
-      titleTemplate: ''
-    }
-  },
+  head: {},
+  setup() {
+    const perPage = process.env.POSTS_PER_PAGE
+      ? parseInt(process.env.POSTS_PER_PAGE, 10)
+      : 10
+    let page = 1
 
-  async mounted() {
-    const thumbnail = (this as any).$el.querySelector('.g-hero__img img')
-    if (thumbnail) {
-      ;(this as any).mainVisual(thumbnail)
+    const { $content } = useContext()
+    const posts = ref<Result[]>([])
+
+    const fetchResult = useFetch(async () => {
+      const _posts = await $content()
+        .sortBy('date', 'desc')
+        .limit(perPage)
+        .fetch<Result[]>()
+      posts.value = [..._posts]
+    })
+
+    if (!fetchResult) {
+      return { posts, infiniteHandler: () => {} }
     }
-  }
-}
+    fetchResult.fetch()
+
+    const infiniteHandler = async ($state: any) => {
+      const _posts = await $content()
+        .sortBy('date', 'desc')
+        .limit(perPage)
+        .skip(page * perPage)
+        .fetch<Result[]>()
+      page += 1
+
+      if (_posts.length) {
+        posts.value.push(..._posts)
+        $state.loaded()
+      } else {
+        $state.complete()
+      }
+    }
+
+    return {
+      posts,
+      infiniteHandler,
+    }
+  },
+})
 </script>

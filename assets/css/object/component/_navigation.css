@@ -1,0 +1,43 @@
+.c-navigation {
+  @apply pb-8 flex flex-wrap justify-between;
+
+  &__item {
+    @apply flex-grow my-2;
+
+    &.is-prev {
+      @apply text-left;
+    }
+
+    &.is-next {
+      @apply text-right;
+    }
+
+    &.is-home {
+      @apply w-full text-center;
+    }
+  }
+
+  &__anchor {
+    @apply text-red-700 inline-flex;
+
+    &:visited {
+      @apply text-red-800;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &.is-prev {
+    }
+    &.is-prev &__icon {
+      @apply mr-2;
+    }
+    &.is-next {
+      @apply flex-row-reverse;
+    }
+    &.is-next &__icon {
+      @apply ml-2;
+    }
+  }
+}

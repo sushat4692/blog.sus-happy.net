@@ -1,0 +1,5 @@
+.c-detail-thumb {
+  &__img {
+    @apply w-full object-cover align-top h-64;
+  }
+}

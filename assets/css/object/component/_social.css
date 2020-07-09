@@ -1,0 +1,23 @@
+.c-social {
+  @apply flex justify-center items-center;
+
+  &__item {
+    color: inherit;
+    transition: color var(--transition-speed), background var(--transition-speed);
+    @apply flex justify-center items-center border border-solid border-black rounded-full w-8 h-8 mx-2;
+
+    &:hover {
+      @apply bg-black text-white;
+    }
+  }
+
+  &.is-white & {
+    &__item {
+      @apply border-white text-white;
+
+      &:hover {
+        @apply bg-white text-black;
+      }
+    }
+  }
+}
