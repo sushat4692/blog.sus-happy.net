@@ -92,6 +92,7 @@ module.exports = {
    ** Nuxt.js dev-modules
    */
   buildModules: [
+    '~/modules/hooks',
     '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
