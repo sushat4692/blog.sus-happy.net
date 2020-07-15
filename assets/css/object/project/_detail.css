@@ -1,9 +1,0 @@
-.p-detail {
-  &__main {
-    @apply py-4;
-
-    @screen md {
-      @apply py-10;
-    }
-  }
-}
