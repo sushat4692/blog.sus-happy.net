@@ -1,0 +1,44 @@
+.wrap {
+  @apply h-48 flex justify-center items-center relative text-center text-white;
+}
+
+.wrap[data-large] {
+  height: 16rem;
+}
+@screen sm {
+  .wrap[data-large] {
+    height: 24rem;
+  }
+}
+
+.figure {
+  @apply absolute inset-0 bg-gray-500;
+}
+
+.image {
+  @apply w-full h-full object-cover align-top;
+}
+
+.inner {
+  @apply relative;
+}
+
+.title {
+  @apply text-4xl font-black tracking-wide m-0;
+  text-shadow: 0.02em 0.02em 0 #000;
+}
+@screen sm {
+  .title {
+    @apply text-6xl;
+  }
+}
+
+.sub_title {
+  @apply text-base font-normal;
+  text-shadow: 0.02em 0.02em 0 #000;
+}
+@screen sm {
+  .sub_title {
+    @apply text-2xl;
+  }
+}

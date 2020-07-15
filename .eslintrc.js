@@ -1,20 +1,13 @@
 module.exports = {
-  root: true,
-  env: {
-    browser: true,
-    node: true
+  globals: {
+    __PATH_PREFIX__: true,
   },
   extends: [
-    '@nuxtjs/eslint-config-typescript',
+    `react-app`,
     'prettier',
-    'prettier/vue',
     'plugin:prettier/recommended',
-    'plugin:nuxt/recommended'
   ],
   plugins: [
     'prettier'
   ],
-  // add your custom rules here
-  rules: {
-  }
 }

@@ -1,7 +1,0 @@
-.p-archive {
-  @apply grid grid-cols-1 gap-10 py-10;
-
-  @screen md {
-    @apply grid-cols-2;
-  }
-}

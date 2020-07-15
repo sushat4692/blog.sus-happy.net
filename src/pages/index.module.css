@@ -1,0 +1,15 @@
+.wrap {
+  @apply grid grid-cols-1 gap-10 py-10;
+}
+@screen md {
+  .wrap {
+    @apply grid-cols-2;
+  }
+}
+
+.nav {
+  @apply flex justify-between items-center py-8;
+}
+.nav__item {
+  @apply m-0;
+}

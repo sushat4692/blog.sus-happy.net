@@ -1,0 +1,19 @@
+.wrap {
+  @apply flex justify-center items-center;
+}
+
+.item {
+  color: inherit;
+  transition: color var(--transition-speed), background var(--transition-speed);
+  @apply flex justify-center items-center border border-solid border-black rounded-full w-8 h-8 mx-2;
+}
+.item:hover {
+  @apply bg-black text-white;
+}
+
+.wrap[data-white] .item {
+  @apply border-white text-white;
+}
+.wrap[data-white] .item:hover {
+  @apply bg-white text-black;
+}
