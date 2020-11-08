@@ -1,0 +1,52 @@
+.wrapper {
+  @apply fixed flex bottom-0 left-0 z-10 overflow-hidden;
+}
+
+@screen md {
+  .wrapper {
+    @apply bottom-auto top-0;
+  }
+}
+
+.button {
+  transition: transform var(--transition-speed), opacity var(--transition-speed);
+  transform: translateX(calc(-3rem + 1px));
+  background-image: linear-gradient(135deg, #f56565, #c53030);
+  @apply flex items-center justify-center text-white relative h-12 w-12 appearance-none border-none bg-transparent cursor-pointer p-0 outline-none pointer-events-none opacity-0;
+}
+.button:hover {
+  @apply opacity-75;
+}
+
+.button + .button {
+  margin-left: 1px;
+}
+
+.button[data-show] {
+  transform: translateX(0);
+  @apply pointer-events-auto opacity-100;
+}
+.button:hover {
+  @apply opacity-75;
+}
+
+.button__trigger::before,
+.button__trigger::after {
+  content: '';
+  height: 1px;
+  transition: transform var(--transition-speed);
+  @apply block absolute inset-0 m-auto block w-6 bg-white;
+}
+.button__trigger::before {
+  transform: translateY(-0.25rem);
+}
+.button__trigger::after {
+  transform: translateY(0.25rem);
+}
+
+.button__trigger[data-active]::before {
+  transform: rotate(45deg);
+}
+.button__trigger[data-active]::after {
+  transform: rotate(-45deg);
+}
