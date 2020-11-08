@@ -20,8 +20,9 @@ import {
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import type { AppProps } from "next/app"
+import Router from "next/router"
 
 // Context
 import SiteContext from "../context/SiteContext"
@@ -32,6 +33,7 @@ import Side from "../components/side"
 
 // Utility
 import { HeaderContent } from "../lib/blog"
+import { GTMPageView } from "../lib/gtm"
 
 library.add(
   faTwitter,
@@ -54,6 +56,15 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   const clearToc = () => {
     setToc([])
   }
+
+  // Initiate GTM
+  useEffect(() => {
+    const handleRouteChange = (url: string) => GTMPageView(url)
+    Router.events.on("routeChangeComplete", handleRouteChange)
+    return () => {
+      Router.events.off("routeChangeComplete", handleRouteChange)
+    }
+  })
 
   const mainAttr = {
     "data-avoid": isShowNav ? "" : null,
