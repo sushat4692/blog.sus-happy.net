@@ -7,7 +7,7 @@ const glob = require("glob")
 const gbase = require("glob-base")
 
 const targetPattern = "original/**/*.{jpg,jpeg,png,svg}"
-const targetOutput = "static"
+const targetOutput = "public"
 ;(async () => {
   const files = glob.sync(targetPattern)
   const base = gbase(targetPattern)

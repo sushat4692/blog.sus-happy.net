@@ -1,0 +1,33 @@
+.wrap {
+  color: inherit;
+  @apply block no-underline transition duration-75;
+}
+
+.wrap:hover {
+  @apply text-red-500;
+}
+
+.thumb {
+  @apply relative h-48 bg-gray-400 mb-3 overflow-hidden;
+}
+@screen md {
+  .thumb {
+    @apply h-64;
+  }
+}
+.thumb::after {
+  content: '';
+  transition-property: border-width;
+  @apply duration-75 block absolute inset-0 border-0 border-solid border-red-500 pointer-events-none;
+}
+.wrap:hover .thumb::after {
+  @apply border-8;
+}
+
+.thumb__image {
+  @apply absolute inset-0 w-full h-full object-cover;
+}
+
+.title {
+  @apply font-bold text-2xl mb-3;
+}

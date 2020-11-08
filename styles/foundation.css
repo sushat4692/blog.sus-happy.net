@@ -1,0 +1,65 @@
+html {
+  font-family: sans-serif;
+}
+
+/**
+ * Container
+ */
+.l-container {
+  @apply max-w-5xl px-4 mx-auto;
+}
+
+@screen sm {
+  .l-container {
+    @apply px-8;
+  }
+}
+
+/**
+ * Wrapper
+ */
+.l-wrapper {
+  @apply overflow-hidden relative pb-16;
+}
+
+@screen md {
+  .l-wrapper {
+    @apply pb-0;
+  }
+}
+
+.l-wrapper__main {
+  transition: transform var(--transition-speed);
+  @apply min-h-screen;
+}
+.l-wrapper__main[data-avoid] {
+  transform: translateX(calc(var(--sidebar-width) / 2));
+
+  @media (min-width: 1560px) {
+    transform: translateX(0);
+  }
+}
+
+/**
+ * Button
+ */
+.c-button {
+  @apply transition duration-75 font-bold py-3 px-6 rounded no-underline inline-block;
+}
+
+.c-button[data-primary] {
+  @apply bg-red-500 text-white;
+}
+
+.c-button[data-primary]:hover {
+  @apply bg-red-700;
+}
+
+.c-button[data-primary-outline] {
+  @apply bg-white text-red-500 border border-red-500 border-solid;
+}
+
+.c-button[data-primary-outline]:hover {
+  @apply bg-red-500 text-white;
+}
+
