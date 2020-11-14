@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from "next"
+import { ParsedUrlQuery } from "querystring"
 import Link from "next/link"
 
 // Components
@@ -44,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts()
   const maxPage = Math.ceil(posts.length / PER_PAGE)
 
-  const paths = []
+  const paths: { params: ParsedUrlQuery }[] = []
   for (let i = 2; i <= maxPage; i += 1) {
     paths.push({ params: { p: i.toString() } })
   }
