@@ -24,14 +24,6 @@ const SocialComponent: React.FC<Props> = props => {
         <FontAwesomeIcon icon={["fab", "twitter"]}></FontAwesomeIcon>
       </a>
       <a
-        href="https://www.facebook.com/sushat4692"
-        target="_blank"
-        rel="noreferrer"
-        className={styles.item}
-      >
-        <FontAwesomeIcon icon={["fab", "facebook-f"]}></FontAwesomeIcon>
-      </a>
-      <a
         href="https://github.com/sushat4692"
         target="_blank"
         rel="noreferrer"
