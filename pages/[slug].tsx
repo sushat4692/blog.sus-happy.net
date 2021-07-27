@@ -11,6 +11,7 @@ import remark from "remark"
 import remarkHtml from "remark-html"
 import remarkPrism from "remark-prism"
 import remarkSlug from "remark-slug"
+import remarkGfm from "remark-gfm"
 import striptags from "striptags"
 import { JSDOM } from "jsdom"
 
@@ -47,6 +48,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
     .use(remarkPrism)
     .use(remarkSlug)
     .use(remarkHtml)
+    .use(remarkGfm)
     .process(post.content || "")
   const content = markdown.toString()
   const excerpt = striptags(content).replace(/\r?\n/g, " ").slice(0, 200)
