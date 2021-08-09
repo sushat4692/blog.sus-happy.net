@@ -1,5 +1,6 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from "next"
 import Link from "next/link"
+import { useCallback } from "react"
 
 // Components
 import SEO from "../../components/seo"
@@ -59,7 +60,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Page: NextPage<Props> = ({ p, tag, posts, hasPrev, hasNext }) => {
-  const prevLink = (() => {
+  const prevLink = useCallback(() => {
     if (p <= 2) {
       return { pathname: "/tag/[slug]/", query: { slug: tag } }
     } else {
@@ -68,21 +69,23 @@ const Page: NextPage<Props> = ({ p, tag, posts, hasPrev, hasNext }) => {
         query: { slug: tag, p: p - 1 },
       }
     }
-  })()
-  const nextLink = {
-    pathname: "/tag/[slug]/page/[p]",
-    query: { slug: tag, p: p + 1 },
-  }
+  }, [tag, p])
+  const nextLink = useCallback(() => {
+    return {
+      pathname: "/tag/[slug]/page/[p]",
+      query: { slug: tag, p: p + 1 },
+    }
+  }, [tag, p])
 
   return (
     <>
       <SEO
-        title={`${tag} | SUSH-i BLOG`}
+        title={`${decodeURIComponent(tag)} | SUSH-i BLOG`}
         description="Tweet by who's working as web programmer at the company in Nagoya, Japan/Makati, Philippines"
         type="website"
       />
 
-      <PartHero title={`${tag}`} />
+      <PartHero title={`${decodeURIComponent(tag)}`} />
 
       <div className="l-container">
         <div className={styles.wrap}>
@@ -104,7 +107,7 @@ const Page: NextPage<Props> = ({ p, tag, posts, hasPrev, hasNext }) => {
         <div className={styles.nav}>
           <p className={styles.nav__item} data-prev>
             {hasPrev && (
-              <Link href={prevLink}>
+              <Link href={prevLink()}>
                 <a className="c-button" data-primary>
                   PREV
                 </a>
@@ -113,7 +116,7 @@ const Page: NextPage<Props> = ({ p, tag, posts, hasPrev, hasNext }) => {
           </p>
           <p className={styles.nav__item} data-next>
             {hasNext && (
-              <Link href={nextLink}>
+              <Link href={nextLink()}>
                 <a className="c-button" data-primary>
                   NEXT
                 </a>

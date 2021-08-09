@@ -151,6 +151,7 @@ export const getTagLists = () => {
 
 export const getTagPosts = (tag: string) => {
   const posts = getAllPosts()
+  tag = decodeURIComponent(tag)
 
   return posts.filter(post => {
     return post.frontmatter.tags.some(t => t === tag)

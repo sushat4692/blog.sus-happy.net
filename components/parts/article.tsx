@@ -15,10 +15,13 @@ type Props = {
   tags?: string[]
 }
 
-const ArticleComponent: React.FC<Props> = props => {
-  const { slug, title, date, tags } = props
-  let { thumbnail } = props
-
+const ArticleComponent: React.FC<Props> = ({
+  slug,
+  title,
+  date,
+  tags,
+  thumbnail,
+}: Props) => {
   if (!thumbnail) {
     thumbnail = "/content/noimage.png"
   }

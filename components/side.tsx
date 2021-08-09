@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useCallback, useContext, useRef } from "react"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import MD5 from "crypto-js/md5"
@@ -10,20 +10,24 @@ import PartsSocial from "./parts/social"
 
 const SideComponent: React.FC = () => {
   const { isShowNav, toc } = useContext(SiteContext)
-  const imageSource = `https://www.gravatar.com/avatar/${MD5(
-    "sush@sus-happy.net"
-  ).toString()}?size=480`
+  const imageSource = useRef(
+    `https://www.gravatar.com/avatar/${MD5(
+      "sush@sus-happy.net"
+    ).toString()}?size=480`
+  )
 
-  const wrapAttribute = {
-    "data-show": isShowNav ? "" : null,
-  }
+  const wrapAttribute = useCallback(() => {
+    return {
+      "data-show": isShowNav ? "" : null,
+    }
+  }, [isShowNav])
 
   return (
-    <aside className={styles.wrap} {...wrapAttribute}>
+    <aside className={styles.wrap} {...wrapAttribute()}>
       <div className={styles.avatar}>
         <figure className={styles.avatar__figure}>
           <img
-            src={imageSource}
+            src={imageSource.current}
             alt="SUSH"
             className={styles.avatar__figure__img}
           />
