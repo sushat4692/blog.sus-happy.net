@@ -20,7 +20,7 @@ import {
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import type { AppProps } from "next/app"
 import Router from "next/router"
 
@@ -49,13 +49,13 @@ library.add(
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const [isShowNav, setIsShowNav] = useState(false)
-  const toggleNav = () => {
+  const toggleNav = useCallback(() => {
     setIsShowNav(!isShowNav)
-  }
+  }, [isShowNav])
   const [toc, setToc] = useState<HeaderContent>([])
-  const clearToc = () => {
+  const clearToc = useCallback(() => {
     setToc([])
-  }
+  }, [])
 
   // Initiate GTM
   useEffect(() => {
@@ -66,9 +66,14 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     }
   })
 
-  const mainAttr = {
+  const [mainAttr, updateMainAttr] = useState({
     "data-avoid": isShowNav ? "" : null,
-  }
+  })
+  useEffect(() => {
+    updateMainAttr({
+      "data-avoid": isShowNav ? "" : null,
+    })
+  }, [isShowNav])
 
   return (
     <SiteContext.Provider

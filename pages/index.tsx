@@ -12,6 +12,7 @@ import { getAllPosts, BlogContent, PER_PAGE } from "../lib/blog"
 
 // Style
 import styles from "../styles/pages/index.module.css"
+import { useCallback, useRef } from "react"
 
 type Props = {
   p: number
@@ -42,24 +43,26 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 }
 
 const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
-  const heroTitle = `SUSH-i BLOG`
-  const heroSubTitle = (
+  const heroTitle = useRef(`SUSH-i BLOG`)
+  const heroSubTitle = useRef(
     <>
       名古屋のWeb制作会社につとめる
       <br />
       プログラマーのつぶやき
     </>
   )
-  const heroBody = <PartSocial isWhite={true} />
+  const heroBody = useRef(<PartSocial isWhite={true} />)
 
-  const prevLink = (() => {
+  const prevLink = useCallback(() => {
     if (p <= 2) {
       return "/"
     } else {
       return { pathname: "/page/[p]", query: { p: p - 1 } }
     }
-  })()
-  const nextLink = { pathname: "/page/[p]", query: { p: p + 1 } }
+  }, [p])
+  const nextLink = useCallback(() => {
+    return { pathname: "/page/[p]", query: { p: p + 1 } }
+  }, [p])
 
   return (
     <>
@@ -71,9 +74,9 @@ const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
 
       <PartHero
         isLarge={true}
-        title={heroTitle}
-        subTitle={heroSubTitle}
-        body={heroBody}
+        title={heroTitle.current}
+        subTitle={heroSubTitle.current}
+        body={heroBody.current}
       />
 
       <div className="l-container">
@@ -96,7 +99,7 @@ const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
         <div className={styles.nav}>
           <p className={styles.nav__item} data-prev>
             {hasPrev && (
-              <Link href={prevLink}>
+              <Link href={prevLink()}>
                 <a className="c-button" data-primary>
                   PREV
                 </a>
@@ -105,7 +108,7 @@ const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
           </p>
           <p className={styles.nav__item} data-next>
             {hasNext && (
-              <Link href={nextLink}>
+              <Link href={nextLink()}>
                 <a className="c-button" data-primary>
                   NEXT
                 </a>

@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths, NextPage } from "next"
+import { useCallback } from "react"
 import { ParsedUrlQuery } from "querystring"
 import Link from "next/link"
 
@@ -57,14 +58,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Page: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
-  const prevLink = (() => {
+  const prevLink = useCallback(() => {
     if (p <= 2) {
       return "/"
     } else {
       return { pathname: "/page/[p]", query: { p: p - 1 } }
     }
-  })()
-  const nextLink = { pathname: "/page/[p]", query: { p: p + 1 } }
+  }, [p])
+  const nextLink = useCallback(() => {
+    return { pathname: "/page/[p]", query: { p: p + 1 } }
+  }, [p])
 
   return (
     <>
@@ -96,7 +99,7 @@ const Page: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
         <div className={styles.nav}>
           <p className={styles.nav__item} data-prev>
             {hasPrev && (
-              <Link href={prevLink}>
+              <Link href={prevLink()}>
                 <a className="c-button" data-primary>
                   PREV
                 </a>
@@ -105,7 +108,7 @@ const Page: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
           </p>
           <p className={styles.nav__item} data-next>
             {hasNext && (
-              <Link href={nextLink}>
+              <Link href={nextLink()}>
                 <a className="c-button" data-primary>
                   NEXT
                 </a>

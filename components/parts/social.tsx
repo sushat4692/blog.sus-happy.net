@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import PropTypes from "prop-types"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
@@ -8,13 +8,15 @@ type Props = {
   isWhite?: boolean
 }
 
-const SocialComponent: React.FC<Props> = props => {
-  const wrapAttr = {
-    "data-white": props.isWhite ? "" : null,
-  }
+const SocialComponent: React.FC<Props> = ({ isWhite }) => {
+  const wrapAttr = useCallback(() => {
+    return {
+      "data-white": isWhite ? "" : null,
+    }
+  }, [isWhite])
 
   return (
-    <div className={styles.wrap} {...wrapAttr}>
+    <div className={styles.wrap} {...wrapAttr()}>
       <a
         href="https://twitter.com/sushat4692"
         target="_blank"

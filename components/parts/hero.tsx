@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useCallback } from "react"
 import Image from "next/image"
 import PropTypes from "prop-types"
 
@@ -12,22 +12,25 @@ type Props = {
   background?: string
 }
 
-const HeroComponent: React.FC<Props> = props => {
-  const wrapAttribute = {
-    "data-large": props.isLarge ? "" : null,
-  }
-
-  let { title, subTitle, body, background } = props
-  if (!background) {
-    background = "/content/background.jpg"
-  }
+const HeroComponent: React.FC<Props> = ({
+  title,
+  subTitle,
+  body,
+  background,
+  isLarge,
+}) => {
+  const wrapAttribute = useCallback(() => {
+    return {
+      "data-large": isLarge ? "" : null,
+    }
+  }, [isLarge])
 
   return (
-    <div className={styles.wrap} {...wrapAttribute}>
+    <div className={styles.wrap} {...wrapAttribute()}>
       <div className={styles.figure}>
         {background ? (
           <Image
-            src={background}
+            src={background ?? "/content/background.jpg"}
             className={styles.image}
             layout="fill"
             loading="lazy"

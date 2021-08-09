@@ -11,9 +11,7 @@ type Props = {
   tagLink?: boolean
 }
 
-const MetaComponent: React.FC<Props> = props => {
-  let { date, tags, tagLink } = props
-
+const MetaComponent: React.FC<Props> = ({ date, tags, tagLink }) => {
   return (
     <div className={styles.wrap}>
       <time className={styles.time}>
