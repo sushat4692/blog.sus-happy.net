@@ -5,7 +5,7 @@ const matter = require("gray-matter")
 const { parseISO, format } = require("date-fns")
 
 const targetPattern = "content/blog/**/*.md"
-const targetOutput = "public"
+const targetOutput = "pages/api/[slug]"
 
 ;(async () => {
   const results = []
