@@ -92,18 +92,17 @@ const ogp = async (req: NextApiRequest, res: NextApiResponse) => {
       development: "http://localhost:3000",
     }[process.env.NODE_ENV]
 
+    const dir = path.resolve("./public")
     const postList = JSON.parse(
-      fs
-        .readFileSync(path.join(process.cwd(), "public", "posts.json"))
-        .toString()
+      fs.readFileSync(path.join(dir, "posts.json")).toString()
     )
     if (!postList) {
-      throw new Error("Not found")
+      throw new Error("Not found posts.json")
     }
 
     const post = postList.find(p => p.slug === slug)
     if (!post) {
-      throw new Error("Not found")
+      throw new Error("Not found by filtering slug")
     }
 
     // サイズの設定
