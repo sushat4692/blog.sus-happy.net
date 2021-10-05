@@ -43,7 +43,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 }
 
 const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
-  const heroTitle = useRef(`SUSH-i BLOG`)
   const heroSubTitle = useRef(
     <>
       名古屋のWeb制作会社につとめる
@@ -66,15 +65,11 @@ const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
 
   return (
     <>
-      <SEO
-        title="SUSH-i LOG"
-        description="Tweet by who's working as web programmer at the company in Nagoya, Japan/Makati, Philippines"
-        type="website"
-      ></SEO>
+      <SEO title="SUSH-i LOG" type="website" index={false}></SEO>
 
       <PartHero
         isLarge={true}
-        title={heroTitle.current}
+        title={process.env.NEXT_PUBLIC_SITE_NAME}
         subTitle={heroSubTitle.current}
         body={heroBody.current}
       />

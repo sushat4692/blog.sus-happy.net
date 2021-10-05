@@ -95,6 +95,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const DetailPage: NextPage<Props> = ({
+  slug,
   frontmatter,
   excerpt,
   content,
@@ -114,7 +115,12 @@ const DetailPage: NextPage<Props> = ({
 
   return (
     <>
-      <SEO title={frontmatter.title} description={excerpt} type="article"></SEO>
+      <SEO
+        title={`${frontmatter.title} - ${process.env.NEXT_PUBLIC_SITE_NAME}`}
+        description={excerpt}
+        type="article"
+        ogimage={`/api/${slug}/ogp.jpg`}
+      ></SEO>
 
       <PartsHero background={frontmatter.thumbnail} isLarge={true}></PartsHero>
 
