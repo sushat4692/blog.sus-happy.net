@@ -22,8 +22,8 @@ const SEO = ({ title, description, type, index, ogimage }) => {
       )}
       <meta property="og:title" content={title} />
       <meta property="og:type" content={type} />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:creator" content="summary" />
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:creator" content="@sushat4692" />
       <meta property="twitter:title" content={title} />
       <meta property="og:image" content={`${baseUrl}${ogimage}`} />
 
