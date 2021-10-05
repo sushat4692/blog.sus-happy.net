@@ -1,10 +1,7 @@
 import ReactDOM from "react-dom/server"
 import { NextApiRequest, NextApiResponse } from "next"
 import * as playwright from "playwright-aws-lambda"
-import fs from "fs"
 import path from "path"
-
-import { getPostBySlug } from "../../../lib/blog"
 
 const styles = `
   * {
@@ -92,8 +89,8 @@ const ogp = async (req: NextApiRequest, res: NextApiResponse) => {
       development: "http://localhost:3000",
     }[process.env.NODE_ENV]
 
-    const dir = path.resolve("./public")
-    const postList = require(path.join(dir, "posts.json"))
+    const file = path.resolve("./posts.json")
+    const postList = require(file)
     if (!postList) {
       throw new Error("Not found posts.json")
     }
