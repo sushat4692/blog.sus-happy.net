@@ -5,7 +5,7 @@
   "scripts": {
     "prepare:image": "node --trace-warnings tasks/image-optimize.js",
     "dev": "next dev",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint --ext .js,.ts,.tsx --ignore-path .gitignore .",
     "lint:fix": "eslint --fix --ext .js,.ts,.tsx --ignore-path .gitignore ."
