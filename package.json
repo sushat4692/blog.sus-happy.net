@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "prepare:image": "node --trace-warnings tasks/image-optimize.js",
+    "prepare:json": "node --trace-warnings tasks/posts-list.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
