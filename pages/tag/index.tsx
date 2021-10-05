@@ -29,8 +29,8 @@ const TagIndex: NextPage<Props> = ({ tags }) => {
   return (
     <>
       <SEO
-        title={`Tag List | SUSH-i BLOG`}
-        description="Tag list of SUSH-i BLOG"
+        title={`Tag List | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
+        description={`Tag list of ${process.env.NEXT_PUBLIC_SITE_NAME}`}
         type="website"
       />
 

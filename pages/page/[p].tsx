@@ -72,9 +72,9 @@ const Page: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
   return (
     <>
       <SEO
-        title={`Page ${p} | SUSH-i BLOG`}
-        description="Tweet by who's working as web programmer at the company in Nagoya, Japan/Makati, Philippines"
+        title={`Page ${p} | ${process.env.NEXT_PUBLIC_SITE_NAME}`}
         type="website"
+        index={false}
       />
 
       <PartHero title={`Page ${p}`} />

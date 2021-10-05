@@ -80,8 +80,10 @@ const Page: NextPage<Props> = ({ p, tag, posts, hasPrev, hasNext }) => {
   return (
     <>
       <SEO
-        title={`${decodeURIComponent(tag)} | SUSH-i BLOG`}
-        description="Tweet by who's working as web programmer at the company in Nagoya, Japan/Makati, Philippines"
+        title={`${decodeURIComponent(tag)} | ${
+          process.env.NEXT_PUBLIC_SITE_NAME
+        }`}
+        description={`Post list by filterling "${decodeURIComponent(tag)}"`}
         type="website"
       />
 
