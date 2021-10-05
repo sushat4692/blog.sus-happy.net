@@ -90,7 +90,7 @@ const ogp = async (req: NextApiRequest, res: NextApiResponse) => {
       development: "http://localhost:3000",
     }[process.env.NODE_ENV]
 
-    const file = path.resolve("./public", "posts.json")
+    const file = path.resolve("posts.json")
     const postList = JSON.parse(fs.readFileSync(file).toString())
     if (!postList) {
       throw new Error("Not found posts.json")
