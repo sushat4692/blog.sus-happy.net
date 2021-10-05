@@ -93,12 +93,11 @@ const ogp = async (req: NextApiRequest, res: NextApiResponse) => {
     }[process.env.NODE_ENV]
 
     const dir = path.resolve("./public")
-    const postList = JSON.parse(
-      fs.readFileSync(path.join(dir, "posts.json")).toString()
-    )
+    const postList = require(path.join(dir, "posts.json"))
     if (!postList) {
       throw new Error("Not found posts.json")
     }
+    console.log(postList)
 
     const post = postList.find(p => p.slug === slug)
     if (!post) {
