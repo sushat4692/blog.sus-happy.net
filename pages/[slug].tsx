@@ -7,13 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SiteContext from "../context/SiteContext"
 
 // Library
-import remark from "remark"
-import remarkHtml from "remark-html"
-import remarkPrism from "remark-prism"
+import unified from "unified"
+import remarkParse from "remark-parse"
+import remarkRehype from "remark-rehype"
+import remarkShiki from "@stefanprobst/remark-shiki"
 import remarkSlug from "remark-slug"
 import remarkGfm from "remark-gfm"
+import rehypeRaw from "rehype-raw"
+import rehypeStringify from "rehype-stringify"
 import striptags from "striptags"
 import { JSDOM } from "jsdom"
+import * as shiki from "shiki"
 
 // Utility
 import {
@@ -43,12 +47,17 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const slug = Array.isArray(params.slug) ? params.slug.join("/") : params.slug
   const post = getPostBySlug(slug)
 
+  const highlighter = await shiki.getHighlighter({ theme: "github-dark" })
+
   // Parsing Markdown
-  const markdown = await remark()
-    .use(remarkPrism)
-    .use(remarkSlug)
-    .use(remarkHtml)
+  const markdown = await unified()
+    .use(remarkParse)
     .use(remarkGfm)
+    .use(remarkShiki, { highlighter })
+    .use(remarkSlug)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeStringify)
     .process(post.content || "")
   const content = markdown.toString()
   const excerpt = striptags(content).replace(/\r?\n/g, " ").slice(0, 200)

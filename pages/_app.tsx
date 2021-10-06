@@ -2,7 +2,6 @@
 import "normalize.css/normalize.css"
 import "../styles/variables.css"
 import "../styles/foundation.css"
-import "prismjs/themes/prism-tomorrow.css"
 
 // Font Awesome
 import { library } from "@fortawesome/fontawesome-svg-core"
