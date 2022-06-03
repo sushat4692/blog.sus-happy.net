@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import SiteContext from "../context/SiteContext"
 
 // Library
-import unified from "unified"
+import { unified } from "unified"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import remarkShiki from "@stefanprobst/remark-shiki"

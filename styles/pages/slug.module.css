@@ -7,6 +7,15 @@
   }
 }
 
+.title {
+  @apply text-3xl leading-tight;
+}
+@screen md {
+  .title {
+    @apply text-5xl leading-tight;
+  }
+}
+
 .content {
   @apply text-lg;
   line-height: 1.8;
