@@ -1,8 +1,10 @@
 import ReactDOM from "react-dom/server"
 import { NextApiRequest, NextApiResponse } from "next"
+import { loadDefaultJapaneseParser } from "budoux"
 import * as playwright from "playwright-aws-lambda"
-
 import postList from "./posts.json"
+
+const parser = loadDefaultJapaneseParser()
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap');
@@ -75,7 +77,11 @@ const Content = ({ title, thumbnail }) => (
       }}
     >
       <div>
-        <h1>{title}</h1>
+        <h1
+          dangerouslySetInnerHTML={{
+            __html: parser.translateHTMLString(title),
+          }}
+        />
         <p>{process.env.NEXT_PUBLIC_SITE_NAME}</p>
       </div>
     </body>
