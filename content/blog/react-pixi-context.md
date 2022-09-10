@@ -1,7 +1,7 @@
 ---
 title: "ReactPixiでコンテクスト（Context）を渡す"
-date: 2022-08-30T00:00:00.000Z
-updated: 2022-08-30T00:00:00.000Z
+date: 2022-09-10T20:16:00.000Z
+updated: 2022-09-10T20:16:00.000Z
 tags: 
   - JavaScript
   - React
