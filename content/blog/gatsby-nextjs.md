@@ -4,7 +4,7 @@ date: 2020-11-15T00:31:00.000Z
 updated: 2020-11-15T00:31:00.000Z
 tags: 
   - JavaScript
-  - React.js
+  - React
   - Gatsby.js
   - Next.js
 ---

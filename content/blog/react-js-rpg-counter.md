@@ -4,7 +4,7 @@ date: 2015-09-08T23:24:37.000Z
 updated: 2016-04-08T13:24:04.000Z
 tags:
   - JavaScript
-  - React.js
+  - React
 thumbnail: "/content/images/2016/04/counter-image.jpg"
 ---
 
