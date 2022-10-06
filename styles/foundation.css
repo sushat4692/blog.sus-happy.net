@@ -2,16 +2,20 @@ html {
   font-family: sans-serif;
 }
 
+body {
+  @apply bg-slate-100 text-slate-800;
+}
+
 /**
  * Container
  */
 .l-container {
-  @apply max-w-5xl px-4 mx-auto;
+  @apply px-4;
 }
 
 @screen sm {
   .l-container {
-    @apply px-8;
+    @apply px-16;
   }
 }
 
@@ -44,22 +48,22 @@ html {
  * Button
  */
 .c-button {
-  @apply transition duration-75 font-bold py-3 px-6 rounded no-underline inline-block;
+  @apply transition duration-75 font-bold py-3 px-6 no-underline inline-block;
 }
 
 .c-button[data-primary] {
-  @apply bg-red-500 text-white;
+  @apply text-slate-800 border-solid border border-slate-800;
 }
 
 .c-button[data-primary]:hover {
-  @apply bg-red-700;
+  @apply bg-slate-800 text-white;
 }
 
 .c-button[data-primary-outline] {
-  @apply bg-white text-red-500 border border-red-500 border-solid;
+  @apply bg-white text-red-700 border border-red-700 border-solid;
 }
 
 .c-button[data-primary-outline]:hover {
-  @apply bg-red-500 text-white;
+  @apply bg-red-700 text-white;
 }
 

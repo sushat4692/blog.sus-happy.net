@@ -1,14 +1,14 @@
 .main {
-  @apply py-4;
+  @apply pt-10 pb-0;
 }
 @screen md {
   .main {
-    @apply py-10;
+    @apply pt-20 pb-10;
   }
 }
 
 .title {
-  @apply text-3xl leading-tight;
+  @apply mt-0 text-3xl leading-tight;
 }
 @screen md {
   .title {
@@ -22,7 +22,7 @@
 }
 
 .content a {
-  @apply text-red-700;
+  @apply text-red-900;
 }
 .content a:visited {
   @apply text-red-800;
@@ -125,7 +125,7 @@
   * Code
   */
 .content code {
-  @apply text-red-700 border border-solid border-red-700;
+  @apply text-red-900 border border-solid border-red-900;
 
   padding: 0.1em 0.25em;
   border-radius: 0.3em;
@@ -137,6 +137,8 @@
 }
 .content pre {
   line-height: 1.2;
+  overflow: auto;
+  padding: .4em;
 }
 .content pre code {
   border: none;
@@ -154,24 +156,20 @@
 }
 
 .navigation {
-  @apply p-0 pb-8 flex flex-wrap justify-between list-none;
+  @apply text-lg m-0 mt-12 p-0 pt-12 list-none border-0 border-t border-solid border-slate-300;
 }
 
 .navigation__item {
   @apply flex-grow my-2;
 }
-.navigation__item[data-prev] {
-  @apply text-left;
-}
-.navigation__item[data-next] {
-  @apply text-right;
-}
-.navigation__item[data-home] {
-  @apply w-full text-center;
+.navigation__item__label::after {
+  content: ':';
+  display: inline-block;
+  margin: 0 .2em
 }
 
 .navigation__anchor {
-  @apply text-red-700 inline-flex;
+  @apply text-red-900 inline-flex;
 }
 .navigation__anchor:visited {
   @apply text-red-800;

@@ -44,11 +44,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
   const heroSubTitle = useRef(
-    <>
-      名古屋のWeb制作会社につとめる
-      <br />
-      プログラマーのつぶやき
-    </>
+    <>名古屋のWeb制作会社につとめるプログラマーのつぶやき</>
   )
   const heroBody = useRef(<PartSocial isWhite={true} />)
 
@@ -65,7 +61,12 @@ const Home: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
 
   return (
     <>
-      <SEO title="SUSH-i LOG" type="website" index={false}></SEO>
+      <SEO
+        title="SUSH-i LOG"
+        description="名古屋のWeb制作会社につとめるプログラマーのつぶやき"
+        type="website"
+        index={false}
+      ></SEO>
 
       <PartHero
         isLarge={true}

@@ -29,6 +29,8 @@ const SideComponent: React.FC = () => {
           <img
             src={imageSource.current}
             alt="SUSH"
+            width={480}
+            height={480}
             className={styles.avatar__figure__img}
           />
           <figcaption className={styles.avatar__figure__caption}>

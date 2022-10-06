@@ -2,6 +2,7 @@ import React, { useCallback, useContext } from "react"
 import Link from "next/link"
 import { Router } from "next/router"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faMountain } from "@fortawesome/free-solid-svg-icons"
 
 import styles from "../styles/components/header.module.css"
 import SiteContext from "../context/SiteContext"
@@ -28,13 +29,17 @@ const HeaderComponent: React.FC<Props> = ({ router }) => {
   return (
     <div className={`${styles.wrapper}`}>
       <button
+        aria-label="Sidebar Toggle Button"
         className={`${styles.button} ${styles.button__trigger}`}
         onClick={toggleNav}
         {...buttonAttribute()}
       ></button>
-      <Link href={`/`}>
+      <Link href={`/`} passHref>
         <a className={`${styles.button}`} {...homeAttribute()}>
-          <FontAwesomeIcon icon="mountain"></FontAwesomeIcon>
+          <FontAwesomeIcon
+            icon={faMountain}
+            title="Blog Home"
+          ></FontAwesomeIcon>
         </a>
       </Link>
     </div>
