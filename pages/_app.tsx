@@ -34,17 +34,17 @@ import Side from "../components/side"
 import { HeaderContent } from "../lib/blog"
 import { GTMPageView } from "../lib/gtm"
 
-library.add(
-  faTwitter,
-  faFacebookF,
-  faGithubAlt,
-  faClock,
-  faLink,
-  faTag,
-  faMountain,
-  faAngleLeft,
-  faAngleRight
-)
+// library.add(
+//   faTwitter,
+//   faFacebookF,
+//   faGithubAlt,
+//   faClock,
+//   faLink,
+//   faTag,
+//   faMountain,
+//   faAngleLeft,
+//   faAngleRight
+// )
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const [isShowNav, setIsShowNav] = useState(false)

@@ -1,18 +1,27 @@
 .main {
-  @apply py-4;
+  @apply pt-10 pb-10;
 }
-@screen md {
+@screen sm {
   .main {
-    @apply py-10;
+    @apply pt-20 pb-20;
+  }
+}
+
+.header {
+  @apply pb-10 mb-10 border-0 border-b border-solid border-slate-300;
+}
+@screen sm {
+  .header {
+    @apply pb-20 mb-20;
   }
 }
 
 .title {
-  @apply text-3xl leading-tight;
+  @apply mt-0 text-4xl leading-tight;
 }
-@screen md {
+@screen sm {
   .title {
-    @apply text-5xl leading-tight;
+    @apply text-6xl leading-tight;
   }
 }
 
@@ -22,7 +31,7 @@
 }
 
 .content a {
-  @apply text-red-700;
+  @apply text-red-900;
 }
 .content a:visited {
   @apply text-red-800;
@@ -34,9 +43,29 @@
 /**
   * Heading
   */
-.content h2,
-.content h3,
-.content h4,
+.content h2 {
+  @apply text-3xl;
+  margin: 2em 0 0.5em;
+}
+@screen sm {
+  .content h2 {
+    @apply text-5xl;
+  }
+}
+
+.content h3 {
+  @apply text-2xl;
+  margin: 2em 0 0.5em;
+}
+@screen sm {
+  .content h3 {
+    @apply text-4xl;
+  }
+}
+
+.content h4 {
+  margin: 2em 0 0.5em;
+}
 .content h5 {
   margin: 2em 0 0.5em;
 }
@@ -72,13 +101,13 @@
   margin: 1.4em 0;
 }
 .content th {
-  background: #eee;
-  border: 1px solid #ccc;
   padding: 0.5em;
+
+  @apply border border-solid border-slate-300 bg-slate-200;
 }
 .content td {
-  border: 1px solid #ccc;
   padding: 0.5em;
+  @apply border border-solid border-slate-300;
 }
 
 /**
@@ -89,7 +118,7 @@
   max-height: 40rem;
 }
 
-@screen md {
+@screen sm {
   .content iframe {
     max-height: none;
   }
@@ -125,7 +154,7 @@
   * Code
   */
 .content code {
-  @apply text-red-700 border border-solid border-red-700;
+  @apply text-red-900 border border-solid border-red-900;
 
   padding: 0.1em 0.25em;
   border-radius: 0.3em;
@@ -137,6 +166,8 @@
 }
 .content pre {
   line-height: 1.2;
+  overflow: auto;
+  padding: .4em;
 }
 .content pre code {
   border: none;
@@ -154,24 +185,25 @@
 }
 
 .navigation {
-  @apply p-0 pb-8 flex flex-wrap justify-between list-none;
+  @apply text-lg m-0 mt-10 p-0 pt-10 list-none border-0 border-t border-solid border-slate-300;
+}
+@screen sm {
+  .navigation {
+    @apply mt-20 pt-20;
+  }
 }
 
 .navigation__item {
   @apply flex-grow my-2;
 }
-.navigation__item[data-prev] {
-  @apply text-left;
-}
-.navigation__item[data-next] {
-  @apply text-right;
-}
-.navigation__item[data-home] {
-  @apply w-full text-center;
+.navigation__item__label::after {
+  content: ':';
+  display: inline-block;
+  margin: 0 .2em
 }
 
 .navigation__anchor {
-  @apply text-red-700 inline-flex;
+  @apply text-red-900 inline-flex;
 }
 .navigation__anchor:visited {
   @apply text-red-800;

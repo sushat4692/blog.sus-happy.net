@@ -16,10 +16,10 @@ tags:
 
 ※同じJavaScriptを呼び出しているので、キャッシュを削除してから次のデモを見ると比較しやすいと思います。
 
-- [デモ（何もなしなHTML記述）](http://demo.sus-happy.net/javascript/prloader/normal.html)
-- [デモ（deferなHTML記述）](http://demo.sus-happy.net/javascript/prloader/defer.html)
-- [デモ（asyncなHTML記述）](http://demo.sus-happy.net/javascript/prloader/async.html)
-- [デモ（非同期ローダーを利用）](http://demo.sus-happy.net/javascript/prloader/)
+- ~~デモ（何もなしなHTML記述）~~
+- ~~デモ（deferなHTML記述）~~
+- ~~デモ（asyncなHTML記述）~~
+- ~~デモ（非同期ローダーを利用）~~
 
 それぞれ特徴があって面白い動きをしますね。
 

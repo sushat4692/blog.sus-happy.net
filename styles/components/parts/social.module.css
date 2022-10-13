@@ -5,15 +5,18 @@
 .item {
   color: inherit;
   transition: color var(--transition-speed), background var(--transition-speed);
-  @apply flex justify-center items-center border border-solid border-black rounded-full w-8 h-8 mx-2;
+  @apply flex justify-center items-center border border-solid border-slate-800 rounded-full w-8 h-8 mx-2;
 }
 .item:hover {
-  @apply bg-black text-white;
+  @apply bg-slate-800 text-white;
 }
 
+.wrap[data-white] {
+  @apply justify-start;
+}
 .wrap[data-white] .item {
-  @apply border-white text-white;
+  @apply border-slate-800;
 }
 .wrap[data-white] .item:hover {
-  @apply bg-white text-black;
+  @apply bg-slate-800 text-white;
 }

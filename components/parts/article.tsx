@@ -27,17 +27,8 @@ const ArticleComponent: React.FC<Props> = ({
   }
 
   return (
-    <Link href={{ pathname: "/[slug]", query: { slug } }}>
+    <Link href={{ pathname: "/[slug]", query: { slug } }} passHref>
       <a className={styles.wrap}>
-        <div className={styles.thumb}>
-          <Image
-            src={thumbnail}
-            layout="fill"
-            alt={title}
-            loading="lazy"
-            className={styles.thumb__image}
-          />
-        </div>
         <h2 className={styles.title}>{title}</h2>
         <PartsMeta date={date} tags={tags} />
       </a>

@@ -16,7 +16,7 @@
   @apply mt-2 mr-2 flex justify-start items-center;
 }
 .tags__anchor {
-  @apply text-gray-600;
+  @apply text-gray-600 px-1 py-1;
 }
 .tags__anchor:hover {
   @apply no-underline;
