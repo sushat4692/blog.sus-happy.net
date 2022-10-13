@@ -132,7 +132,7 @@ const DetailPage: NextPage<Props> = ({
 
       <div className="l-container">
         <article className={styles.main}>
-          <header>
+          <header className={styles.header}>
             <h1 className={styles.title}>{frontmatter.title}</h1>
             <PartsMeta
               date={frontmatter.date}

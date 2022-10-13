@@ -28,9 +28,11 @@ const HeroComponent: React.FC<Props> = ({
   return (
     <div className={styles.wrap} {...wrapAttribute()}>
       <div className={`l-container`}>
-        {title ? <h1 className={styles.title}>{title}</h1> : ""}
-        {subTitle ? <h2 className={styles.sub_title}>{subTitle}</h2> : ""}
-        {body ? body : ""}
+        <div className={styles.inner}>
+          {title ? <h1 className={styles.title}>{title}</h1> : ""}
+          {subTitle ? <h2 className={styles.sub_title}>{subTitle}</h2> : ""}
+          {body ? body : ""}
+        </div>
       </div>
     </div>
   )

@@ -38,7 +38,7 @@ tick.stop();
 
 ## デモ
 
-[デモはコチラ](http://sus-happy.github.io/TickTack.js/)
+[デモはコチラ](http://sushat4692.github.io/TickTack.js/)
 
 「request30fps」が以前のテストコードです。それに比べると実行時間の総計は結構近くなっていると思います。
 

@@ -60,10 +60,10 @@ body {
 }
 
 .c-button[data-primary-outline] {
-  @apply bg-white text-red-700 border border-red-700 border-solid;
+  @apply bg-white text-slate-800 border border-slate-800 border-solid;
 }
 
 .c-button[data-primary-outline]:hover {
-  @apply bg-red-700 text-white;
+  @apply bg-slate-800 text-white;
 }
 

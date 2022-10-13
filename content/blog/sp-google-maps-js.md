@@ -22,7 +22,7 @@ tags:
 
 ## デモ
 
-[デモページ（スマートフォンでご覧ください）](http://demo.sus-happy.net/javascript/SPGMaps2/)はこちらから
+~~デモページ（スマートフォンでご覧ください）~~ はこちらから
 
 [ダウンロード（GitHub）](https://github.com/sushat4692/SPGMaps.js)
 

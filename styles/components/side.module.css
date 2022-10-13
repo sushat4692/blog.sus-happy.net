@@ -11,7 +11,7 @@
 
 .avatar {
   height: var(--sidebar-width);
-  @apply flex flex-col justify-center items-center bg-slate-200;
+  @apply flex flex-col justify-center items-center bg-slate-200 pt-4;
 }
 
 .avatar__figure {
@@ -20,6 +20,10 @@
 
 .avatar__figure__img {
   @apply w-4/12 h-auto;
+}
+
+.avatar__figure__caption {
+  @apply font-bold mt-2;
 }
 
 .nav {

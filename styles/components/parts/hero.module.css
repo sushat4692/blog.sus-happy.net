@@ -1,10 +1,20 @@
 .wrap {
-  @apply py-10;
+  @apply pt-10 pb-3;
 }
 
 @screen sm {
   .wrap {
-    @apply pt-20 pb-12;
+    @apply pt-20 pb-4;
+  }
+}
+
+.inner {
+  @apply pb-8 border-0 border-b border-solid border-slate-300;
+}
+
+@screen sm {
+  .inner {
+    @apply pb-9;
   }
 }
 

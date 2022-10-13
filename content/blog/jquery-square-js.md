@@ -43,17 +43,17 @@ $("#hoge").square();
 スタンダード
 
 ```javascript
-$(“a.sample01”).square();
+$("a.sample01").square();
 ```
 
 正方形のサイズ変更
 
 ```javascript
-$(“a.sample02”).square({size:200});
+$("a.sample02").square({size:200});
 ```
 
 アニメーション速度変更
 
 ```javascript
-$(“a.sample03″).square({speed:”fast”});
+$("a.sample03″).square({speed:"fast"});
 ```
