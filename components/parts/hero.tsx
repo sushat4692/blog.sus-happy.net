@@ -27,20 +27,12 @@ const HeroComponent: React.FC<Props> = ({
 
   return (
     <div className={styles.wrap} {...wrapAttribute()}>
-      <div className={styles.figure}>
-        <Image
-          src={background ?? "/content/background.jpg"}
-          className={styles.image}
-          layout="fill"
-          loading="lazy"
-          alt={title ? title.toString() : ""}
-        />
-      </div>
-
-      <div className={`l-container ${styles.inner}`}>
-        {title ? <h1 className={styles.title}>{title}</h1> : ""}
-        {subTitle ? <h2 className={styles.sub_title}>{subTitle}</h2> : ""}
-        {body ? body : ""}
+      <div className={`l-container`}>
+        <div className={styles.inner}>
+          {title ? <h1 className={styles.title}>{title}</h1> : ""}
+          {subTitle ? <h2 className={styles.sub_title}>{subTitle}</h2> : ""}
+          {body ? body : ""}
+        </div>
       </div>
     </div>
   )

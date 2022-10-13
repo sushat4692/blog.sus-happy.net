@@ -13,7 +13,7 @@ tags:
 
 ## requestAnimationFrameとは
 
-setTimeoutは指定したミリ秒間隔で渡した関数を実行しますが、requestAnimationFrameは**「再描画を実行する前に実行」**します。
+setTimeoutは指定したミリ秒間隔で渡した関数を実行しますが、requestAnimationFrameは **「再描画を実行する前に実行」** します。
 
 そのため、PCのスペックや同じタイミングで動作している処理の内容によって実行される間隔が変化します。（MDNによると毎秒60回程度実行されるとのこと）
 
@@ -84,7 +84,7 @@ function draw() {
 animate_handler();
 ```
 
-[デモも用意してみました](http://demo.sus-happy.net/javascript/requestAnimationFrame/)が、一定のリズムを刻むのは難しそうですね…。
+~~デモも用意してみました~~ が、一定のリズムを刻むのは難しそうですね…。
 
 
 ## 雑感

@@ -49,4 +49,4 @@ Andoroidは`overflow:auto;`に対応していないようで、二本指でス�
 
 また、「`-webkit-overflow-scrolling:touch;`」を指定すると、CSSだけで惰性スクロールが実装できるみたいで、「iPhoneだけ」ならJavaScriptを実装しなくても良さそうですね。
 
-[デモも用意してみた](http://demo.sus-happy.net/sp/overflow/css-scroll.html)ので、試してみてください。
+~~デモも用意してみた~~ ので、試してみてください。

@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import Link from "next/link"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 // Context
 import SiteContext from "../context/SiteContext"
@@ -131,11 +130,9 @@ const DetailPage: NextPage<Props> = ({
         ogimage={`/api/${slug}/ogp.jpg`}
       ></SEO>
 
-      <PartsHero background={frontmatter.thumbnail} isLarge={true}></PartsHero>
-
       <div className="l-container">
         <article className={styles.main}>
-          <header>
+          <header className={styles.header}>
             <h1 className={styles.title}>{frontmatter.title}</h1>
             <PartsMeta
               date={frontmatter.date}
@@ -153,52 +150,41 @@ const DetailPage: NextPage<Props> = ({
             <ul className={styles.navigation}>
               <li className={styles.navigation__item} data-prev>
                 {prev && (
-                  <Link
-                    href={{ pathname: "[slug]", query: { slug: prev.slug } }}
-                  >
-                    <a
-                      rel="prev"
-                      className={styles.navigation__anchor}
-                      data-prev
+                  <>
+                    <span className={styles.navigation__item__label}>PREV</span>
+                    <Link
+                      href={{ pathname: "[slug]", query: { slug: prev.slug } }}
                     >
-                      <FontAwesomeIcon
-                        icon={["fas", "angle-left"]}
-                        className={styles.navigation__icon}
-                      />
-                      {prev.frontmatter.title}
-                    </a>
-                  </Link>
+                      <a
+                        rel="prev"
+                        className={styles.navigation__anchor}
+                        data-prev
+                      >
+                        {prev.frontmatter.title}
+                      </a>
+                    </Link>
+                  </>
                 )}
               </li>
               <li className={styles.navigation__item} data-next>
                 {next && (
-                  <Link
-                    href={{ pathname: "[slug]", query: { slug: next.slug } }}
-                  >
-                    <a
-                      rel="next"
-                      className={styles.navigation__anchor}
-                      data-next
+                  <>
+                    <span className={styles.navigation__item__label}>NEXT</span>
+                    <Link
+                      href={{ pathname: "[slug]", query: { slug: next.slug } }}
                     >
-                      <FontAwesomeIcon
-                        icon={["fas", "angle-right"]}
-                        className={styles.navigation__icon}
-                      />
-                      {next.frontmatter.title}
-                    </a>
-                  </Link>
+                      <a
+                        rel="next"
+                        className={styles.navigation__anchor}
+                        data-next
+                      >
+                        {next.frontmatter.title}
+                      </a>
+                    </Link>
+                  </>
                 )}
               </li>
             </ul>
-            <div className={styles.navigation}>
-              <p className={styles.navigation__item} data-home>
-                <Link href={`/`}>
-                  <a className="c-button" data-primary>
-                    HOME
-                  </a>
-                </Link>
-              </p>
-            </div>
           </nav>
         </article>
       </div>

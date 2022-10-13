@@ -1,6 +1,8 @@
 import React, { useCallback } from "react"
 import PropTypes from "prop-types"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTwitter, faGithubAlt } from "@fortawesome/free-brands-svg-icons"
+import { faLink } from "@fortawesome/free-solid-svg-icons"
 
 import styles from "../../styles/components/parts/social.module.css"
 
@@ -23,7 +25,7 @@ const SocialComponent: React.FC<Props> = ({ isWhite }) => {
         rel="noreferrer"
         className={styles.item}
       >
-        <FontAwesomeIcon icon={["fab", "twitter"]}></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faTwitter} title="Twitter"></FontAwesomeIcon>
       </a>
       <a
         href="https://github.com/sushat4692"
@@ -31,7 +33,7 @@ const SocialComponent: React.FC<Props> = ({ isWhite }) => {
         rel="noreferrer"
         className={styles.item}
       >
-        <FontAwesomeIcon icon={["fab", "github-alt"]}></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faGithubAlt} title="GitHub"></FontAwesomeIcon>
       </a>
       <a
         href="https://sus-happy.net"
@@ -39,7 +41,7 @@ const SocialComponent: React.FC<Props> = ({ isWhite }) => {
         rel="noreferrer"
         className={styles.item}
       >
-        <FontAwesomeIcon icon={["fas", "link"]}></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faLink} title="WebSite"></FontAwesomeIcon>
       </a>
     </div>
   )

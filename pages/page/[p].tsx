@@ -97,24 +97,20 @@ const Page: NextPage<Props> = ({ p, posts, hasPrev, hasNext }) => {
         </div>
 
         <div className={styles.nav}>
-          <p className={styles.nav__item} data-prev>
-            {hasPrev && (
-              <Link href={prevLink()}>
-                <a className="c-button" data-primary>
-                  PREV
-                </a>
-              </Link>
-            )}
-          </p>
-          <p className={styles.nav__item} data-next>
-            {hasNext && (
-              <Link href={nextLink()}>
-                <a className="c-button" data-primary>
-                  NEXT
-                </a>
-              </Link>
-            )}
-          </p>
+          {hasPrev && ( <p className={styles.nav__item} data-prev>
+            <Link href={prevLink()}>
+              <a className="c-button" data-primary>
+                PREV
+              </a>
+            </Link>
+          </p> )}
+          {hasNext && ( <p className={styles.nav__item} data-next>
+            <Link href={nextLink()}>
+              <a className="c-button" data-primary>
+                NEXT
+              </a>
+            </Link>
+          </p> )}
         </div>
       </div>
     </>

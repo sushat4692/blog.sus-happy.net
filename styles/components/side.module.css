@@ -11,7 +11,7 @@
 
 .avatar {
   height: var(--sidebar-width);
-  @apply flex flex-col justify-center items-center bg-gray-300;
+  @apply flex flex-col justify-center items-center bg-slate-200 pt-4;
 }
 
 .avatar__figure {
@@ -19,40 +19,44 @@
 }
 
 .avatar__figure__img {
-  @apply w-4/12;
+  @apply w-4/12 h-auto;
+}
+
+.avatar__figure__caption {
+  @apply font-bold mt-2;
 }
 
 .nav {
 }
 .nav__head {
-  @apply text-center text-sm text-gray-700;
+  @apply text-center text-sm text-slate-800;
 }
 .nav__list {
   @apply m-0 p-0 list-none border-solid border-0 border-t border-gray-300;
 }
 .nav__item {
-  @apply border-solid border-0 border-b border-gray-300;
+  @apply border-solid border-0 border-b border-gray-300 text-sm;
 }
 .nav__anchor {
-  @apply block p-4 no-underline text-gray-500;
+  @apply block p-4 no-underline text-slate-600;
 }
 .nav__anchor:hover {
-  @apply text-gray-900;
+  @apply text-slate-800 bg-slate-50;
 }
 
 .toc {
 }
 .toc__head {
-  @apply text-center text-sm text-gray-700;
+  @apply text-center text-sm text-slate-800;
 }
 .toc__list {
   @apply m-0 p-0 list-none border-solid border-0 border-t border-gray-300;
 }
 .toc__item {
-  @apply border-solid border-0 border-b border-gray-300;
+  @apply border-solid border-0 border-b border-gray-300 text-sm;
 }
 .toc__anchor {
-  @apply block p-4 no-underline text-gray-500;
+  @apply block p-4 no-underline text-slate-600;
 }
 .toc__anchor[data-level="3"] {
   @apply py-3 px-4 pl-6;
@@ -61,5 +65,5 @@
   @apply py-2 px-4 pl-8 text-sm;
 }
 .toc__anchor:hover {
-  @apply text-gray-900;
+  @apply text-slate-800 bg-slate-50;
 }
