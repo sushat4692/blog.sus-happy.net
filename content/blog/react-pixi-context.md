@@ -21,7 +21,7 @@ thumbnail: "/content/images/2022/08/react-pixi.png"
 
 ReactPixiのコンポーネント下では、そのまま記述するだけではContextの伝播は行われず、値を取得することが出来ません。
 
-```jsx
+```tsx
 import { createContext } from "react";
 import { Stage, Sprite } from "@inlet/react-pixi";
 
@@ -56,7 +56,7 @@ const App: React.FC = () => {
 
 （ほぼマニュアルのコピペになりますが…TypeScriptの型定義も追加した場合）
 
-```jsx
+```tsx
 import { createContext } from "react";
 import { Stage, Sprite } from "@inlet/react-pixi";
 
@@ -119,7 +119,7 @@ Recoilも同様にそのまま記述すると値の伝播が行われません�
 
 ※ただし、フック名からも分かるように動作は不安定な時もあるようです。
 
-```jsx
+```tsx
 import { createContext } from "react";
 import {
   atom,

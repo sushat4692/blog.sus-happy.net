@@ -3,22 +3,6 @@ import "normalize.css/normalize.css"
 import "../styles/variables.css"
 import "../styles/foundation.css"
 
-// Font Awesome
-import { library } from "@fortawesome/fontawesome-svg-core"
-import {
-  faTwitter,
-  faFacebookF,
-  faGithubAlt,
-} from "@fortawesome/free-brands-svg-icons"
-import { faClock } from "@fortawesome/free-regular-svg-icons"
-import {
-  faLink,
-  faTag,
-  faMountain,
-  faAngleLeft,
-  faAngleRight,
-} from "@fortawesome/free-solid-svg-icons"
-
 import { useState, useEffect, useCallback } from "react"
 import type { AppProps } from "next/app"
 import Router from "next/router"
@@ -33,18 +17,6 @@ import Side from "../components/side"
 // Utility
 import { HeaderContent } from "../lib/blog"
 import { GTMPageView } from "../lib/gtm"
-
-// library.add(
-//   faTwitter,
-//   faFacebookF,
-//   faGithubAlt,
-//   faClock,
-//   faLink,
-//   faTag,
-//   faMountain,
-//   faAngleLeft,
-//   faAngleRight
-// )
 
 function MyApp({ Component, pageProps, router }: AppProps) {
   const [isShowNav, setIsShowNav] = useState(false)

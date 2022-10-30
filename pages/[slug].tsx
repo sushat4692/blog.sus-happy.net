@@ -9,7 +9,7 @@ import SiteContext from "../context/SiteContext"
 import { unified } from "unified"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
-import remarkShiki from "@stefanprobst/remark-shiki"
+import rehypeShiki from "@leafac/rehype-shiki"
 import remarkSlug from "remark-slug"
 import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
@@ -29,7 +29,6 @@ import {
 
 // Components
 import SEO from "../components/seo"
-import PartsHero from "../components/parts/hero"
 import PartsMeta from "../components/parts/meta"
 
 // Style
@@ -52,9 +51,9 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const markdown = await unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkShiki, { highlighter })
     .use(remarkSlug)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeShiki, { highlighter })
     .use(rehypeRaw)
     .use(rehypeStringify)
     .process(post.content || "")
@@ -154,14 +153,11 @@ const DetailPage: NextPage<Props> = ({
                     <span className={styles.navigation__item__label}>PREV</span>
                     <Link
                       href={{ pathname: "[slug]", query: { slug: prev.slug } }}
+                      rel="prev"
+                      className={styles.navigation__anchor}
+                      data-prev
                     >
-                      <a
-                        rel="prev"
-                        className={styles.navigation__anchor}
-                        data-prev
-                      >
-                        {prev.frontmatter.title}
-                      </a>
+                      {prev.frontmatter.title}
                     </Link>
                   </>
                 )}
@@ -172,14 +168,11 @@ const DetailPage: NextPage<Props> = ({
                     <span className={styles.navigation__item__label}>NEXT</span>
                     <Link
                       href={{ pathname: "[slug]", query: { slug: next.slug } }}
+                      rel="next"
+                      className={styles.navigation__anchor}
+                      data-next
                     >
-                      <a
-                        rel="next"
-                        className={styles.navigation__anchor}
-                        data-next
-                      >
-                        {next.frontmatter.title}
-                      </a>
+                      {next.frontmatter.title}
                     </Link>
                   </>
                 )}

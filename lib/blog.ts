@@ -4,7 +4,7 @@ import fs from "fs"
 import { join } from "path"
 
 const postsDirectory = join(process.cwd(), "content", "blog")
-export const PER_PAGE = 20
+export const PER_PAGE = 30
 
 export type BlogContent = {
   slug: string
