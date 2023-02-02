@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { CollectionEntry, getCollection } from "astro:content";
+import { slug } from "github-slugger";
+import PageMeta from "../../components/PageMeta.astro";
+import Hero from "../../components/Hero.astro";
+import Side from "../../components/Side.astro";
+
+type Props = {
+    name: string;
+    posts: CollectionEntry<"blog">[];
+    hasNext: boolean;
+};
+
+const blogEntries = await getCollection("blog");
+const tags: string[] = [];
+
+blogEntries.map((entry) => {
+    if (!entry.data.tags) {
+        return;
+    }
+
+    entry.data.tags.map((tag) => {
+        if (!tags.some((t) => t === tag)) {
+            tags.push(tag);
+        }
+    });
+});
+---
+
+<BaseLayout>
+    <PageMeta slot="head" title="Tags" />
+
+    <main>
+        <Hero title="Tags" />
+
+        <div class="l-container">
+            <ul class="tag-list">
+                {
+                    tags.map((tag) => (
+                        <li>
+                            <a href={`/tag/${slug(tag)}/`}>{tag}</a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </main>
+
+    <Side />
+</BaseLayout>
+
+<style lang="scss">
+    .tag-list {
+        @apply my-6 flex flex-wrap items-center justify-center gap-4;
+    }
+</style>

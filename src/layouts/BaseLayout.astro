@@ -1,0 +1,131 @@
+---
+import Footer from "../components/Footer.astro";
+import GTMHead from "../components/GTMHead.astro";
+import GTMBody from "../components/GTMBody.astro";
+---
+
+<html lang="ja">
+    <head prefix="og: http://ogp.me/ns#" prefix="og: http://ogp.me/ns#">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+
+        <GTMHead />
+
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#000000" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+
+        <slot name="head" />
+
+        <style is:global lang="scss">
+            :root {
+                --transition-speed: 0.1s;
+                --sidebar-width: 16rem;
+            }
+
+            html {
+                font-family: sans-serif;
+                scroll-behavior: smooth;
+                scroll-padding-top: 4rem;
+
+                @screen sm {
+                    scroll-padding-top: 3rem;
+                }
+            }
+
+            body {
+                @apply bg-slate-100 text-slate-800;
+            }
+
+            a {
+                @apply underline;
+
+                &:hover {
+                    @apply no-underline;
+                }
+            }
+
+            .l-container {
+                @apply px-6;
+
+                @screen sm {
+                    @apply px-16 mx-auto;
+                }
+            }
+
+            .c-archive {
+                @apply my-6 grid grid-cols-1 gap-6;
+
+                @screen sm {
+                    @apply my-10 gap-10;
+                }
+            }
+
+            .c-navigation {
+                @apply m-0 p-0 py-10 list-none border-0 border-t border-solid border-slate-300;
+
+                @screen sm {
+                    @apply py-20;
+                }
+
+                &.has-sm-padding {
+                    @apply py-5;
+
+                    @screen sm {
+                        @apply py-10;
+                    }
+                }
+
+                &__item {
+                    @apply flex-grow my-2;
+
+                    &__label::after {
+                        content: ":";
+                        display: inline-block;
+                        margin: 0 0.2em;
+                    }
+                }
+
+                &__anchor {
+                }
+            }
+        </style>
+        <style lang="scss">
+            .wrapper {
+                position: relative;
+
+                @screen sm {
+                    @apply pl-60;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <GTMBody />
+
+        <div class="wrapper">
+            <slot />
+
+            <Footer />
+        </div>
+    </body>
+</html>

@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { CollectionEntry, getCollection } from "astro:content";
+import { slug } from "github-slugger";
+import { PER_PAGE } from "../../../const";
+import PageMeta from "../../../components/PageMeta.astro";
+import Hero from "../../../components/Hero.astro";
+import Side from "../../../components/Side.astro";
+import ArchivePost from "../../../components/ArchivePost.astro";
+import type { GetStaticPathsResult } from "astro";
+
+type Props = {
+    name: string;
+    posts: CollectionEntry<"blog">[];
+    hasNext: boolean;
+};
+
+export async function getStaticPaths() {
+    const blogEntries = await getCollection("blog");
+    const tags: string[] = [];
+
+    blogEntries.map((entry) => {
+        if (!entry.data.tags) {
+            return;
+        }
+
+        entry.data.tags.map((tag) => {
+            if (!tags.some((t) => t === tag)) {
+                tags.push(tag);
+            }
+        });
+    });
+
+    const result: GetStaticPathsResult = [];
+    for (const tag of tags) {
+        const allPosts = (
+            await getCollection(
+                "blog",
+                (data) =>
+                    Array.isArray(data.data.tags) &&
+                    data.data.tags.some((t) => t === tag)
+            )
+        ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+        const filteredPosts = allPosts.slice(0, PER_PAGE);
+        const hasNext = allPosts.length > PER_PAGE;
+
+        result.push({
+            params: { slug: slug(tag) },
+            props: { name: tag, posts: filteredPosts, hasNext },
+        });
+    }
+
+    return result;
+}
+
+const { name, posts, hasNext } = Astro.props;
+---
+
+<BaseLayout>
+    <PageMeta slot="head" title={`${name} - Tags`} />
+
+    <main>
+        <Hero title={name} />
+
+        <div class="l-container">
+            <div class="c-archive">
+                {posts.map((post) => <ArchivePost post={post} />)}
+            </div>
+
+            <nav>
+                <ul class="c-navigation has-sm-padding">
+                    {
+                        hasNext && (
+                            <li class="c-navigation__item">
+                                <a
+                                    rel="next"
+                                    href={`/tag/${encodeURIComponent(
+                                        slug(name)
+                                    )}/page/2`}
+                                    class="c-navigation__anchor"
+                                >
+                                    NEXT PAGE
+                                </a>
+                            </li>
+                        )
+                    }
+                </ul>
+            </nav>
+        </div>
+    </main>
+
+    <Side />
+</BaseLayout>
