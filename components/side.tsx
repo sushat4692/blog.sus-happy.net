@@ -46,13 +46,13 @@ const SideComponent: React.FC = () => {
 
         <ul className={styles.nav__list}>
           <li className={styles.nav__item}>
-            <Link href="/">
-              <a className={styles.nav__anchor}>Home</a>
+            <Link href="/" className={styles.nav__anchor}>
+              Home
             </Link>
           </li>
           <li className={styles.nav__item}>
-            <Link href="/tag">
-              <a className={styles.nav__anchor}>Tags</a>
+            <Link href="/tag" className={styles.nav__anchor}>
+              Tags
             </Link>
           </li>
         </ul>

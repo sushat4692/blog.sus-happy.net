@@ -1,16 +1,20 @@
-const path = require("path")
-const { ImagePool } = require("@squoosh/lib")
-const { fromFile } = require("file-type")
-const { optimize } = require("svgo")
-const { readFileSync, writeFile } = require("fs-extra")
-const glob = require("glob")
-const gbase = require("glob-base")
+import path from "path"
+import { fileURLToPath } from "url"
+import { ImagePool } from "@squoosh/lib"
+import { fileTypeFromFile } from "file-type"
+import { optimize } from "svgo"
+import fsExtra from "fs-extra"
+import glob from "glob"
+import gbase from "glob-base"
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const { readFileSync, writeFile } = fsExtra
 const targetPattern = "original/**/*.{jpg,jpeg,png,svg}"
 const targetOutput = "public"
 
 const binaryOptimize = async (imagePool, file) => {
-  const type = await fromFile(file)
+  const type = await fileTypeFromFile(file)
   if (!type) {
     return
   }

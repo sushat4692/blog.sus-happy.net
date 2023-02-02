@@ -1,5 +1,4 @@
 import React, { useCallback } from "react"
-import Image from "next/image"
 import PropTypes from "prop-types"
 
 import styles from "../../styles/components/parts/hero.module.css"

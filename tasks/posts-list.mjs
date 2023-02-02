@@ -1,9 +1,12 @@
-const path = require("path")
-const glob = require("glob")
-const fs = require("fs")
-const matter = require("gray-matter")
-const { parseISO, format } = require("date-fns")
+import path from "path"
+import { fileURLToPath } from "url"
+import glob from "glob"
+import fs from "fs"
+import matter from "gray-matter"
+import { parseISO, format } from "date-fns"
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const targetPattern = "content/blog/**/*.md"
 const targetOutput = "pages/api/[slug]"
 

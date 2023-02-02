@@ -46,13 +46,10 @@ const TagIndex: NextPage<Props> = ({ tags }) => {
                   query: { slug: encodeURIComponent(tag) },
                 }}
                 key={tag}
+                className={`${styles.tags__anchor} c-button`}
+                data-primary-outline
               >
-                <a
-                  className={`${styles.tags__anchor} c-button`}
-                  data-primary-outline
-                >
-                  {tag}
-                </a>
+                {tag}
               </Link>
             )
           })}

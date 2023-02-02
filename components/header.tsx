@@ -34,13 +34,8 @@ const HeaderComponent: React.FC<Props> = ({ router }) => {
         onClick={toggleNav}
         {...buttonAttribute()}
       ></button>
-      <Link href={`/`} passHref>
-        <a className={`${styles.button}`} {...homeAttribute()}>
-          <FontAwesomeIcon
-            icon={faMountain}
-            title="Blog Home"
-          ></FontAwesomeIcon>
-        </a>
+      <Link href={`/`} className={`${styles.button}`} {...homeAttribute()}>
+        <FontAwesomeIcon icon={faMountain} title="Blog Home"></FontAwesomeIcon>
       </Link>
     </div>
   )

@@ -1,6 +1,5 @@
 import React from "react"
 import Link from "next/link"
-import Image from "next/image"
 import PropTypes from "prop-types"
 
 import PartsMeta from "./meta"
@@ -27,11 +26,12 @@ const ArticleComponent: React.FC<Props> = ({
   }
 
   return (
-    <Link href={{ pathname: "/[slug]", query: { slug } }} passHref>
-      <a className={styles.wrap}>
-        <h2 className={styles.title}>{title}</h2>
-        <PartsMeta date={date} tags={tags} />
-      </a>
+    <Link
+      href={{ pathname: "/[slug]", query: { slug } }}
+      className={styles.wrap}
+    >
+      <h2 className={styles.title}>{title}</h2>
+      <PartsMeta date={date} tags={tags} />
     </Link>
   )
 }

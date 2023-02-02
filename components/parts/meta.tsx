@@ -26,14 +26,12 @@ const MetaComponent: React.FC<Props> = ({ date, tags, tagLink }) => {
           {tags.map(tag => (
             <li className={styles.tags__item} key={tag}>
               {tagLink && (
-                <Link href={{ pathname: "/tag/[slug]", query: { slug: tag } }}>
-                  <a className={styles.tags__anchor}>
-                    <FontAwesomeIcon
-                      icon={faTag}
-                      className={styles.tags__icon}
-                    />
-                    {tag}
-                  </a>
+                <Link
+                  className={styles.tags__anchor}
+                  href={{ pathname: "/tag/[slug]", query: { slug: tag } }}
+                >
+                  <FontAwesomeIcon icon={faTag} className={styles.tags__icon} />
+                  {tag}
                 </Link>
               )}
               {!tagLink && (
