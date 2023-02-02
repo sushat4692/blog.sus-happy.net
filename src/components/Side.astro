@@ -1,0 +1,200 @@
+---
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+    headings?: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<aside class="nav">
+    <div class="nav__inner">
+        <a href="/" class="nav__anchor">SUSH-i LOG</a>
+
+        {
+            Array.isArray(headings) && headings.length > 0 ? (
+                <div class="nav__toc">
+                    <ul class="nav__toc__list">
+                        {headings.map((heading) => (
+                            <li class="nav__toc__item">
+                                <a
+                                    href={`#${encodeURIComponent(
+                                        heading.slug
+                                    )}`}
+                                    class={`nav__toc__anchor is-depth-${heading.depth}`}
+                                >
+                                    {heading.text}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            ) : (
+                <div class="nav__toc">
+                    <ul class="nav__toc__list">
+                        <li class="nav__toc__item">
+                            <a href="/tag/" class="nav__toc__anchor">
+                                Tags
+                            </a>
+                        </li>
+                        <li class="nav__toc__item">
+                            <a
+                                href="https://sus-happy.net/"
+                                target="_blank"
+                                class="nav__toc__anchor"
+                            >
+                                About
+                            </a>
+                        </li>
+                        <li class="nav__toc__item">
+                            <a
+                                href="https://twitter.com/sushat4692"
+                                target="_blank"
+                                class="nav__toc__anchor"
+                            >
+                                Twitter
+                            </a>
+                        </li>
+                        <li class="nav__toc__item">
+                            <a
+                                href="https://github.com/sushat4692"
+                                target="_blank"
+                                class="nav__toc__anchor"
+                            >
+                                GitHub
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            )
+        }
+    </div>
+
+    <button class="nav__trigger is-open">Open</button>
+    <button class="nav__trigger is-close">Close</button>
+</aside>
+
+<style lang="scss">
+    .nav {
+        &__trigger {
+            @apply fixed z-10 top-1 left-1 w-12 h-12 bg-slate-900 overflow-hidden;
+
+            text-indent: 3rem;
+            white-space: nowrap;
+
+            @screen sm {
+                @apply hidden;
+            }
+
+            &.is-open {
+                &::before,
+                &::after {
+                    @apply block absolute w-4 bg-white inset-0 m-auto transition-transform duration-300;
+
+                    content: "";
+                    height: 1px;
+                }
+
+                &::before {
+                    transform: translateY(-0.2em);
+                }
+                &::after {
+                    transform: translateY(0.2em);
+                }
+
+                &:focus {
+                    &::before {
+                        transform: translateY(0) rotate(30deg);
+                    }
+                    &::after {
+                        transform: translateY(0) rotate(-30deg);
+                    }
+                }
+            }
+
+            &.is-close {
+                @apply opacity-0;
+            }
+        }
+
+        &__inner {
+            @apply fixed flex flex-col top-1 left-1 bottom-1 bg-slate-900 text-slate-200 p-1 transition-transform duration-300;
+
+            width: calc(100vw - 0.5rem);
+            transform: translateX(-100vw);
+
+            @screen sm {
+                @apply w-60;
+
+                width: calc(15rem - 0.5rem);
+                transform: translateX(0);
+            }
+        }
+
+        &:has(&__trigger.is-open:focus) &__inner {
+            transform: translateX(0);
+        }
+        &:has(&__trigger.is-open:not(:focus)) &__trigger.is-close {
+            @apply hidden;
+        }
+
+        &__anchor {
+            @apply block py-5 text-center no-underline font-extrabold border-solid transition-all;
+
+            transition-duration: 0.6s;
+
+            &:hover {
+                @apply text-white;
+
+                text-shadow: 0 0 0.5em rgba(#fff, 0.4);
+            }
+        }
+
+        &__toc {
+            @apply flex-grow overflow-auto text-sm;
+
+            overscroll-behavior-y: none;
+            min-height: 1px;
+
+            &::-webkit-scrollbar {
+                @apply w-1;
+            }
+
+            &::-webkit-scrollbar-track {
+                @apply bg-none;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                @apply bg-slate-300 bg-opacity-20 rounded-full;
+            }
+
+            &__list {
+                @apply border-solid border-t border-slate-700;
+            }
+
+            &__item {
+                @apply border-solid border-b border-slate-700;
+            }
+
+            &__anchor {
+                @apply block px-3 py-3 no-underline bg-slate-400 bg-opacity-0 text-slate-400;
+
+                &.is-depth-3 {
+                    @apply ml-3 py-2;
+
+                    font-size: 0.9em;
+                }
+                &.is-depth-4 {
+                    @apply ml-6 py-1;
+
+                    font-size: 0.8em;
+                }
+
+                &:hover {
+                    @apply bg-opacity-10 text-white;
+                }
+            }
+        }
+    }
+</style>

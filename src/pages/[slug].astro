@@ -1,0 +1,372 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageMeta from "../components/PageMeta.astro";
+import { DateTime } from "luxon";
+import { CollectionEntry, getCollection } from "astro:content";
+import { slug as slugConvert } from "github-slugger";
+import { markdown } from "@astropub/md";
+import striptags from "striptags";
+import Side from "../components/Side.astro";
+
+type Props = {
+    entry: CollectionEntry<"blog">;
+};
+
+export async function getStaticPaths() {
+    const blogEntries = await getCollection("blog");
+    return blogEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { slug } = Astro.params;
+const { entry } = Astro.props;
+const { title, date, tags } = entry.data;
+const { Content, headings } = await entry.render();
+const excerpt = striptags((await markdown(entry.body)).toString())
+    .replace(/\n\r|\n|\r/g, "")
+    .substring(0, 200);
+
+const { prev, next } = await (async () => {
+    const allPosts = (await getCollection("blog")).sort(
+        (a, b) => b.data.date.getTime() - a.data.date.getTime()
+    );
+
+    const index = allPosts.findIndex((post) => post.slug === slug);
+
+    const prev = (() => {
+        if (index <= 0) {
+            return null;
+        }
+
+        return allPosts[index - 1];
+    })();
+
+    const next = (() => {
+        if (index >= allPosts.length - 1) {
+            return null;
+        }
+
+        return allPosts[index + 1];
+    })();
+
+    return { prev, next };
+})();
+---
+
+<BaseLayout>
+    <PageMeta
+        slot="head"
+        title={title}
+        description={excerpt}
+        image={slug ? `/api/${slug}/ogp.svg` : undefined}
+    />
+
+    <main>
+        <div class="l-container">
+            <article class="main">
+                <div class="header">
+                    <h1 class="header__title">{title}</h1>
+                    <div class="header__meta">
+                        <time
+                            class="header__meta__time"
+                            datetime={DateTime.fromJSDate(date).toISO()}
+                            >{
+                                DateTime.fromJSDate(date).toFormat("yyyy/LL/dd")
+                            }</time
+                        >
+                        {
+                            Array.isArray(tags) && (
+                                <ul class="header__meta__tag">
+                                    {tags.map((tag: string) => (
+                                        <li class="header__meta__tag__item">
+                                            <a
+                                                href={`/tag/${encodeURIComponent(
+                                                    slugConvert(tag)
+                                                )}`}
+                                            >
+                                                {tag}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )
+                        }
+                    </div>
+                </div>
+
+                <section class="content">
+                    <Content />
+                </section>
+            </article>
+
+            <nav>
+                <ul class="c-navigation">
+                    <li class="c-navigation__item" data-prev>
+                        {
+                            prev && (
+                                <>
+                                    <span class="c-navigation__item__label">
+                                        PREV
+                                    </span>
+                                    <a
+                                        rel="prev"
+                                        href={`/${prev.slug}/`}
+                                        class="c-navigation__anchor"
+                                    >
+                                        {prev.data.title}
+                                    </a>
+                                </>
+                            )
+                        }
+                    </li>
+                    <li class="c-navigation__item">
+                        {
+                            next && (
+                                <>
+                                    <span class="c-navigation__item__label">
+                                        NEXT
+                                    </span>
+                                    <a
+                                        rel="next"
+                                        href={`/${next.slug}/`}
+                                        class="c-navigation__anchor"
+                                    >
+                                        {next.data.title}
+                                    </a>
+                                </>
+                            )
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+
+    <Side headings={headings} />
+</BaseLayout>
+
+<style lang="scss">
+    .main {
+        @apply pt-20 pb-10;
+
+        @screen sm {
+            @apply pt-20 pb-20;
+        }
+    }
+
+    .header {
+        @apply pb-10 mb-10 border-0 border-b border-solid border-slate-300;
+
+        @screen sm {
+            @apply pb-14 mb-14;
+        }
+
+        &__title {
+            @apply mt-0 text-3xl font-bold leading-tight;
+
+            @screen sm {
+                @apply text-4xl leading-tight;
+            }
+        }
+
+        &__meta {
+            @apply flex flex-wrap justify-start items-center mt-4;
+
+            &__time {
+                @apply flex justify-start items-center;
+
+                &::after {
+                    content: "/";
+                    @apply mx-3;
+                }
+            }
+
+            &__tag {
+                @apply flex flex-wrap justify-start items-center;
+
+                &__item {
+                    & + & {
+                        &::before {
+                            content: ",";
+                            @apply mr-2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .content {
+        @apply text-lg;
+        line-height: 1.8;
+
+        :global(a) {
+            @apply text-red-900;
+        }
+
+        :global(a:visited) {
+            @apply text-red-800;
+        }
+
+        :global(a:hover) {
+            text-decoration: none;
+        }
+
+        /**
+        * Heading
+        */
+        :global(h2) {
+            @apply text-3xl font-bold;
+            margin: 2em 0 0.5em;
+
+            @screen sm {
+                @apply text-4xl;
+            }
+        }
+
+        :global(h3) {
+            @apply text-2xl font-bold;
+            margin: 2em 0 0.5em;
+
+            @screen sm {
+                @apply text-3xl;
+            }
+        }
+
+        :global(h4) {
+            @apply font-bold;
+            margin: 2em 0 0.5em;
+        }
+        :global(h5) {
+            @apply font-bold;
+            margin: 2em 0 0.5em;
+        }
+
+        :global(h2)a,
+        :global(h3)a,
+        :global(h4)a,
+        :global(h5 a) {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /**
+        * Paragraph
+        */
+        :global(p) {
+            margin: 1.4em 0;
+        }
+
+        /**
+        * Image
+        */
+        :global(img) {
+            max-width: 100%;
+            height: auto;
+            vertical-align: top;
+        }
+
+        /**
+        * Table
+        */
+        :global(table) {
+            margin: 1.4em 0;
+        }
+        :global(th) {
+            padding: 0.5em;
+
+            @apply border border-solid border-slate-300 bg-slate-200;
+        }
+        :global(td) {
+            padding: 0.5em;
+            @apply border border-solid border-slate-300 break-all;
+        }
+
+        /**
+        * Media
+        */
+        :global(iframe) {
+            width: 100%;
+            max-height: 40rem;
+
+            @screen sm {
+                max-height: none;
+            }
+        }
+
+        /**
+        * List
+        */
+        :global(ul),
+        :global(ol),
+        :global(dl) {
+            margin: 1.4em 0;
+        }
+        :global(ul) {
+            @apply list-disc;
+            margin-left: 1.4em;
+        }
+        :global(ol) {
+            @apply list-decimal;
+            margin-left: 1.4em;
+        }
+        :global(ul ul),
+        :global(ul ol),
+        :global(ul dl),
+        :global(ol ul),
+        :global(ol ol),
+        :global(ol dl),
+        :global(dl ul),
+        :global(dl ol),
+        :global(dl dl) {
+            margin: 0;
+        }
+        :global(dt) {
+            font-weight: bold;
+        }
+        :global(dd) {
+            padding-left: 2em;
+        }
+
+        /**
+        * Code
+        */
+        :global(code) {
+            @apply text-red-900 border border-solid border-red-900;
+
+            padding: 0.1em 0.25em;
+            border-radius: 0.3em;
+            font-weight: bold;
+            display: inline-block;
+            line-height: 1.2;
+            vertical-align: middle;
+            margin: 0 0.2em;
+        }
+        :global(pre) {
+            line-height: 1.2;
+            overflow: auto;
+            padding: 0.4em;
+            margin: 0 -1.5rem;
+
+            @screen sm {
+                margin: 0 -4rem;
+            }
+        }
+        :global(pre code) {
+            border: none;
+            color: inherit;
+            display: block;
+            line-height: 1.4;
+            margin: 0;
+            font-weight: inherit;
+        }
+
+        /* For Prism */
+        :global(pre[class*="language-"]),
+        :global(code[class*="language-"]) {
+            @apply text-lg;
+        }
+    }
+</style>

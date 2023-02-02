@@ -1,0 +1,53 @@
+---
+interface Props {
+    title?: string;
+    subTitle?: string;
+    body?: HTMLElement;
+}
+
+const { title, subTitle, body } = Astro.props;
+---
+
+<div class="wrap">
+    <div class="l-container">
+        <div class="inner">
+            {title && <h1 class="title">{title}</h1>}
+            {subTitle && <p class="sub_title">{subTitle}</p>}
+            {body}
+        </div>
+    </div>
+</div>
+
+<style lang="scss">
+    .wrap {
+        @apply pt-20;
+
+        @screen sm {
+            @apply pt-20;
+        }
+    }
+
+    .inner {
+        @apply pb-8 border-0 border-b border-solid border-slate-300;
+
+        @screen sm {
+            @apply pb-9;
+        }
+    }
+
+    .title {
+        @apply text-2xl font-black tracking-wide m-0;
+
+        @screen sm {
+            @apply text-2xl;
+        }
+    }
+
+    .sub_title {
+        @apply text-sm font-normal mt-2;
+
+        @screen sm {
+            @apply text-base;
+        }
+    }
+</style>

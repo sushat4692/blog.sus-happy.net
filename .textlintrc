@@ -1,0 +1,9 @@
+{
+  "filters": {},
+  "rules": {
+    "ja-no-abusage": true,
+    "no-double-negative-ja": true,
+    "preset-ja-spacing": true,
+    "preset-ja-technical-writing": true
+  }
+}

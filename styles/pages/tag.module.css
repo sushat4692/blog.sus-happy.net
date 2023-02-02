@@ -1,7 +1,0 @@
-.tags {
-  @apply py-8 -mx-2 flex flex-wrap items-center justify-center;
-}
-
-.tags__anchor {
-  @apply mx-2 my-2;
-}

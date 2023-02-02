@@ -1,0 +1,37 @@
+---
+type Props = {
+    title?: string;
+    description?: string;
+    image?: string;
+    noindex?: boolean;
+};
+
+const { title, description, image, noindex } = Astro.props;
+const { pathname } = Astro.url;
+const pageTitle = title
+    ? `${title} - SUSH-i LOG`
+    : "SUSH-i LOG - 名古屋のWeb制作会社につとめるプログラマーのつぶやき";
+const ogImage = `https://blog.sus-happy.net${image ? image : "/api/ogp.svg"}`;
+---
+
+<title>{pageTitle}</title>
+
+<meta name="og:url" content={`https://blog.sus-happy.net${pathname}`} />
+<meta name="og:title" content={pageTitle} />
+<meta name="og:image" content={ogImage} />
+{
+    description && (
+        <>
+            <meta name="description" content={description} />
+            <meta name="og:description" content={description} />
+            <meta property="twitter:description" content={description} />
+        </>
+    )
+}
+<meta name="og:type" content="article" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:creator" content="@sushat4692" />
+<meta property="twitter:title" content={pageTitle} />
+
+{noindex && <meta name="robots" content="noindex" />}

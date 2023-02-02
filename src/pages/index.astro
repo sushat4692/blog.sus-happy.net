@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { PER_PAGE } from "../const";
+import PageMeta from "../components/PageMeta.astro";
+import Hero from "../components/Hero.astro";
+import Side from "../components/Side.astro";
+import ArchivePost from "../components/ArchivePost.astro";
+
+const allPosts = (await getCollection("blog")).sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const filteredPosts = allPosts.slice(0, PER_PAGE);
+const hasNext = allPosts.length > PER_PAGE;
+---
+
+<BaseLayout>
+    <PageMeta slot="head" />
+
+    <main>
+        <Hero
+            title="SUSH-i LOG"
+            subTitle="名古屋のWeb制作会社につとめるプログラマーのつぶやき"
+        />
+
+        <div class="l-container">
+            <div class="c-archive">
+                {filteredPosts.map((post) => <ArchivePost post={post} />)}
+            </div>
+
+            <nav>
+                <ul class="c-navigation has-sm-padding">
+                    {
+                        hasNext && (
+                            <li class="c-navigation__item">
+                                <a
+                                    rel="next"
+                                    href="/page/2"
+                                    class="c-navigation__anchor"
+                                >
+                                    NEXT PAGE
+                                </a>
+                            </li>
+                        )
+                    }
+                </ul>
+            </nav>
+        </div>
+    </main>
+
+    <Side />
+</BaseLayout>
+
+<style lang="scss">
+    .wrap {
+        @apply grid grid-cols-1 gap-10 pb-8;
+    }
+
+    .nav {
+        @apply flex gap-4 justify-start items-center py-8;
+
+        &__item {
+            @apply m-0;
+        }
+    }
+</style>

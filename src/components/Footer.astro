@@ -1,0 +1,38 @@
+<footer class="footer">
+    <div class="l-container">
+        <div class="footer__inner">
+            <nav class="footer__nav">
+                <a href="/" class="footer__nav__anchor">Home</a>
+                <a
+                    href="https://sus-happy.net/"
+                    target="_blank"
+                    class="footer__nav__anchor">About</a
+                >
+                <a
+                    href="https://twitter.com/sushat4692"
+                    target="_blank"
+                    class="footer__nav__anchor">Twitter</a
+                >
+                <a
+                    href="https://github.com/sushat4692"
+                    target="_blank"
+                    class="footer__nav__anchor">GitHub</a
+                >
+            </nav>
+
+            <p class="footer__copy">&copy; 2023 blog.sus-happy.net</p>
+        </div>
+    </div>
+</footer>
+
+<style lang="scss">
+    .footer {
+        &__inner {
+            @apply flex flex-wrap gap-y-4 justify-between pt-10 pb-10 border-t border-solid border-slate-300;
+        }
+
+        &__nav {
+            @apply flex flex-wrap gap-y-4 gap-x-10;
+        }
+    }
+</style>

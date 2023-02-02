@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { DateTime } from "luxon";
+import { slug as slugConvert } from "github-slugger";
+
+type Props = {
+    post: CollectionEntry<"blog">;
+};
+
+const { post } = Astro.props;
+const { slug, data } = post;
+---
+
+<div class="archive-post">
+    <div class="archive-post__meta">
+        <time
+            class="archive-post__meta__time"
+            datetime={DateTime.fromJSDate(data.date).toISO()}
+            >{DateTime.fromJSDate(data.date).toFormat("yyyy/LL/dd")}</time
+        >
+        {
+            data.tags &&
+                data.tags.map((tag: string) => (
+                    <a
+                        href={`/tag/${encodeURIComponent(slugConvert(tag))}`}
+                        class="archive-post__meta__tag"
+                    >
+                        {tag}
+                    </a>
+                ))
+        }
+    </div>
+
+    <h2 class="archive-post__title">
+        <a href={`/${slug}/`}>{data.title}</a>
+    </h2>
+</div>
+
+<style lang="scss">
+    .archive-post {
+        @apply grid grid-cols-1 gap-1;
+
+        @screen sm {
+            @apply gap-2;
+        }
+
+        &__meta {
+            @apply flex flex-wrap text-sm;
+
+            gap: 0 1rem;
+
+            &__time {
+                @apply font-bold;
+            }
+
+            &__tag {
+                @apply no-underline;
+
+                &:hover {
+                    @apply underline;
+                }
+            }
+        }
+
+        &__title {
+            @apply font-bold text-xl;
+
+            @screen sm {
+                @apply text-2xl;
+            }
+        }
+    }
+</style>
