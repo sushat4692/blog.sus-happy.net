@@ -1,59 +1,40 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { CollectionEntry, getCollection } from "astro:content";
-import { slug } from "github-slugger";
+import { getCollection } from "astro:content";
+import { slug as githubSlug } from "github-slugger";
 import { PER_PAGE } from "../../../const";
 import PageMeta from "../../../components/PageMeta.astro";
 import Hero from "../../../components/Hero.astro";
 import Side from "../../../components/Side.astro";
 import ArchivePost from "../../../components/ArchivePost.astro";
-import type { GetStaticPathsResult } from "astro";
 
-type Props = {
-    name: string;
-    posts: CollectionEntry<"blog">[];
-    hasNext: boolean;
-};
+const { slug } = Astro.params;
+let name = "";
 
-export async function getStaticPaths() {
-    const blogEntries = await getCollection("blog");
-    const tags: string[] = [];
+const allPosts = (
+    await getCollection(
+        "blog",
+        (data) =>
+            Array.isArray(data.data.tags) &&
+            data.data.tags.some((t) => {
+                if (githubSlug(t) === slug) {
+                    name = t;
+                    return true;
+                }
+                return false;
+            })
+    )
+).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-    blogEntries.map((entry) => {
-        if (!entry.data.tags) {
-            return;
-        }
-
-        entry.data.tags.map((tag) => {
-            if (!tags.some((t) => t === tag)) {
-                tags.push(tag);
-            }
-        });
+const posts = allPosts.slice(0, PER_PAGE);
+if (!posts.length) {
+    return new Response(null, {
+        status: 404,
+        statusText: "Not found post",
     });
-
-    const result: GetStaticPathsResult = [];
-    for (const tag of tags) {
-        const allPosts = (
-            await getCollection(
-                "blog",
-                (data) =>
-                    Array.isArray(data.data.tags) &&
-                    data.data.tags.some((t) => t === tag)
-            )
-        ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-        const filteredPosts = allPosts.slice(0, PER_PAGE);
-        const hasNext = allPosts.length > PER_PAGE;
-
-        result.push({
-            params: { slug: slug(tag) },
-            props: { name: tag, posts: filteredPosts, hasNext },
-        });
-    }
-
-    return result;
 }
 
-const { name, posts, hasNext } = Astro.props;
+const hasNext = allPosts.length > PER_PAGE;
 ---
 
 <BaseLayout>
@@ -75,7 +56,7 @@ const { name, posts, hasNext } = Astro.props;
                                 <a
                                     rel="next"
                                     href={`/tag/${encodeURIComponent(
-                                        slug(name)
+                                        githubSlug(name)
                                     )}/page/2`}
                                     class="c-navigation__anchor"
                                 >

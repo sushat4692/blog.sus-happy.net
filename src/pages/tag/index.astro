@@ -1,16 +1,10 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import { slug } from "github-slugger";
 import PageMeta from "../../components/PageMeta.astro";
 import Hero from "../../components/Hero.astro";
 import Side from "../../components/Side.astro";
-
-type Props = {
-    name: string;
-    posts: CollectionEntry<"blog">[];
-    hasNext: boolean;
-};
 
 const blogEntries = await getCollection("blog");
 const tags: string[] = [];
