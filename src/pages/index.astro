@@ -10,7 +10,7 @@ import ArchivePost from "../components/ArchivePost.astro";
 const allPosts = (await getCollection("blog")).sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
-const filteredPosts = allPosts.slice(0, PER_PAGE);
+const posts = allPosts.slice(0, PER_PAGE);
 const hasNext = allPosts.length > PER_PAGE;
 ---
 
@@ -25,7 +25,7 @@ const hasNext = allPosts.length > PER_PAGE;
 
         <div class="l-container">
             <div class="c-archive">
-                {filteredPosts.map((post) => <ArchivePost post={post} />)}
+                {posts.map((post) => <ArchivePost post={post} />)}
             </div>
 
             <nav>

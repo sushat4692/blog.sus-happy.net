@@ -1,24 +1,15 @@
-import type { APIContext } from "astro";
-import satori from "satori";
-import { loadGoogleFont } from "../../../util/loadGoogleFont";
-import { getImageDataUri } from "../../../util/getImageDataUri";
-import { CollectionEntry, getCollection } from "astro:content";
+import { ImageResponse } from "@vercel/og";
 
-type Props = {
-    entry: CollectionEntry<"blog">;
+export const config = {
+    runtime: "experimental-edge",
 };
 
-export async function getStaticPaths() {
-    const blogEntries = await getCollection("blog");
-    return blogEntries.map((entry) => ({
-        params: { slug: entry.slug },
-        props: { entry },
-    }));
-}
+import { loadGoogleFont } from "../../util/loadGoogleFont";
+import { getImageDataUri } from "../../util/getImageDataUri";
 
-export async function get({ props }: APIContext<Props>) {
-    const title = props.entry.data.title;
-    const subTitle = "SUSH-i LOG";
+export async function get() {
+    const title = "SUSH-i LOG";
+    const subTitle = "名古屋のWeb制作会社につとめるプログラマーのつぶやき";
 
     const fontData = await loadGoogleFont(title, subTitle).then((resp) =>
         resp?.arrayBuffer()
@@ -33,13 +24,9 @@ export async function get({ props }: APIContext<Props>) {
         });
     }
 
-    const dataUri = await getImageDataUri(
-        props.entry.data.thumbnail
-            ? props.entry.data.thumbnail
-            : "/content/background.jpg"
-    );
+    const dataUri = await getImageDataUri("/content/background.jpg");
 
-    const svg = await satori(
+    return new ImageResponse(
         {
             type: "div",
             props: {
@@ -64,11 +51,8 @@ export async function get({ props }: APIContext<Props>) {
                         props: {
                             children: title,
                             style: {
-                                width: "90%",
                                 color: "#fff",
                                 fontSize: 64,
-                                textAlign: "center",
-                                wordBreak: "break-word",
                             },
                         },
                     },
@@ -102,8 +86,4 @@ export async function get({ props }: APIContext<Props>) {
             fonts,
         }
     );
-
-    return {
-        body: svg,
-    };
 }

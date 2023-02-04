@@ -1,38 +1,52 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { CollectionEntry, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import { PER_PAGE } from "../../const";
 import PageMeta from "../../components/PageMeta.astro";
 import Hero from "../../components/Hero.astro";
 import Side from "../../components/Side.astro";
 import ArchivePost from "../../components/ArchivePost.astro";
-import type { GetStaticPathsOptions, Page } from "astro";
 
-type Props = {
-    page: Page<CollectionEntry<"blog">>;
-};
+const page = (() => {
+    const { page } = Astro.params;
 
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-    return paginate(
-        (await getCollection("blog")).sort(
-            (a, b) => b.data.date.getTime() - a.data.date.getTime()
-        ),
-        { pageSize: PER_PAGE }
-    ).filter((page) => page.params.page);
+    if (!page) {
+        return null;
+    }
+
+    return parseInt(page);
+})();
+
+if (!page || page === 1) {
+    return new Response(null, {
+        status: 404,
+        statusText: "Not found post",
+    });
 }
 
-const { page } = Astro.props;
+const allPosts = (await getCollection("blog")).sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const posts = allPosts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+if (!posts.length) {
+    return new Response(null, {
+        status: 404,
+        statusText: "Not found post",
+    });
+}
+
+const hasNext = allPosts.length > (page - 1) * PER_PAGE + PER_PAGE;
 ---
 
 <BaseLayout>
-    <PageMeta slot="head" title={`Page ${page.currentPage}`} noindex />
+    <PageMeta slot="head" title={`Page ${page}`} noindex />
 
     <main>
-        <Hero title={`Page: ${page.currentPage}`} />
+        <Hero title={`Page: ${page}`} />
 
         <div class="l-container">
             <div class="c-archive">
-                {page.data.map((post) => <ArchivePost post={post} />)}
+                {posts.map((post) => <ArchivePost post={post} />)}
             </div>
 
             <nav>
@@ -40,16 +54,16 @@ const { page } = Astro.props;
                     <li class="c-navigation__item">
                         <a
                             rel="prev"
-                            href={page.currentPage === 2 ? "/" : page.url.prev}
+                            href={page === 2 ? "/" : `/page/${page - 1}/`}
                             class="c-navigation__anchor">PREV PAGE</a
                         >
                     </li>
                     {
-                        page.url.next && (
+                        hasNext && (
                             <li class="c-navigation__item">
                                 <a
                                     rel="next"
-                                    href={page.url.next}
+                                    href={`/page/${page + 1}/`}
                                     class="c-navigation__anchor"
                                 >
                                     NEXT PAGE
