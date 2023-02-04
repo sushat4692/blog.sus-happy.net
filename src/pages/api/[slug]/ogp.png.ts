@@ -4,6 +4,10 @@ import { loadGoogleFont } from "../../../util/loadGoogleFont";
 import { getImageDataUri } from "../../../util/getImageDataUri";
 import { CollectionEntry, getCollection } from "astro:content";
 
+export const config = {
+    runtime: "experimental-edge",
+};
+
 type Props = {
     entry: CollectionEntry<"blog">;
 };
