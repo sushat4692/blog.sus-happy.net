@@ -1,12 +1,10 @@
 import type { APIContext } from "astro";
-import { ImageResponse } from "@vercel/og";
-import { loadGoogleFont } from "../../../util/loadGoogleFont";
-import { getImageDataUri } from "../../../util/getImageDataUri";
+import satori from "satori";
+import { Resvg } from "@resvg/resvg-js";
 import { CollectionEntry, getCollection } from "astro:content";
 
-export const config = {
-    runtime: "experimental-edge",
-};
+import { loadGoogleFont } from "../../../util/loadGoogleFont";
+import { getImageDataUri } from "../../../util/getImageDataUri";
 
 type Props = {
     entry: CollectionEntry<"blog">;
@@ -43,7 +41,7 @@ export async function get({ props }: APIContext<Props>) {
             : "/content/background.jpg"
     );
 
-    return new ImageResponse(
+    const svg = await satori(
         {
             type: "div",
             props: {
@@ -106,4 +104,22 @@ export async function get({ props }: APIContext<Props>) {
             fonts,
         }
     );
+
+    const resvg = new Resvg(svg, {
+        background: "#000",
+        fitTo: {
+            mode: "width",
+            value: 1200,
+        },
+    });
+    const pngData = resvg.render();
+    const pngBuffer = pngData.asPng();
+
+    return new Response(pngBuffer, {
+        headers: {
+            "content-type": "image/png",
+            "cache-control":
+                "public, immutable, no-transform, max-age=31536000",
+        },
+    });
 }
