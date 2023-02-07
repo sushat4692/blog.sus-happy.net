@@ -1,10 +1,10 @@
 import satori from "satori";
-import { Resvg } from "@resvg/resvg-js";
+import { Resvg } from "@resvg/resvg-wasm";
+import type { APIContext } from "astro";
 
 import { loadGoogleFont } from "../../util/loadGoogleFont";
-import { getImageDataUri } from "../../util/getImageDataUri";
 
-export async function get() {
+export async function get({ url }: APIContext) {
     const title = "SUSH-i LOG";
     const subTitle = "名古屋のWeb制作会社につとめるプログラマーのつぶやき";
 
@@ -21,7 +21,8 @@ export async function get() {
         });
     }
 
-    const dataUri = await getImageDataUri("/content/background.jpg");
+    // const dataUri = await getImageDataUri("/content/background.jpg");
+    const dataUri = `${url.origin}/content/background.jpg`;
 
     const svg = await satori(
         {

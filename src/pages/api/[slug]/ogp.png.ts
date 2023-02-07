@@ -1,25 +1,21 @@
 import type { APIContext } from "astro";
 import satori from "satori";
-import { Resvg } from "@resvg/resvg-js";
-import { CollectionEntry, getCollection } from "astro:content";
+import { Resvg } from "@resvg/resvg-wasm";
+import { getEntryBySlug } from "astro:content";
 
 import { loadGoogleFont } from "../../../util/loadGoogleFont";
-import { getImageDataUri } from "../../../util/getImageDataUri";
 
-type Props = {
-    entry: CollectionEntry<"blog">;
-};
+export async function get({ params, url }: APIContext) {
+    const entry = await getEntryBySlug("blog", params.slug || "");
 
-export async function getStaticPaths() {
-    const blogEntries = await getCollection("blog");
-    return blogEntries.map((entry) => ({
-        params: { slug: entry.slug },
-        props: { entry },
-    }));
-}
+    if (!entry) {
+        return new Response(null, {
+            status: 404,
+            statusText: "Not found post",
+        });
+    }
 
-export async function get({ props }: APIContext<Props>) {
-    const title = props.entry.data.title;
+    const title = entry.data.title;
     const subTitle = "SUSH-i LOG";
 
     const fontData = await loadGoogleFont(title, subTitle).then((resp) =>
@@ -35,11 +31,9 @@ export async function get({ props }: APIContext<Props>) {
         });
     }
 
-    const dataUri = await getImageDataUri(
-        props.entry.data.thumbnail
-            ? props.entry.data.thumbnail
-            : "/content/background.jpg"
-    );
+    const dataUri = entry.data.thumbnail
+        ? url.origin + entry.data.thumbnail
+        : `${url.origin}/content/background.jpg`;
 
     const svg = await satori(
         {
