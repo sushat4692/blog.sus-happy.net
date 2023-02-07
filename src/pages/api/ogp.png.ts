@@ -52,8 +52,14 @@ export async function get({ url }: APIContext) {
                         props: {
                             children: title,
                             style: {
+                                width: "90%",
                                 color: "#fff",
                                 fontSize: 64,
+                                textAlign: "center",
+                                wordBreak: "break-word",
+                                marginRight: "auto",
+                                marginLeft: "auto",
+                                justifyContent: "center",
                             },
                         },
                     },
