@@ -1,12 +1,10 @@
 import type { APIContext } from "astro";
 import satori from "satori";
-import { Resvg, initWasm } from "@resvg/resvg-wasm";
+import { Resvg } from "@resvg/resvg-wasm";
 import { getEntryBySlug } from "astro:content";
-import { readFile } from "node:fs/promises";
-import { join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 
 import { loadGoogleFont } from "../../../util/loadGoogleFont";
+import { initResvg } from "../../../util/initResvg";
 
 export async function get({ params, url }: APIContext) {
     const entry = await getEntryBySlug("blog", params.slug || "");
@@ -18,17 +16,7 @@ export async function get({ params, url }: APIContext) {
         });
     }
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-
-    await initWasm(
-        readFile(
-            join(
-                __dirname,
-                "../../../../node_modules/@resvg/resvg-wasm/index_bg.wasm"
-            )
-        )
-    );
+    await initResvg();
 
     const title = entry.data.title;
     const subTitle = "SUSH-i LOG";
