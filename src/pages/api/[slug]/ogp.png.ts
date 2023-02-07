@@ -1,7 +1,10 @@
 import type { APIContext } from "astro";
 import satori from "satori";
-import { Resvg } from "@resvg/resvg-wasm";
+import { Resvg, initWasm } from "@resvg/resvg-wasm";
 import { getEntryBySlug } from "astro:content";
+import { readFile } from "node:fs/promises";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { loadGoogleFont } from "../../../util/loadGoogleFont";
 
@@ -14,6 +17,18 @@ export async function get({ params, url }: APIContext) {
             statusText: "Not found post",
         });
     }
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+
+    await initWasm(
+        readFile(
+            join(
+                __dirname,
+                "../../../../node_modules/@resvg/resvg-wasm/index_bg.wasm"
+            )
+        )
+    );
 
     const title = entry.data.title;
     const subTitle = "SUSH-i LOG";

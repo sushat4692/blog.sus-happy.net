@@ -1,10 +1,25 @@
 import satori from "satori";
-import { Resvg } from "@resvg/resvg-wasm";
+import { Resvg, initWasm } from "@resvg/resvg-wasm";
 import type { APIContext } from "astro";
+import { readFile } from "node:fs/promises";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { loadGoogleFont } from "../../util/loadGoogleFont";
 
 export async function get({ url }: APIContext) {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+
+    await initWasm(
+        readFile(
+            join(
+                __dirname,
+                "../../../node_modules/@resvg/resvg-wasm/index_bg.wasm"
+            )
+        )
+    );
+
     const title = "SUSH-i LOG";
     const subTitle = "名古屋のWeb制作会社につとめるプログラマーのつぶやき";
 
