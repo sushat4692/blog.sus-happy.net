@@ -1,13 +1,13 @@
-import { ImageResponse } from "@vercel/og";
-
-export const config = {
-    runtime: "experimental-edge",
-};
+import satori from "satori";
+import { Resvg } from "@resvg/resvg-wasm";
+import type { APIContext } from "astro";
 
 import { loadGoogleFont } from "../../util/loadGoogleFont";
-import { getImageDataUri } from "../../util/getImageDataUri";
+import { initResvg } from "../../util/initResvg";
 
-export async function get() {
+export async function get({ url }: APIContext) {
+    await initResvg();
+
     const title = "SUSH-i LOG";
     const subTitle = "名古屋のWeb制作会社につとめるプログラマーのつぶやき";
 
@@ -24,9 +24,10 @@ export async function get() {
         });
     }
 
-    const dataUri = await getImageDataUri("/content/background.jpg");
+    // const dataUri = await getImageDataUri("/content/background.jpg");
+    const dataUri = `${url.origin}/content/background.jpg`;
 
-    return new ImageResponse(
+    const svg = await satori(
         {
             type: "div",
             props: {
@@ -86,4 +87,22 @@ export async function get() {
             fonts,
         }
     );
+
+    const resvg = new Resvg(svg, {
+        background: "#000",
+        fitTo: {
+            mode: "width",
+            value: 1200,
+        },
+    });
+    const pngData = resvg.render();
+    const pngBuffer = pngData.asPng();
+
+    return new Response(pngBuffer, {
+        headers: {
+            "content-type": "image/png",
+            "cache-control":
+                "public, immutable, no-transform, max-age=31536000",
+        },
+    });
 }

@@ -3,6 +3,17 @@ import tailwind from "@astrojs/tailwind";
 import partytown from "@astrojs/partytown";
 import vercel from "@astrojs/vercel/serverless";
 
+// via: https://github.com/withastro/astro/issues/5357
+const shikiResourcePaths = Object.keys(
+    import.meta.glob([
+        "./node_modules/shiki/languages/*.tmLanguage.json",
+        "./node_modules/shiki/themes/*.json",
+
+        // resvgwasm
+        "./node_modules/@resvg/resvg-wasm/index_bg.wasm",
+    ])
+);
+
 // https://astro.build/config
 export default defineConfig({
     integrations: [
@@ -20,5 +31,7 @@ export default defineConfig({
         },
     },
     output: "server",
-    adapter: vercel(),
+    adapter: vercel({
+        includeFiles: shikiResourcePaths,
+    }),
 });
