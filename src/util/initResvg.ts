@@ -14,11 +14,13 @@ export const initResvg = async () => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
 
+    console.log(import.meta.url);
+
     await initWasm(
         readFile(
             join(
                 __dirname,
-                "../../node_modules/@resvg/resvg-wasm/index_bg.wasm"
+                "../../../node_modules/@resvg/resvg-wasm/index_bg.wasm"
             )
         )
     );
