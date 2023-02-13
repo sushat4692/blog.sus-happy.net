@@ -291,21 +291,16 @@ export const initResvg = async () => {
 
 ### Vercelでresvg-wasmを使うための設定追加
 
-このままデプロイをすると`index_bg.wasm`見つからない、というエラーが発生してしまいますので、@astrojs/vercelのインテグレーションの設定で、このファイルを含めるように設定を追加します。
+このままデプロイをすると`index_bg.wasm`見つからない、というエラーが発生してしまいますので、@astrojs/vercelのアダプタ設定に、このファイルを含めるように設定を追加します。
 
 ```ts
 import vercel from "@astrojs/vercel/serverless";
-const resourcePaths = Object.keys(
-    import.meta.glob([
-        "./node_modules/@resvg/resvg-wasm/index_bg.wasm",
-    ])
-);
 
 export default defineConfig({
     // 略
     output: "server",
     adapter: vercel({
-        includeFiles: resourcePaths,
+        includeFiles: ["./node_modules/@resvg/resvg-wasm/index_bg.wasm"],
     }),
 });
 ```
