@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import satori from "satori";
+import satori, { Font } from "satori";
 import { Resvg } from "@resvg/resvg-wasm";
 import { getEntryBySlug } from "astro:content";
 
@@ -24,7 +24,7 @@ export async function get({ params, url }: APIContext) {
     const fontData = await loadGoogleFont(title, subTitle).then((resp) =>
         resp?.arrayBuffer()
     );
-    const fonts: any[] = [];
+    const fonts: Font[] = [];
     if (fontData) {
         fonts.push({
             name: "NotoSansJapanese",
@@ -94,7 +94,7 @@ export async function get({ params, url }: APIContext) {
                     justifyContent: "center",
                     backgroundColor: "#000",
                     fontSize: 32,
-                    fontWeight: 500,
+                    fontWeight: 700,
                 },
             },
         },
