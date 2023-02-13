@@ -1,67 +1,77 @@
 ---
+export const prerender = true;
+
 import BaseLayout from "../../../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import { slug as githubSlug } from "github-slugger";
 import { PER_PAGE } from "../../../../const";
 import PageMeta from "../../../../components/PageMeta.astro";
 import Hero from "../../../../components/Hero.astro";
 import Side from "../../../../components/Side.astro";
 import ArchivePost from "../../../../components/ArchivePost.astro";
+import type { GetStaticPathsOptions, Page } from "astro";
 
-const { slug } = Astro.params;
-const page = (() => {
-    const { page } = Astro.params;
+type Props = {
+    page: Page<CollectionEntry<"blog">>;
+    name: string;
+    slug: string;
+};
 
-    if (!page) {
-        return null;
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    const blogEntries = await getCollection("blog");
+    const tags: string[] = [];
+
+    blogEntries.map((entry) => {
+        if (!entry.data.tags) {
+            return;
+        }
+
+        entry.data.tags.map((tag) => {
+            if (!tags.some((t) => t === tag)) {
+                tags.push(tag);
+            }
+        });
+    });
+
+    const result = [];
+    for (const tag of tags) {
+        const allPosts = (
+            await getCollection(
+                "blog",
+                (data) =>
+                    Array.isArray(data.data.tags) &&
+                    data.data.tags.some((t) => t === tag)
+            )
+        ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+        result.push(
+            paginate(allPosts, {
+                params: { slug: githubSlug(tag) },
+                props: { name: tag, slug: githubSlug(tag) },
+                pageSize: PER_PAGE,
+            }).filter((page) => page.params.page)
+        );
     }
 
-    return parseInt(page);
-})();
-let name = "";
-
-if (!page || page === 1) {
-    return new Response(null, {
-        status: 404,
-        statusText: "Not found post",
-    });
+    return result;
 }
 
-const allPosts = (
-    await getCollection(
-        "blog",
-        (data) =>
-            Array.isArray(data.data.tags) &&
-            data.data.tags.some((t) => {
-                if (githubSlug(t) === slug) {
-                    name = t;
-                    return true;
-                }
-                return false;
-            })
-    )
-).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const posts = allPosts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
-if (!posts.length) {
-    return new Response(null, {
-        status: 404,
-        statusText: "Not found post",
-    });
-}
-
-const hasNext = allPosts.length > (page - 1) * PER_PAGE + PER_PAGE;
+const { page, name, slug } = Astro.props;
 ---
 
 <BaseLayout>
-    <PageMeta slot="head" title={`Page ${page} - ${name} - Tags`} noindex />
+    <PageMeta
+        slot="head"
+        title={`Page ${page.currentPage} - ${name} - Tags`}
+        noindex
+    />
 
     <main>
-        <Hero title={`${name} - Page: ${page}`} />
+        <Hero title={`${name} - Page: ${page.currentPage}`} />
 
         <div class="l-container">
             <div class="c-archive">
-                {posts.map((post) => <ArchivePost post={post} />)}
+                {page.data.map((post) => <ArchivePost post={post} />)}
             </div>
 
             <nav>
@@ -69,18 +79,18 @@ const hasNext = allPosts.length > (page - 1) * PER_PAGE + PER_PAGE;
                     <li class="c-navigation__item">
                         <a
                             rel="prev"
-                            href={page === 2
+                            href={page.currentPage === 2
                                 ? `/tag/${slug}/`
-                                : `/tag/${slug}/page/${page - 1}/`}
+                                : page.url.prev}
                             class="c-navigation__anchor">PREV PAGE</a
                         >
                     </li>
                     {
-                        hasNext && (
+                        page.url.next && (
                             <li class="c-navigation__item">
                                 <a
                                     rel="next"
-                                    href={`/tag/${slug}/page/${page + 1}/`}
+                                    href={page.url.next}
                                     class="c-navigation__anchor"
                                 >
                                     NEXT PAGE
