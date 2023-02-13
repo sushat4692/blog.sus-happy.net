@@ -1,23 +1,29 @@
 ---
+export const prerender = true;
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import { DateTime } from "luxon";
-import { getCollection, getEntryBySlug } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import { slug as slugConvert } from "github-slugger";
 import { markdown } from "@astropub/md";
 import striptags from "striptags";
 import Side from "../components/Side.astro";
 
-const { slug } = Astro.params;
-const entry = await getEntryBySlug("blog", slug || "");
+type Props = {
+    entry: CollectionEntry<"blog">;
+};
 
-if (!entry) {
-    return new Response(null, {
-        status: 404,
-        statusText: "Not found post",
-    });
+export async function getStaticPaths() {
+    const blogEntries = await getCollection("blog");
+    return blogEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
 }
 
+const { slug } = Astro.params;
+const { entry } = Astro.props;
 const { title, date, tags } = entry.data;
 const { Content, headings } = await entry.render();
 const excerpt = striptags((await markdown(entry.body)).toString())

@@ -1,52 +1,40 @@
 ---
+export const prerender = true;
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { CollectionEntry, getCollection } from "astro:content";
 import { PER_PAGE } from "../../const";
 import PageMeta from "../../components/PageMeta.astro";
 import Hero from "../../components/Hero.astro";
 import Side from "../../components/Side.astro";
 import ArchivePost from "../../components/ArchivePost.astro";
+import type { GetStaticPathsOptions, Page } from "astro";
 
-const page = (() => {
-    const { page } = Astro.params;
+type Props = {
+    page: Page<CollectionEntry<"blog">>;
+};
 
-    if (!page) {
-        return null;
-    }
-
-    return parseInt(page);
-})();
-
-if (!page || page === 1) {
-    return new Response(null, {
-        status: 404,
-        statusText: "Not found post",
-    });
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+    return paginate(
+        (await getCollection("blog")).sort(
+            (a, b) => b.data.date.getTime() - a.data.date.getTime()
+        ),
+        { pageSize: PER_PAGE }
+    ).filter((page) => page.params.page);
 }
 
-const allPosts = (await getCollection("blog")).sort(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
-const posts = allPosts.slice((page - 1) * PER_PAGE, page * PER_PAGE);
-if (!posts.length) {
-    return new Response(null, {
-        status: 404,
-        statusText: "Not found post",
-    });
-}
-
-const hasNext = allPosts.length > (page - 1) * PER_PAGE + PER_PAGE;
+const { page } = Astro.props;
 ---
 
 <BaseLayout>
-    <PageMeta slot="head" title={`Page ${page}`} noindex />
+    <PageMeta slot="head" title={`Page ${page.currentPage}`} noindex />
 
     <main>
-        <Hero title={`Page: ${page}`} />
+        <Hero title={`Page: ${page.currentPage}`} />
 
         <div class="l-container">
             <div class="c-archive">
-                {posts.map((post) => <ArchivePost post={post} />)}
+                {page.data.map((post) => <ArchivePost post={post} />)}
             </div>
 
             <nav>
@@ -54,16 +42,16 @@ const hasNext = allPosts.length > (page - 1) * PER_PAGE + PER_PAGE;
                     <li class="c-navigation__item">
                         <a
                             rel="prev"
-                            href={page === 2 ? "/" : `/page/${page - 1}/`}
+                            href={page.currentPage === 2 ? "/" : page.url.prev}
                             class="c-navigation__anchor">PREV PAGE</a
                         >
                     </li>
                     {
-                        hasNext && (
+                        page.url.next && (
                             <li class="c-navigation__item">
                                 <a
                                     rel="next"
-                                    href={`/page/${page + 1}/`}
+                                    href={page.url.next}
                                     class="c-navigation__anchor"
                                 >
                                     NEXT PAGE
