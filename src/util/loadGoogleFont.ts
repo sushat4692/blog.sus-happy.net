@@ -1,7 +1,3 @@
-export const config = {
-    runtime: "experimental-edge",
-};
-
 export const loadGoogleFont = async (title: string, subTitle: string) => {
     const text = `${title}${subTitle}`;
     const API = `https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&text=${text}`;
