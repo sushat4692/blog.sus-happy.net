@@ -289,6 +289,30 @@ export const initResvg = async () => {
 
 この`initResvg`なら何度呼んでも大丈夫（のはず）です。
 
+### Vercelでresvg-wasmを使うための設定追加
+
+このままデプロイをすると`index_bg.wasm`見つからない、というエラーが発生してしまいますので、@astrojs/vercelのインテグレーションの設定で、このファイルを含めるように設定を追加します。
+
+```ts
+import vercel from "@astrojs/vercel/serverless";
+const resourcePaths = Object.keys(
+    import.meta.glob([
+        "./node_modules/@resvg/resvg-wasm/index_bg.wasm",
+    ])
+);
+
+export default defineConfig({
+    // 略
+    output: "server",
+    adapter: vercel({
+        includeFiles: resourcePaths,
+    }),
+});
+```
+
+これで、ビルド後のデータにも`index_bg.wasm`が残るので、読み込めるようになります。
+
+
 ## Astroエンドポイント例
 
 それぞれの記述を併せたものがこちらの様になります。

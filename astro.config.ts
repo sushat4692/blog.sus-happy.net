@@ -4,12 +4,12 @@ import partytown from "@astrojs/partytown";
 import vercel from "@astrojs/vercel/serverless";
 import sitemap from "@astrojs/sitemap";
 
-// const resourcePaths = Object.keys(
-//     import.meta.glob([
-//         // resvg-wasm
-//         "./node_modules/@resvg/resvg-wasm/index_bg.wasm",
-//     ])
-// );
+const resourcePaths = Object.keys(
+    import.meta.glob([
+        // resvg-wasm
+        "./node_modules/@resvg/resvg-wasm/index_bg.wasm",
+    ])
+);
 
 export default defineConfig({
     site: "https://blog.sus-happy.net",
@@ -27,6 +27,6 @@ export default defineConfig({
     },
     output: "server",
     adapter: vercel({
-        // includeFiles: resourcePaths,
+        includeFiles: resourcePaths,
     }),
 });
