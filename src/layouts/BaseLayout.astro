@@ -40,6 +40,10 @@ import GTMBody from "../components/GTMBody.astro";
             :root {
                 --transition-speed: 0.1s;
                 --sidebar-width: 16rem;
+
+                @media (prefers-color-scheme: dark) {
+                    color-scheme: dark;
+                }
             }
 
             html {
@@ -53,7 +57,7 @@ import GTMBody from "../components/GTMBody.astro";
             }
 
             body {
-                @apply bg-slate-100 text-slate-800;
+                @apply bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300;
             }
 
             a {
