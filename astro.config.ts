@@ -19,7 +19,7 @@ export default defineConfig({
     markdown: {
         shikiConfig: {},
     },
-    output: "server",
+    output: "hybrid",
     adapter: vercel({
         includeFiles: ["./node_modules/@resvg/resvg-wasm/index_bg.wasm"],
     }),
