@@ -42,13 +42,15 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
             )
         ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-        result.push(
-            paginate(allPosts, {
-                params: { slug: githubSlug(tag) },
-                props: { name: tag, slug: githubSlug(tag) },
-                pageSize: PER_PAGE,
-            }).filter((page) => page.params.page)
-        );
+        const pages = paginate(allPosts, {
+            params: { slug: githubSlug(tag) },
+            props: { name: tag, slug: githubSlug(tag) },
+            pageSize: PER_PAGE,
+        }).filter((page) => page.params.page);
+
+        if (pages.length) {
+            result.push(...pages);
+        }
     }
 
     return result;
@@ -74,7 +76,7 @@ const { page, name, slug } = Astro.props;
 
             <nav>
                 <ul class="c-navigation has-sm-padding">
-                    <li class="c-navigation__item">
+                    <li class="c-navigation__item" data-prev>
                         <a
                             rel="prev"
                             href={page.currentPage === 2
@@ -83,9 +85,9 @@ const { page, name, slug } = Astro.props;
                             class="c-navigation__anchor">PREV PAGE</a
                         >
                     </li>
-                    {
-                        page.url.next && (
-                            <li class="c-navigation__item">
+                    <li class="c-navigation__item" data-next>
+                        {
+                            page.url.next && (
                                 <a
                                     rel="next"
                                     href={page.url.next}
@@ -93,9 +95,9 @@ const { page, name, slug } = Astro.props;
                                 >
                                     NEXT PAGE
                                 </a>
-                            </li>
-                        )
-                    }
+                            )
+                        }
+                    </li>
                 </ul>
             </nav>
         </div>

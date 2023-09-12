@@ -30,9 +30,10 @@ const hasNext = allPosts.length > PER_PAGE;
 
             <nav>
                 <ul class="c-navigation has-sm-padding">
-                    {
-                        hasNext && (
-                            <li class="c-navigation__item">
+                    <li class="c-navigation__item" data-prev></li>
+                    <li class="c-navigation__item" data-next>
+                        {
+                            hasNext && (
                                 <a
                                     rel="next"
                                     href="/page/2"
@@ -40,9 +41,9 @@ const hasNext = allPosts.length > PER_PAGE;
                                 >
                                     NEXT PAGE
                                 </a>
-                            </li>
-                        )
-                    }
+                            )
+                        }
+                    </li>
                 </ul>
             </nav>
         </div>

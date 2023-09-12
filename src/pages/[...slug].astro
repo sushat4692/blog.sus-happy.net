@@ -2,10 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import { DateTime } from "luxon";
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import { slug as slugConvert } from "github-slugger";
-import { markdown } from "@astropub/md";
-import striptags from "striptags";
+import removeMd from 'remove-markdown'
 import Side from "../components/Side.astro";
 
 type Props = {
@@ -22,11 +21,9 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const { entry } = Astro.props;
-const { title, date, tags } = entry.data;
-const { Content, headings } = await entry.render();
-const excerpt = striptags((await markdown(entry.body)).toString())
-    .replace(/\n\r|\n|\r/g, "")
-    .substring(0, 200);
+const { title, date, tags, thumbnail } = entry.data;
+const { Content, headings, } = await entry.render();
+const excerpt = removeMd(entry.body).replace(/\n\r|\n|\r/g, "").substring(0, 200);
 
 const { prev, next } = await (async () => {
     const allPosts = (await getCollection("blog")).sort(
@@ -64,10 +61,19 @@ const { prev, next } = await (async () => {
     />
 
     <main>
+        <figure class="visual">
+            <img
+                src={thumbnail ? thumbnail : '/content/background.jpg'}
+                alt={title}
+                class="visual__image"
+                transition:name={`post-image-${slug}`}
+            />
+        </figure>
+
         <div class="l-container">
             <article class="main">
                 <div class="header">
-                    <h1 class="header__title">{title}</h1>
+                    <h1 class="header__title" transition:name={`post-title-${slug}`}>{title}</h1>
                     <div class="header__meta">
                         <time
                             class="header__meta__time"
@@ -102,40 +108,58 @@ const { prev, next } = await (async () => {
             </article>
 
             <nav>
-                <ul class="c-navigation">
-                    <li class="c-navigation__item" data-prev>
+                <ul class="page-nav">
+                    <li class="page-nav__item" data-prev>
                         {
                             prev && (
-                                <>
-                                    <span class="c-navigation__item__label">
-                                        PREV
-                                    </span>
-                                    <a
-                                        rel="prev"
-                                        href={`/${prev.slug}/`}
-                                        class="c-navigation__anchor"
-                                    >
-                                        {prev.data.title}
-                                    </a>
-                                </>
+                                <a
+                                    rel="prev"
+                                    href={`/${prev.slug}/`}
+                                    class="page-nav__item__anchor"
+                                >
+                                    <figure class="page-nav__item__visual">
+                                        <img
+                                            src={prev.data.thumbnail ? prev.data.thumbnail : '/content/background.jpg'}
+                                            alt={prev.data.title}
+                                            transition:name={`post-image-${prev.slug}`}
+                                            class="page-nav__item__visual__image"
+                                        >
+                                    </figure>
+
+                                    <div class="page-nav__item__body">
+                                        <span class="page-nav__item__label">
+                                            PREV
+                                        </span>
+                                            <span transition:name={`post-title-${prev.slug}`}>{prev.data.title}</span>
+                                    </div>
+                                </a>
                             )
                         }
                     </li>
-                    <li class="c-navigation__item">
+                    <li class="page-nav__item" data-next>
                         {
                             next && (
-                                <>
-                                    <span class="c-navigation__item__label">
-                                        NEXT
-                                    </span>
-                                    <a
-                                        rel="next"
-                                        href={`/${next.slug}/`}
-                                        class="c-navigation__anchor"
-                                    >
-                                        {next.data.title}
-                                    </a>
-                                </>
+                                <a
+                                    rel="next"
+                                    href={`/${next.slug}/`}
+                                    class="page-nav__item__anchor"
+                                >
+                                    <figure class="page-nav__item__visual">
+                                        <img
+                                            src={next.data.thumbnail ? next.data.thumbnail : '/content/background.jpg'}
+                                            alt={next.data.title}
+                                            transition:name={`post-image-${next.slug}`}
+                                            class="page-nav__item__visual__image"
+                                        >
+                                    </figure>
+
+                                    <div class="page-nav__item__body">
+                                        <span class="page-nav__item__label">
+                                            NEXT
+                                        </span>
+                                            <span transition:name={`post-title-${next.slug}`}>{next.data.title}</span>
+                                    </div>
+                                </a>
                             )
                         }
                     </li>
@@ -149,10 +173,22 @@ const { prev, next } = await (async () => {
 
 <style lang="scss">
     .main {
-        @apply pt-20 pb-10;
+        @apply pt-10 pb-10;
 
         @screen sm {
             @apply pt-20 pb-20;
+        }
+    }
+
+    .visual {
+        @apply h-48;
+
+        @screen sm {
+            @apply h-64;
+        }
+
+        &__image {
+            @apply w-full h-full object-cover;
         }
     }
 
@@ -349,6 +385,7 @@ const { prev, next } = await (async () => {
             overflow: auto;
             padding: 0.4em;
             margin: 0 -1.5rem;
+            font-size: .9em;
 
             @screen sm {
                 margin: 0 -4rem;
@@ -367,6 +404,41 @@ const { prev, next } = await (async () => {
         :global(pre[class*="language-"]),
         :global(code[class*="language-"]) {
             @apply text-lg;
+        }
+    }
+
+    .page-nav {
+        @apply m-0 p-0 py-10 list-none border-0 border-t border-solid border-slate-300;
+        @apply grid gap-2;
+
+        &__item {
+            @apply grid gap-1;
+
+            &__anchor {
+                @apply flex gap-4 items-start leading-snug;
+            }
+
+            &__visual {
+                @apply w-16 h-16 shrink-0;
+
+                &__image {
+                    @apply w-full h-full object-cover;
+                }
+            }
+
+            &__body {
+                @apply grid gap-1;
+            }
+
+            &__label {
+                @apply text-sm font-bold;
+            }
+
+            &[data-next] & {
+                &__anchor {
+                    @apply flex-row-reverse text-right;
+                }
+            }
         }
     }
 </style>
