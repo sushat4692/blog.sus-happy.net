@@ -3,21 +3,18 @@ title: "ぶらり一人旅「半田 矢勝川堤」"
 date: 2015-09-26T16:49:05.000Z
 updated: 2016-04-08T13:22:26.000Z
 tags:
-  - 一人旅
-  - 写真
-thumbnail: "/content/images/2016/04/handa-yakachigawa.jpg"
+    - 一人旅
+    - 写真
+thumbnail: "../../assets/images/2016/04/handa-yakachigawa.jpg"
 ---
 
-
 どこか写真撮りに行きたいなぁと思っていた所で、ちょうどテレビで彼岸花について特集をしていたので、東海県内の群生地が無いか探してみたところ半田の矢勝川にあると知ったので行ってみました。
-
 
 ## 矢勝川堤まで
 
 名古屋駅から40分くらいの名鉄河和線「半田口駅」から歩いて5-10分位のところなので、電車でも気軽に足を運ぶことが出来ます。
 
 一応駐車場もあるようですが、結構混んでいたのでもしかしたら停められないこともあるのかもしれません。
-
 
 ## 矢勝川・彼岸花堤
 
@@ -33,7 +30,6 @@ thumbnail: "/content/images/2016/04/handa-yakachigawa.jpg"
 
 北側の土手はサイクリングロードになっていますが、南側の土手は舗装されていないので自転車で一周するのはちょっと難しそうです。（道幅も狭く人も結構居るので）
 
-
 ## 田んぼと彼岸花
 
 [![田んぼアート](https://farm1.staticflickr.com/746/21632865631_d6c37ee7fb_b.jpg)](https://www.flickr.com/photos/sushat4692/21632865631/in/album-72157658541136100/ "田んぼアート")<script async="" charset="utf-8" src="//embedr.flickr.com/assets/client-code.js"></script>
@@ -47,7 +43,6 @@ thumbnail: "/content/images/2016/04/handa-yakachigawa.jpg"
 稲穂と彼岸花の組み合わせも何だか懐かしい感じがして良いですね。田んぼの周りなので色々な生き物も感じることが出来ます。トンボや鳥が飛び交い、虫の鳴き声がどこからか聴こえ、田んぼの中を覗き込むとカエルが逃げていく姿が見えました。
 
 [![彼岸花と影](https://farm1.staticflickr.com/771/21623998835_92e1e1a522_b.jpg)](https://www.flickr.com/photos/sushat4692/21623998835/in/album-72157658541136100/ "彼岸花と影")<script async="" charset="utf-8" src="//embedr.flickr.com/assets/client-code.js"></script>
-
 
 ## 新美南吉の生家
 
@@ -65,7 +60,6 @@ thumbnail: "/content/images/2016/04/handa-yakachigawa.jpg"
 
 [![南吉の生家 時計](https://farm6.staticflickr.com/5719/21597738396_036c0b3847_b.jpg)](https://www.flickr.com/photos/sushat4692/21597738396/in/album-72157658541136070/ "南吉の生家 時計")<script async="" charset="utf-8" src="//embedr.flickr.com/assets/client-code.js"></script>
 
-
 ## まとめ
 
 名古屋から1時間掛からずに到着するので、手軽に足を運ぶことが出来、思っていた以上の規模だったので満足でした。
@@ -73,5 +67,3 @@ thumbnail: "/content/images/2016/04/handa-yakachigawa.jpg"
 歩いて回れる距離に他にも何かあるようなので、日帰りでこの辺りをぐるぐる回る、というコトも出来そうな気がします。
 
 [今回の一人旅のアルバム](https://www.flickr.com/photos/sushat4692/albums/72157658541136100)、（[新美南吉生家のアルバム](https://www.flickr.com/photos/sushat4692/albums/72157658541136070)）
-
-

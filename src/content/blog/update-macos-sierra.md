@@ -3,37 +3,37 @@ title: "やっとこさmacOS Sierraにバージョンアップしてみた"
 date: 2017-01-08T15:52:54.000Z
 updated: 2017-06-10T13:26:19.000Z
 tags:
-  - Mac
-thumbnail: "/content/images/2017/01/Sierra-1.jpg"
+    - Mac
+thumbnail: "../../assets/images/2017/01/Sierra-1.jpg"
 ---
 
-* **2018/06/10**
-  * Karabiner-Elementsが色々対応してくれていましたので、内容を修正しました。
+-   **2018/06/10**
+    -   Karabiner-Elementsが色々対応してくれていましたので、内容を修正しました。
 
 明けましておめでとうございます。いつの間にやら2017年になっていました。今年もよろしくお願いいたします。
 
 さて本題について、macOS Sierraが発表されてから3ヶ月位経ちましたが、随分バージョンアップ出来ずにいました。バージョンアップを渋っていたのは主に下記の理由からです。
 
-* VPN接続で**PPTP非サポート**になった
-  * *会社のVPNがPPTP…！致命的…！*
-* **Karabinerが対応していない**
-  * `左右⌘`による"かな/英数"切り替えがしたい
-  * `Cmd+Q`のショートカット一発でアプリ閉じないようにしたい
-     * ~~押さないように気をつけることは出来ない~~
-  * 環境設定で設定できるキーリピートより早くしたい
+-   VPN接続で**PPTP非サポート**になった
+    -   _会社のVPNがPPTP…！致命的…！_
+-   **Karabinerが対応していない**
+    -   `左右⌘`による"かな/英数"切り替えがしたい
+    -   `Cmd+Q`のショートカット一発でアプリ閉じないようにしたい
+        -   ~~押さないように気をつけることは出来ない~~
+    -   環境設定で設定できるキーリピートより早くしたい
 
 ということで、macOS Sierraにしつつ、色々と環境・設定の変更を行ってみました。
 
 ## 目次
 
-* [VPN接続方式を変更](#change-vpn)
-* [Karabinerの代替ソフト](#change-karabiner)
-  * ~~[⌘英かなを利用する](#cmd-eikana)~~ （Karabiner-Elementsが対応しました）
-  * ~~[QBlockerを利用する](#qblocker)~~ （Karabiner-Elementsが対応しました）
-  * [キーリピートを早くしたい](#key-repeat)
-* [Karabiner-Elementsについて](#karabiner-elements)
-* [macOS Sierraについて](#macos-sierra)
-* [参考](#reference)
+-   [VPN接続方式を変更](#change-vpn)
+-   [Karabinerの代替ソフト](#change-karabiner)
+    -   ~~[⌘英かなを利用する](#cmd-eikana)~~ （Karabiner-Elementsが対応しました）
+    -   ~~[QBlockerを利用する](#qblocker)~~ （Karabiner-Elementsが対応しました）
+    -   [キーリピートを早くしたい](#key-repeat)
+-   [Karabiner-Elementsについて](#karabiner-elements)
+-   [macOS Sierraについて](#macos-sierra)
+-   [参考](#reference)
 
 ## <a name="change-vpn">VPN接続方式を変更</a>
 
@@ -121,12 +121,11 @@ defaults delete NSGlobalDomain InitialKeyRepeat
 
 ~~しかし、コチラのソフトの問題点としては、~~
 
-* ~~複合キーのリマップが出来ない~~
-* ~~リマップしか出来ない~~
-  * ~~旧Karabinerでは複合キーとして利用した場合は通常の`⌘`としても利用できた~~
+-   ~~複合キーのリマップが出来ない~~
+-   ~~リマップしか出来ない~~
+    -   ~~旧Karabinerでは複合キーとして利用した場合は通常の`⌘`としても利用できた~~
 
 ~~といった点が挙げられると思います。左右のどちらかを`⌘`キーとして残しておく、といった対処を行っている方もいらっしゃるようですが、個人的にはちょっとNGでした。~~
-
 
 ## <a name="macos-sierra">macOS Sierraについて</a>
 
@@ -136,19 +135,18 @@ defaults delete NSGlobalDomain InitialKeyRepeat
 
 ちなみにPIPに対応してるサービスは確認できたものでは、
 
-* YouTube
-* ニコニコ動画
-* AbemaTV（オンデマンドのみ？）
-* Vimeo
-* Amazon Prime Video
+-   YouTube
+-   ニコニコ動画
+-   AbemaTV（オンデマンドのみ？）
+-   Vimeo
+-   Amazon Prime Video
 
 くらいでした。他にも[Netfilixとかも利用できるらしい？](http://www.redmondpie.com/enable-picture-in-picture-pip-for-netflix-in-macos-sierra-heres-how/)です。（登録してないので実際に試してはいませんが）
 他の動画サービスでも利用できるようになると嬉しいですねぇ。
 
-
 ## <a name="reference">参考</a>
 
-* [macOS Sierra で Karabiner が使えない問題にどう対処したか](http://qiita.com/naoya@github/items/56a34be85710f4ed5531)
-* [Key repeat broken in macOS Sierra · Issue #687 · mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles/issues/687)
-* [macOS SierraでKarabinerの代わりに⌘英かなとdefaultsでキーボードの設定を行う](http://qiita.com/saboyutaka/items/33c82ef1414867d9ef6d)
-* [Enable Picture-In-Picture (PiP) For Netflix In macOS Sierra, Here’s How](http://www.redmondpie.com/enable-picture-in-picture-pip-for-netflix-in-macos-sierra-heres-how/)
+-   [macOS Sierra で Karabiner が使えない問題にどう対処したか](http://qiita.com/naoya@github/items/56a34be85710f4ed5531)
+-   [Key repeat broken in macOS Sierra · Issue #687 · mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles/issues/687)
+-   [macOS SierraでKarabinerの代わりに⌘英かなとdefaultsでキーボードの設定を行う](http://qiita.com/saboyutaka/items/33c82ef1414867d9ef6d)
+-   [Enable Picture-In-Picture (PiP) For Netflix In macOS Sierra, Here’s How](http://www.redmondpie.com/enable-picture-in-picture-pip-for-netflix-in-macos-sierra-heres-how/)

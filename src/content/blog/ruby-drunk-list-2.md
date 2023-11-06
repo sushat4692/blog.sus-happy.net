@@ -3,18 +3,16 @@ title: "Ruby on Railsの勉強がてらに呑んだくれリストを作って�
 date: 2015-09-23T22:10:59.000Z
 updated: 2016-04-08T13:21:55.000Z
 tags:
-  - nginx
-  - Ruby
-  - Ruby on Rails
-  - Unicorn
-thumbnail: "/content/images/2016/04/drunk-list-ss.jpg"
+    - nginx
+    - Ruby
+    - Ruby on Rails
+    - Unicorn
+thumbnail: "../../assets/images/2016/04/drunk-list-ss.jpg"
 ---
-
 
 [その１](https://blog.sus-happy.net/ruby-drunk-list/)に引き続き、Ruby on Railsのメモを残しておきます。（ちなみに~~呑んだくれリストとはこんな感じのモノ~~です。）
 
 今回は、Rails + Unicorn + Nginxの設定メモです。
-
 
 ## Unicornの設定
 
@@ -77,7 +75,7 @@ end
 ```
 
 working_directory、listen、pid、stdout_path、stderr_pathは、環境に合わせて変更を行ってください。
- listenで指定したパスはNginxの設定時に必要ですので、どこかにメモをしておきましょう。
+listenで指定したパスはNginxの設定時に必要ですので、どこかにメモをしておきましょう。
 
 ### Unicornの実行
 
@@ -98,7 +96,6 @@ SECRET_KEY_BASE=$(rake secret) bundle exec unicorn -D -c /path/to/application/co
 ```
 
 ~/.bash_profileとかで環境変数に設定しておく方法もあるそうなのですが、何故か自分の環境では動かなかったので、上記のようなコマンドで実行しています。
-
 
 ## Nginxの設定
 
@@ -162,7 +159,7 @@ server {
 ```
 
 upstream rails-unicornのserverには、unicory.rbで記述した際のlistenに指定したパスを記述します。
- その他、各locationのパラメータは環境に合わせて変更を行ってください。
+その他、各locationのパラメータは環境に合わせて変更を行ってください。
 
 また、コチラの設定ファイルは参考サイトと同様に、assetsファイルを毎回作成しないように直接読みに行くようにしています。
 
@@ -182,16 +179,14 @@ Nginxの実行については、yumからインストールしているので、
 systemctl start nginx
 ```
 
-
 ## 参考
 
-- [nginx + unicorn + Railsの設定方法 – Qiita](http://qiita.com/akito1986/items/56198edcafc222b320a8)
-- [Missing `secret_key_base` for 'production' environment が出たのをどうにかする件 – YKT68の日記](http://j1ykt68.hatenablog.com/entry/2014/07/03/111725)
+-   [nginx + unicorn + Railsの設定方法 – Qiita](http://qiita.com/akito1986/items/56198edcafc222b320a8)
+-   [Missing `secret_key_base` for 'production' environment が出たのをどうにかする件 – YKT68の日記](http://j1ykt68.hatenablog.com/entry/2014/07/03/111725)
 
 <del datetime="2015-09-30T15:57:45+00:00">まだまだ続きます、最後に実際にRailsプロジェクトを作成した時のメモを残そうかと思います。</del>投稿しました。
 
-
 ## シリーズ
 
-- [その１ 「Rails環境構築編」](https://blog.sus-happy.net/ruby-drunk-list/)
-- [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/ruby-drunk-list-3/)
+-   [その１ 「Rails環境構築編」](https://blog.sus-happy.net/ruby-drunk-list/)
+-   [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/ruby-drunk-list-3/)

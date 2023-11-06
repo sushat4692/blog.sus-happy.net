@@ -3,27 +3,25 @@ title: "FacebookとTwitterに画像を投稿する方法を色々試してみた
 date: 2012-05-10T02:02:54.000Z
 updated: 2016-04-03T14:24:50.000Z
 tags:
-  - Facebook
-  - Twitter
+    - Facebook
+    - Twitter
 ---
 
 以前はFacebook上で画像をアップしても一覧表示ではそんなに大きく表示されなかったのであまり気にならなかったのですが、タイムライン表示が適用されて大きく見せることが出来るようになったので、出きれば大きく見せた方が良さそうだと感じたので、色々と方法を試してみました。
 
-
 ## 元々の方法
 
-[![HootSuiteから投稿した場合](/content/images/2016/04/hootsuite.png "HootSuiteから投稿した場合")](/content/images/2016/04/hootsuite.png)
+[![HootSuiteから投稿した場合](../../assets/images/2016/04/hootsuite.png "HootSuiteから投稿した場合")](../../assets/images/2016/04/hootsuite.png)
 
 元々はHootSuiteを利用して、Twitterに投稿、そこからFacebookに連動させていました。
 
 しかし、この状態ではTwitter、Facebook共にリンクが貼られるだけで、一覧からは画像を表示することが出来ませんでした。
 
-
 ## 試した方法色々
 
 下記の方法で画像をアップしてみました。
 
-[![Twitterから連動した場合](/content/images/2016/04/normaltwitter.png "Twitterから連動した場合")](/content/images/2016/04/normaltwitter.png)
+[![Twitterから連動した場合](../../assets/images/2016/04/normaltwitter.png "Twitterから連動した場合")](../../assets/images/2016/04/normaltwitter.png)
 
 <dl>
   <dt>Twitterに直接アップ　→　Facebookに連動</dt>
@@ -58,7 +56,6 @@ tags:
 
 結局のところ理想系の状態は探しきれませんでしたが、Facebook上で大きい画像を表示させたい場合は、素直に公式のアプリを利用するのが良さそうな気がしました。
 
-
 ## 参考サイト
 
-- [FacebookからTwitterへ投稿(連動)する方法 | A!@attrip](http://attrip.jp/32212)
+-   [FacebookからTwitterへ投稿(連動)する方法 | A!@attrip](http://attrip.jp/32212)
