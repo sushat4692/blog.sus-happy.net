@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets'
 import PageMeta from "../components/PageMeta.astro";
 import { DateTime } from "luxon";
 import { type CollectionEntry, getCollection } from "astro:content";
@@ -62,9 +63,11 @@ const { prev, next } = await (async () => {
 
     <main>
         <figure class="visual">
-            <img
+            <Image
                 src={thumbnail ? thumbnail : '/content/background.jpg'}
                 alt={title}
+                width={1600}
+                height={900}
                 class="visual__image"
                 transition:name={`post-image-${slug}`}
             />

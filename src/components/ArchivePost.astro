@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Image } from 'astro:assets'
 import { DateTime } from "luxon";
 import { slug as slugConvert } from "github-slugger";
 
@@ -14,9 +15,11 @@ const { slug, data } = post;
 <div class="archive-post">
     <a href={`/${slug}/`} class="archive-post__anchor">
         <figure class="archive-post__visual">
-            <img
+            <Image
                 src={data.thumbnail ? data.thumbnail : '/content/background.jpg'}
                 alt={data.title}
+                width={1600}
+                height={900}
                 class="archive-post__visual__image"
                 transition:name={`post-image-${slug}`}
             />
