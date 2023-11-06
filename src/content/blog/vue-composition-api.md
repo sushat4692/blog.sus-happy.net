@@ -3,16 +3,15 @@ title: "Vue Composition APIについて触ってみた"
 date: 2019-10-20T07:43:00.000Z
 updated: 2019-10-20T07:43:00.000Z
 tags:
-  - JavaScript
-  - Vue.js
-  - Nuxt.js
-thumbnail: "/content/images/2019/10/vue.png"
+    - JavaScript
+    - Vue.js
+    - Nuxt.js
+thumbnail: "../../assets/images/2019/10/vue.png"
 ---
 
 Vue3がそろそろ公開されそうな雰囲気なので、ちょっと先にVue Composition APIをつかってみました。
 
 [Composition API RFC](https://vue-composition-api-rfc.netlify.com/)をボチボチ読んで、[Class Component](https://github.com/vuejs/vue-class-component)で書いてたものを変換してみたのでその時のメモを残しておきます。
-
 
 ## Props
 
@@ -255,8 +254,8 @@ export default createComponent({
 
 ```ts
 watch(() => {
-  // 何かが変われば実行される
-})
+    // 何かが変われば実行される
+});
 ```
 
 #### 複数の値を対象にする
@@ -265,8 +264,8 @@ watch(() => {
 
 ```ts
 watch([fooRef, barRef], ([newFoo, newBar], [prevFoo, prevBar]) => {
-  // fooRefまたはbarRefが変われば実行される
-})
+    // fooRefまたはbarRefが変われば実行される
+});
 ```
 
 #### 初期化
@@ -275,25 +274,25 @@ watch([fooRef, barRef], ([newFoo, newBar], [prevFoo, prevBar]) => {
 
 実行されるタイミングはこんな時。
 
-* `watch`が再実行された時
-* `watch`が停止された時（`stop`が実行されたり、アンマウントされた時など）
+-   `watch`が再実行された時
+-   `watch`が停止された時（`stop`が実行されたり、アンマウントされた時など）
 
 また、使い方は二種類。
 
 ```ts
 // 第一引数に関数を渡し時は、第一引数に初期化関数が渡される
-watch(onCleanup => {
-  onCleanup(() => {
-    // ココで初期化する
-  })
-})
+watch((onCleanup) => {
+    onCleanup(() => {
+        // ココで初期化する
+    });
+});
 
 // 第一引数に関数を渡し時は、第三引数に初期化関数が渡される
 watch(fooRef, (newFoo, oldFoo, onCleanup) => {
-  onCleanup(() => {
-    // ココで初期化する
-  })
-})
+    onCleanup(() => {
+        // ココで初期化する
+    });
+});
 ```
 
 他にも色々あるみたいだけど、一旦ここまで…。
@@ -363,27 +362,27 @@ export default createComponent({
 
 `beforeCreate`と`created`は`setup`内で書いちゃえばOK。
 
-| Before | After |
-| ------ | ----- |
-| `beforeCreate` | `setup`|
-| `created` | `setup`|
+| Before         | After   |
+| -------------- | ------- |
+| `beforeCreate` | `setup` |
+| `created`      | `setup` |
 
 他はon...という関数が用意されてます。
 
-| Before | After |
-| ------ | ----- |
-| `beforeMount` | `onBeforeMount`|
-| `mounted` | `onMounted`|
-| `beforeUpdate` | `onBeforeUpdate`|
-| `updated` | `onUpdated`|
-| `beforeDestroy` | `onBeforeUnmount`|
-| `destroyed` | `onUnmounted`|
-| `errorCaptured` | `onErrorCaptured`|
+| Before          | After             |
+| --------------- | ----------------- |
+| `beforeMount`   | `onBeforeMount`   |
+| `mounted`       | `onMounted`       |
+| `beforeUpdate`  | `onBeforeUpdate`  |
+| `updated`       | `onUpdated`       |
+| `beforeDestroy` | `onBeforeUnmount` |
+| `destroyed`     | `onUnmounted`     |
+| `errorCaptured` | `onErrorCaptured` |
 
 また、新しく2つのデバッグ用のフックが追加されてます。
 
-* `onRenderTracked`
-* `onRenderTriggered`
+-   `onRenderTracked`
+-   `onRenderTriggered`
 
 ## 雑感
 

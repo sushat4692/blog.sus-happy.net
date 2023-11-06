@@ -2,9 +2,9 @@
 title: Herokuで日本語を含むページのスクリーンショットを撮ってみた（その2）
 date: 2018-07-16 15:41:09
 tags:
-  - Heroku
-  - Node.js
-thumbnail: "/content/images/2018/07/heroku.png"
+    - Heroku
+    - Node.js
+thumbnail: "../../assets/images/2018/07/heroku.png"
 ---
 
 [前回](/heroku-webshot/)、node-webshotを利用してスクリーンショットを撮っていましたが、PhantomJSが開発終了していることに気づいたため、node-webshotから[Puppeteer](https://pptr.dev/)に変更してみました。（よくよく見ると、node-webshotも2016年から更新されていないんですね…）
@@ -23,20 +23,20 @@ yarn add puppeteer
 取り敢えずスクリーンショットを取るには、こんな感じでOKです。
 
 ```typescript
-import * as puppeteer from 'puppeteer'
+import * as puppeteer from "puppeteer";
 
-const url = 'http://example.com'
+const url = "http://example.com";
 
 (async () => {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
-  await page.goto(url)
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
 
-  // スクリーンショットを保存
-  await page.screenshot({path: 'example.png'})
+    // スクリーンショットを保存
+    await page.screenshot({ path: "example.png" });
 
-  await browser.close()
-})()
+    await browser.close();
+})();
 ```
 
 ### ウィンドウサイズを設定する
@@ -45,22 +45,19 @@ const url = 'http://example.com'
 
 ```typescript
 // 省略
-const width = 1024
-const height = 768
-
-(async () => {
-  // 省略
-  const page = await browser.newPage()
-  await page.setViewport({
-    width,
-    height
-  })
-  // 省略
-})()
+const width = 1024;
+const height = 768(async () => {
+    // 省略
+    const page = await browser.newPage();
+    await page.setViewport({
+        width,
+        height,
+    });
+    // 省略
+})();
 ```
 
 `deviceScaleFactor`で、高解像度端末をシミュレーションすることも出来るみたいですね。
-
 
 ### Basic認証下のページにアクセスする
 
@@ -68,14 +65,12 @@ Puppeteerには、[`authenticate`](https://pptr.dev/#?product=Puppeteer&version=
 
 ```typescript
 // 省略
-const userId = 'user_id'
-const passWord = 'password'
-
-(async () => {
-  // 省略
-  await page.authenticate(userId, passWord)
-  // 省略
-})()
+const userId = "user_id";
+const passWord = "password"(async () => {
+    // 省略
+    await page.authenticate(userId, passWord);
+    // 省略
+})();
 ```
 
 ~~node-webshotと同様に、[`setExtraHTTPHeaders`](https://pptr.dev/#?product=Puppeteer&version=master&show=api-pagesetextrahttpheadersheaders)によってheaderを追加することで対応が可能です。
@@ -100,7 +95,6 @@ const passWord = 'password'
 */
 ```
 
-
 ### ページ全体を撮影する
 
 ページ全体なのか、ウィンドウ範囲内だけなのかも、[`screenshot`](https://pptr.dev/#?product=Puppeteer&version=master&show=api-pagescreenshotoptions)のオプションで制御が可能です。
@@ -109,25 +103,23 @@ const passWord = 'password'
 ```typescript
 // 省略
 (async () => {
-  // 省略
-  await page.screenshot({
-    path: 'example.jpg', // example.jpg に保存
-    type: 'jpeg',        // JPEG形式で保存
-    quality: 80,         // 品質を0-100で指定
-    fullPage: true       // trueにするとページ全体を保存
-  })
-  // 省略
-})()
+    // 省略
+    await page.screenshot({
+        path: "example.jpg", // example.jpg に保存
+        type: "jpeg", // JPEG形式で保存
+        quality: 80, // 品質を0-100で指定
+        fullPage: true, // trueにするとページ全体を保存
+    });
+    // 省略
+})();
 ```
 
 また、`clip`で切り抜きも出来るようですね。
-
 
 ## Herokuで動かしてみる
 
 次に、Herokuで動かしてみようとすると、そのままでは動かないことが分かりました。
 そのまま動かそうとして発生したエラーのURLに、まさに[Herokuの場合の解決方法](https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-on-heroku)が記載されていました。
-
 
 ### Buildpackを追加する
 
@@ -145,36 +137,32 @@ Herokuのダッシュボードからの場合は、`Settings` -> `Buildpacks`で
 heroku buildpacks:add https://github.com/CoffeeAndCode/puppeteer-heroku-buildpack
 ```
 
-
 ### Puppeteerの起動オプションを追加
 
 Buildpackを追加しただけでは、まだエラーが出てしまうので、Puppeteerの起動オプションを追加します。
 
 ```typescript
-import * as puppeteer from 'puppeteer'
+import * as puppeteer from "puppeteer";
 
-const url = 'http://example.com'
+const url = "http://example.com"(async () => {
+    // 起動オプションを追加
+    const browser = await puppeteer.launch({
+        args: [
+            "--enable-font-antialiasing",
+            "--no-sandbox",
+            "--disable-setuid-sandbox",
+        ],
+    });
+    const page = await browser.newPage();
+    await page.goto(url);
 
-(async () => {
-  // 起動オプションを追加
-  const browser = await puppeteer.launch({
-    args: [
-      '--enable-font-antialiasing',
-      '--no-sandbox',
-      '--disable-setuid-sandbox'
-    ]
-  })
-  const page = await browser.newPage()
-  await page.goto(url)
+    await page.screenshot({ path: "example.png" });
 
-  await page.screenshot({path: 'example.png'})
-
-  await browser.close()
-})()
+    await browser.close();
+})();
 ```
 
 （Herokuじゃない時と振り分けておいた方が良いかも？）
-
 
 ## 雑感
 

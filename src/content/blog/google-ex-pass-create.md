@@ -2,12 +2,11 @@
 title: "Google拡張機能の作り方を調べるついでにパスワードを自動生成する拡張機能を作ってみた"
 date: 2012-03-22T01:09:07.000Z
 updated: 2016-04-03T14:33:32.000Z
-tags: 
-  - Google
+tags:
+    - Google
 ---
 
 社内向けにGoogle拡張機能を使ってツールを作ってみようかと思い立って調べてみたところ、簡単なモノであればサクッと作れそうなので、テストも兼ねて自分用にパスワード自動生成の拡張機能を作ってみました。
-
 
 ## Google拡張機能の作り方
 
@@ -20,10 +19,9 @@ tags:
 “manifest.json”で、各ファイルの関連付けを行って、HTMLファイルとJavaScriptファイルで動作させるみたいですね。  
  そういえばMovableTypeのバックアップデータもJSON形式のファイルで関連付けを行っていたような気がします。
 
-
 ## パスワード自動生成拡張
 
-![](/content/images/2016/04/image.jpg)
+![](../../assets/images/2016/04/image.jpg)
 
 先程のチュートリアルのデータをちょいちょいいじって、こんな感じのものを作りました。
 
@@ -33,12 +31,10 @@ tags:
 
 [ダウンロード](http://demo.sus-happy.net/chrome/makepass.crx)
 
-
 ## 参考サイト
 
-- [Chrome Extensions API リファレンス](http://dev.screw-axis.com/doc/chrome_extensions/)
-- [Hello There! – Google Chrome Extensions – Google Code](http://code.google.com/chrome/extensions/docs.html)
-
+-   [Chrome Extensions API リファレンス](http://dev.screw-axis.com/doc/chrome_extensions/)
+-   [Hello There! – Google Chrome Extensions – Google Code](http://code.google.com/chrome/extensions/docs.html)
 
 ## 追記 12/03/23
 

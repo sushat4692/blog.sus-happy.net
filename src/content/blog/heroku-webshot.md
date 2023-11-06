@@ -2,9 +2,9 @@
 title: Herokuで日本語を含むページのスクリーンショットを撮ってみた
 date: 2018-07-04 15:50:10
 tags:
-  - Heroku
-  - Node.js
-thumbnail: "/content/images/2018/07/heroku.png"
+    - Heroku
+    - Node.js
+thumbnail: "../../assets/images/2018/07/heroku.png"
 ---
 
 ## 追記(2018/07/16)
@@ -43,27 +43,26 @@ Node.jsはnpm scriptsでしか使ってなかったのですが、URLを入力�
 他で利用する箇所があったので、Base64化に[crypto-js](https://github.com/brix/crypto-js)を利用しています。
 
 ```typescript
-import * as CryptoJS from 'crypto-js';
-import * as webshot from 'node-webshot'
+import * as CryptoJS from "crypto-js";
+import * as webshot from "node-webshot";
 
 // ユーザ名とパスワード
-const user = 'username'
-const pass = 'password'
+const user = "username";
+const pass = "password";
 
 // Base64化
-const wordArray = CryptoJS.enc.Utf8.parse(user + ':' + pass)
-const base64Auth = 'Basic ' + CryptoJS.enc.Base64.stringify(wordArray)
+const wordArray = CryptoJS.enc.Utf8.parse(user + ":" + pass);
+const base64Auth = "Basic " + CryptoJS.enc.Base64.stringify(wordArray);
 
 // スクリーンショット
-const url = 'http://example.com'
-const file = 'export.ong'
+const url = "http://example.com";
+const file = "export.ong";
 webshot(url, file, {
-  customHeaders: {
-    Authorization: base64Auth
-  }
-})
+    customHeaders: {
+        Authorization: base64Auth,
+    },
+});
 ```
-
 
 ## 雑感
 

@@ -2,11 +2,11 @@
 title: "ReactPixiでコンテクスト（Context）を渡す"
 date: 2022-09-10T20:16:00.000Z
 updated: 2022-09-10T20:16:00.000Z
-tags: 
-  - JavaScript
-  - React
-  - PixiJS
-thumbnail: "/content/images/2022/08/react-pixi.png"
+tags:
+    - JavaScript
+    - React
+    - PixiJS
+thumbnail: "../../assets/images/2022/08/react-pixi.png"
 ---
 
 [ReactにはContextというコンポーネント間でデータを受け渡す機能](https://ja.reactjs.org/docs/context.html)があります。この機能を活用すると、基本的には指定のコンポーネントの子コンポーネントで利用する事が出来るようになるのですが、ReactPixiはCanvas要素を使っている関係もあってか、そのままではReactPixiのコンポーネントではContextのデータを受け取ることが出来ません。
@@ -30,24 +30,22 @@ const FooContext = createContext(true);
 
 // ReactPixiのコンポーネント
 const MySprite: React.FC = () => {
-  // 取得できない
-  const fooValue = useContext(FooContext);
-  
-  return (
-    <Sprite />
-  );
-}
+    // 取得できない
+    const fooValue = useContext(FooContext);
+
+    return <Sprite />;
+};
 
 // 親コンポーネント、ここでContextを宣言する
 const App: React.FC = () => {
-  return (
-    <FooContext.Provider value={true}>
-      <Stage>
-        <MySprite />
-      </Stage>
-    </FooContext.Provider>
-  );
-}
+    return (
+        <FooContext.Provider value={true}>
+            <Stage>
+                <MySprite />
+            </Stage>
+        </FooContext.Provider>
+    );
+};
 ```
 
 ### Context Bridgeを利用する
@@ -66,52 +64,59 @@ const FooContext = createContext(true);
 // Context Bridgeの準備
 // ここでContextを宣言することになる
 type ContextBridgeProps = {
-  Context: React.Context<boolean>;
-  render: (children: React.ReactNode) => React.ReactNode;
-}
-const ContextBridge: React.FC<ContextBridgeProps> = ({ children, Context, render }) => {
-  return (
-    <Context.Consumer>
-      {value => render(<Context.Provider value={value}>{children}</Context.Provider>)}
-    </Context.Consumer>
-  );
-}
+    Context: React.Context<boolean>;
+    render: (children: React.ReactNode) => React.ReactNode;
+};
+const ContextBridge: React.FC<ContextBridgeProps> = ({
+    children,
+    Context,
+    render,
+}) => {
+    return (
+        <Context.Consumer>
+            {(value) =>
+                render(
+                    <Context.Provider value={value}>
+                        {children}
+                    </Context.Provider>,
+                )
+            }
+        </Context.Consumer>
+    );
+};
 
 // ContextBridgeを使った独自Stageを準備
 const StageProps = React.ComponentProps<typeof Stage>;
 const MyStage: React.FC<StageProps> = ({ children, ...props }) => {
-  return (
-    <ContextBridge
-      Context={FooContext}
-      render={(children) => <Stage {...props}>{children}</Stage>}
-    >
-      {children}
-    </ContextBridge>
-  );
-}
+    return (
+        <ContextBridge
+            Context={FooContext}
+            render={(children) => <Stage {...props}>{children}</Stage>}
+        >
+            {children}
+        </ContextBridge>
+    );
+};
 
 // ReactPixiのコンポーネント
 const MySprite: React.FC = () => {
-  // 取得できるようになる
-  const fooValue = useContext(FooContext);
-  
-  return (
-    <Sprite />
-  );
-}
+    // 取得できるようになる
+    const fooValue = useContext(FooContext);
+
+    return <Sprite />;
+};
 
 // 親コンポーネント
 const App: React.FC = () => {
-  return (
-    <MyStage>
-      <MySprite />
-    </MyStage>
-  );
-}
+    return (
+        <MyStage>
+            <MySprite />
+        </MyStage>
+    );
+};
 ```
 
 結構長い記述が必要になりますが…これで各ReactPixiのコンポーネントでContextの値が取得出来るようになります。
-
 
 ## Recoilを利用した場合の対応
 
@@ -122,53 +127,49 @@ Recoilも同様にそのまま記述すると値の伝播が行われません�
 ```tsx
 import { createContext } from "react";
 import {
-  atom,
-  useRecoilState,
-  RecoilRoot,
-  useRecoilBridgeAcrossReactRoots_UNSTABLE
-} from 'recoil';
+    atom,
+    useRecoilState,
+    RecoilRoot,
+    useRecoilBridgeAcrossReactRoots_UNSTABLE,
+} from "recoil";
 import { Stage, Sprite } from "@inlet/react-pixi";
 
 // Atomの作成
 const FooState = atom({
-  key: 'foo',
-  default: false,
+    key: "foo",
+    default: false,
 });
 
 // Recoil Bridgeを使った独自Stageを準備
 const StageProps = React.ComponentProps<typeof Stage>;
 const MyStage: React.FC<StageProps> = ({ children, ...props }) => {
-  const RecoilBridge = useRecoilBridgeAcrossReactRoots_UNSTABLE();
-  
-  return (
-    <Stage {...props}>
-      <RecoilBridge>
-        {children}
-      </RecoilBridge>
-    </Stage>
-  );
-}
+    const RecoilBridge = useRecoilBridgeAcrossReactRoots_UNSTABLE();
+
+    return (
+        <Stage {...props}>
+            <RecoilBridge>{children}</RecoilBridge>
+        </Stage>
+    );
+};
 
 // ReactPixiのコンポーネント
 const MySprite: React.FC = () => {
-  // 取得できるようになる
-  const [foo, setFoo] = useRecoilState(FooState);
-  
-  return (
-    <Sprite />
-  );
-}
+    // 取得できるようになる
+    const [foo, setFoo] = useRecoilState(FooState);
+
+    return <Sprite />;
+};
 
 // 親コンポーネント
 const App: React.FC = () => {
-  return (
-    <RecoilRoot>
-      <MyStage>
-        <MySprite />
-      </MyStage>
-    </RecoilRoot>
-  );
-}
+    return (
+        <RecoilRoot>
+            <MyStage>
+                <MySprite />
+            </MyStage>
+        </RecoilRoot>
+    );
+};
 ```
 
 ## 雑感

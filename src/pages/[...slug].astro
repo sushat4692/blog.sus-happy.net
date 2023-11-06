@@ -7,6 +7,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import { slug as slugConvert } from "github-slugger";
 import removeMd from 'remove-markdown'
 import Side from "../components/Side.astro";
+import defaultImage from '../assets/background.jpg'
 
 type Props = {
     entry: CollectionEntry<"blog">;
@@ -64,12 +65,11 @@ const { prev, next } = await (async () => {
     <main>
         <figure class="visual">
             <Image
-                src={thumbnail ? thumbnail : '/content/background.jpg'}
+                src={thumbnail ? thumbnail : defaultImage}
                 alt={title}
                 width={1600}
                 height={900}
                 class="visual__image"
-                transition:name={`post-image-${slug}`}
             />
         </figure>
 
@@ -121,12 +121,13 @@ const { prev, next } = await (async () => {
                                     class="page-nav__item__anchor"
                                 >
                                     <figure class="page-nav__item__visual">
-                                        <img
-                                            src={prev.data.thumbnail ? prev.data.thumbnail : '/content/background.jpg'}
+                                        <Image
+                                            src={prev.data.thumbnail ? prev.data.thumbnail : defaultImage}
                                             alt={prev.data.title}
-                                            transition:name={`post-image-${prev.slug}`}
                                             class="page-nav__item__visual__image"
-                                        >
+                                            width={1600}
+                                            height={900}
+                                        />
                                     </figure>
 
                                     <div class="page-nav__item__body">
@@ -148,12 +149,13 @@ const { prev, next } = await (async () => {
                                     class="page-nav__item__anchor"
                                 >
                                     <figure class="page-nav__item__visual">
-                                        <img
-                                            src={next.data.thumbnail ? next.data.thumbnail : '/content/background.jpg'}
+                                        <Image
+                                            src={next.data.thumbnail ? next.data.thumbnail : defaultImage}
                                             alt={next.data.title}
-                                            transition:name={`post-image-${next.slug}`}
                                             class="page-nav__item__visual__image"
-                                        >
+                                            width={1600}
+                                            height={900}
+                                        />
                                     </figure>
 
                                     <div class="page-nav__item__body">

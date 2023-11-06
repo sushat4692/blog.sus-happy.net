@@ -3,11 +3,10 @@ title: "Ruby on Railsの勉強がてらに呑んだくれリストを作って�
 date: 2015-09-23T00:43:47.000Z
 updated: 2016-04-08T13:23:12.000Z
 tags:
-  - Ruby
-  - Ruby on Rails
-thumbnail: "/content/images/2016/04/drunk-list-ss.jpg"
+    - Ruby
+    - Ruby on Rails
+thumbnail: "../../assets/images/2016/04/drunk-list-ss.jpg"
 ---
-
 
 Ruby on Railsを少し勉強しておこうと思っていたところで、友人にビールの飲み歩きをしてる話をしていたら、リスト作っておかないと忘れるんじゃない？と言われ、確かにそうだと思ったのでRailsの勉強がてらに呑んだくれリストを作ってみました。
 
@@ -15,13 +14,11 @@ Ruby on Railsを少し勉強しておこうと思っていたところで、友�
 
 途中まで記事を書いていたら長くなってきたので、分割して更新をしていきます。
 
-
 ## とりあえず出来上がったもの
 
 まずは必要最低限だと思われる情報を登録し、一覧で確認できる所まで作ってみました。
 
 ~~とりあえず出来たものはこんな感じのモノです（スマホ推奨）~~。だれでも適当に登録できてしまうとアレなので、一応データの登録・削除は認証が必要になっています。
-
 
 ## 雑談（読み飛ばしOK）
 
@@ -39,19 +36,18 @@ OSについてはいつも使っているCentOSにしました。CoreOSも選択
 
 一応Heroku構築時の参考ページを残しておきます。
 
-- [Rails x Herokuでアプリを作成 [完全初心者向けチュートリアル] – 酒と泪とRubyとRailsと](http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/)
+-   [Rails x Herokuでアプリを作成 [完全初心者向けチュートリアル] – 酒と泪とRubyとRailsと](http://morizyun.github.io/blog/beginner-rails-heroku-tutorial/)
 
 以下はRails + Passenger + Nginxを試していた時のメモ。
 
-- [rbenv+nginx+passenger+rails環境構築メモ(CentOS) – Qiita](http://qiita.com/FumihiroSaito/items/4a50e12a769fb7014df6)
+-   [rbenv+nginx+passenger+rails環境構築メモ(CentOS) – Qiita](http://qiita.com/FumihiroSaito/items/4a50e12a769fb7014df6)
 
 「passenger-install-nginx-module」が実行できず断念しました…。
-
 
 ## Railsの準備
 
 まず、rbenvを利用してRubyを用意します。
- （rvmとドチラが良いのだろう？と調べた所、rvmはシェルを上書きしてしまうそうなので、rbenvの方が最近は流行ってるんだと思います。）
+（rvmとドチラが良いのだろう？と調べた所、rvmはシェルを上書きしてしまうそうなので、rbenvの方が最近は流行ってるんだと思います。）
 
 ```shell
 # rbenvを用意
@@ -133,7 +129,7 @@ rails g migration AddColumnBazToModelname column_baz:string
 ```
 
 一度作ったModelにカラムを追加したい時に。正確にはmigrationを作成する処理です。
- 「AddColumnBazToModelname」の部分は、「Add(追加するカラム名のキャメルケース)To（追加するモデル名のキャメルケース）」というような指定になります。
+「AddColumnBazToModelname」の部分は、「Add(追加するカラム名のキャメルケース)To（追加するモデル名のキャメルケース）」というような指定になります。
 
 migrationを実行する
 
@@ -161,15 +157,13 @@ rails s -b 0.0.0.0 -p 8080 -d
 
 また、これら以外にもrailsのコマンド・オプションは存在しています。有効に利用していくとかなり効率的に開発を進められそうですね。
 
-
 ## 参考サイト
 
-- [rails環境構築（CentOS + ruby on rails） – Qiita](http://qiita.com/shinyashikis@github/items/3501c5f7f71a8e345c3d)
-- [ruby – RVM と RBEnvの違いは？ – スタック・オーバーフロー](http://ja.stackoverflow.com/questions/2955/rvm-%E3%81%A8-rbenv%E3%81%AE%E9%81%95%E3%81%84%E3%81%AF)
-- [いつも忘れる「Railsのgenerateコマンド」の備忘録 – maeharin log](http://maeharin.hatenablog.com/entry/20130212/rails_generate)
-
+-   [rails環境構築（CentOS + ruby on rails） – Qiita](http://qiita.com/shinyashikis@github/items/3501c5f7f71a8e345c3d)
+-   [ruby – RVM と RBEnvの違いは？ – スタック・オーバーフロー](http://ja.stackoverflow.com/questions/2955/rvm-%E3%81%A8-rbenv%E3%81%AE%E9%81%95%E3%81%84%E3%81%AF)
+-   [いつも忘れる「Railsのgenerateコマンド」の備忘録 – maeharin log](http://maeharin.hatenablog.com/entry/20130212/rails_generate)
 
 ## シリーズ
 
-- [その２ 「Unicorn+Nginx編」](https://blog.sus-happy.net/ruby-drunk-list-2/)
-- [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/ruby-drunk-list-3/)
+-   [その２ 「Unicorn+Nginx編」](https://blog.sus-happy.net/ruby-drunk-list-2/)
+-   [その３ 「Railsアプリ構築編」](https://blog.sus-happy.net/ruby-drunk-list-3/)
