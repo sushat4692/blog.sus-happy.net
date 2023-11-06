@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { CollectionEntry, getCollection } from "astro:content";
 import { PER_PAGE } from "../../const";
@@ -39,16 +37,16 @@ const { page } = Astro.props;
 
             <nav>
                 <ul class="c-navigation has-sm-padding">
-                    <li class="c-navigation__item">
+                    <li class="c-navigation__item" data-prev>
                         <a
                             rel="prev"
                             href={page.currentPage === 2 ? "/" : page.url.prev}
                             class="c-navigation__anchor">PREV PAGE</a
                         >
                     </li>
-                    {
-                        page.url.next && (
-                            <li class="c-navigation__item">
+                    <li class="c-navigation__item" data-next>
+                        {
+                            page.url.next && (
                                 <a
                                     rel="next"
                                     href={page.url.next}
@@ -56,9 +54,9 @@ const { page } = Astro.props;
                                 >
                                     NEXT PAGE
                                 </a>
-                            </li>
-                        )
-                    }
+                            )
+                        }
+                    </li>
                 </ul>
             </nav>
         </div>

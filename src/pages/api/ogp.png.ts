@@ -5,6 +5,8 @@ import type { APIContext } from "astro";
 import { loadGoogleFont } from "../../util/loadGoogleFont";
 import { initResvg } from "../../util/initResvg";
 
+export const prerender = false;
+
 export async function get({ url }: APIContext) {
     await initResvg();
 

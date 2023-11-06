@@ -7,16 +7,16 @@ type Props = {
 };
 
 const { title, description, image, noindex } = Astro.props;
-const { pathname } = Astro.url;
 const pageTitle = title
     ? `${title} - SUSH-i LOG`
     : "SUSH-i LOG - 名古屋のWeb制作会社につとめるプログラマーのつぶやき";
-const ogImage = `https://blog.sus-happy.net${image ? image : "/api/ogp.png"}`;
+const ogImage = new URL(image ? image : "/api/ogp.png", Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <title>{pageTitle}</title>
 
-<meta property="og:url" content={`https://blog.sus-happy.net${pathname}`} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={pageTitle} />
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:width" content="1200" />
@@ -39,5 +39,7 @@ const ogImage = `https://blog.sus-happy.net${image ? image : "/api/ogp.png"}`;
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:creator" content="@sushat4692" />
 <meta name="twitter:title" content={pageTitle} />
+
+<link rel="canonical" href={canonicalURL} />
 
 {noindex && <meta name="robots" content="noindex" />}

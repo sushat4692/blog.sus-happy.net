@@ -115,7 +115,7 @@ defaults delete NSGlobalDomain InitialKeyRepeat
 
 ## <a name="karabiner-elements">Karabiner-Elementsについて</a>
 
-現在macOS Sierraの対応も含めて、後継ソフトの**[Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)**というソフトを開発している様です。
+現在macOS Sierraの対応も含めて、後継ソフトの **[Karabiner-Elements](https://github.com/tekezo/Karabiner-Elements)** というソフトを開発している様です。
 
 個人的に必要な機能は出揃いましたので、Karabiner-Elementsを再度使用し始めました。
 

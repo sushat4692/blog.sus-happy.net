@@ -12,6 +12,21 @@ const { slug, data } = post;
 ---
 
 <div class="archive-post">
+    <a href={`/${slug}/`} class="archive-post__anchor">
+        <figure class="archive-post__visual">
+            <img
+                src={data.thumbnail ? data.thumbnail : '/content/background.jpg'}
+                alt={data.title}
+                class="archive-post__visual__image"
+                transition:name={`post-image-${slug}`}
+            />
+        </figure>
+
+        <h2 class="archive-post__title" transition:name={`post-title-${slug}`}>
+            {data.title}
+        </h2>
+    </a>
+
     <div class="archive-post__meta">
         <time
             class="archive-post__meta__time"
@@ -30,10 +45,6 @@ const { slug, data } = post;
                 ))
         }
     </div>
-
-    <h2 class="archive-post__title">
-        <a href={`/${slug}/`}>{data.title}</a>
-    </h2>
 </div>
 
 <style lang="scss">
@@ -42,6 +53,30 @@ const { slug, data } = post;
 
         @screen sm {
             @apply gap-2;
+        }
+
+        &__anchor {
+            @apply no-underline grid grid-cols-1 gap-1;
+
+            @screen sm {
+                @apply gap-2;
+            }
+        }
+
+        &__visual {
+            @apply h-32 overflow-hidden;
+
+            @screen sm {
+                @apply h-48;
+            }
+
+            &__image {
+                @apply w-full h-full object-cover transition-all;
+            }
+        }
+
+        &__anchor:hover &__visual__image {
+            @apply scale-105 brightness-125;
         }
 
         &__meta {

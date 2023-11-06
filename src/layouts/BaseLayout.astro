@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import Footer from "../components/Footer.astro";
 import GTMHead from "../components/GTMHead.astro";
 import GTMBody from "../components/GTMBody.astro";
@@ -34,12 +35,18 @@ import GTMBody from "../components/GTMBody.astro";
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
 
+        <ViewTransitions />
+
         <slot name="head" />
 
         <style is:global lang="scss">
             :root {
                 --transition-speed: 0.1s;
                 --sidebar-width: 16rem;
+
+                @media (prefers-color-scheme: dark) {
+                    color-scheme: dark;
+                }
             }
 
             html {
@@ -53,7 +60,7 @@ import GTMBody from "../components/GTMBody.astro";
             }
 
             body {
-                @apply bg-slate-100 text-slate-800;
+                @apply bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-300;
             }
 
             a {
@@ -76,12 +83,12 @@ import GTMBody from "../components/GTMBody.astro";
                 @apply my-6 grid grid-cols-1 gap-6;
 
                 @screen sm {
-                    @apply my-10 gap-10;
+                    @apply my-10 gap-10 grid-cols-2 items-start;
                 }
             }
 
             .c-navigation {
-                @apply m-0 p-0 py-10 list-none border-0 border-t border-solid border-slate-300;
+                @apply m-0 p-0 py-10 list-none border-0 border-t border-solid border-slate-300 flex flex-wrap justify-between;
 
                 @screen sm {
                     @apply py-20;
@@ -96,7 +103,7 @@ import GTMBody from "../components/GTMBody.astro";
                 }
 
                 &__item {
-                    @apply flex-grow my-2;
+                    @apply my-2;
 
                     &__label::after {
                         content: ":";

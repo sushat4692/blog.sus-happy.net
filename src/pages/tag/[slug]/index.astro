@@ -1,6 +1,4 @@
 ---
-export const prerender = true;
-
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { CollectionEntry, getCollection } from "astro:content";
 import { slug as githubSlug } from "github-slugger";
@@ -71,9 +69,10 @@ const { name, posts, hasNext } = Astro.props;
 
             <nav>
                 <ul class="c-navigation has-sm-padding">
-                    {
-                        hasNext && (
-                            <li class="c-navigation__item">
+                    <li class="c-navigation__item" data-prev></li>
+                    <li class="c-navigation__item" data-next>
+                        {
+                            hasNext && (
                                 <a
                                     rel="next"
                                     href={`/tag/${encodeURIComponent(
@@ -83,9 +82,9 @@ const { name, posts, hasNext } = Astro.props;
                                 >
                                     NEXT PAGE
                                 </a>
-                            </li>
-                        )
-                    }
+                            )
+                        }
+                    </li>
                 </ul>
             </nav>
         </div>

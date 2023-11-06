@@ -6,6 +6,8 @@ import { getEntryBySlug } from "astro:content";
 import { loadGoogleFont } from "../../../util/loadGoogleFont";
 import { initResvg } from "../../../util/initResvg";
 
+export const prerender = false;
+
 export async function get({ params, url }: APIContext) {
     const entry = await getEntryBySlug("blog", params.slug || "");
 
