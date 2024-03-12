@@ -40,7 +40,10 @@ module.exports = {
             files: ["*.astro"],
             // Allows Astro components to be parsed.
             parser: "astro-eslint-parser",
-            extends: ["plugin:prettier/recommended"],
+            parserOptions: {
+                parser: "@typescript-eslint/parser",
+                extraFileExtensions: [".astro"],
+            },
             // Parse the script in `.astro` as TypeScript by adding the following configuration.
             // It's the setting you need when using TypeScript.
             rules: {

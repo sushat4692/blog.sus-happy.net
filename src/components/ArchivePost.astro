@@ -19,9 +19,8 @@ const { slug, data } = post;
             <Image
                 src={data.thumbnail ? data.thumbnail : defaultImage}
                 alt={data.title}
-                width={1600}
-                height={900}
                 class="archive-post__visual__image"
+                transition:name={`post-thumbnail-${slug}`}
             />
         </figure>
 
@@ -34,6 +33,7 @@ const { slug, data } = post;
         <time
             class="archive-post__meta__time"
             datetime={DateTime.fromJSDate(data.date).toISO()}
+            transition:name={`post-time-${slug}`}
             >{DateTime.fromJSDate(data.date).toFormat("yyyy/LL/dd")}</time
         >
         {
@@ -42,6 +42,7 @@ const { slug, data } = post;
                     <a
                         href={`/tag/${encodeURIComponent(slugConvert(tag))}`}
                         class="archive-post__meta__tag"
+                        transition:name={`post-tag-${slug}-${slugConvert(tag)}`}
                     >
                         {tag}
                     </a>

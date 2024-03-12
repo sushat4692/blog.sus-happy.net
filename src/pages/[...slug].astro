@@ -3,7 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from 'astro:assets'
 import PageMeta from "../components/PageMeta.astro";
 import { DateTime } from "luxon";
-import { type CollectionEntry, getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { slug as slugConvert } from "github-slugger";
 import removeMd from 'remove-markdown'
 import Side from "../components/Side.astro";
@@ -67,9 +68,8 @@ const { prev, next } = await (async () => {
             <Image
                 src={thumbnail ? thumbnail : defaultImage}
                 alt={title}
-                width={1600}
-                height={900}
                 class="visual__image"
+                transition:name={`post-thumbnail-${slug}`}
             />
         </figure>
 
@@ -81,6 +81,7 @@ const { prev, next } = await (async () => {
                         <time
                             class="header__meta__time"
                             datetime={DateTime.fromJSDate(date).toISO()}
+                            transition:name={`post-time-${slug}`}
                             >{
                                 DateTime.fromJSDate(date).toFormat("yyyy/LL/dd")
                             }</time
@@ -94,6 +95,7 @@ const { prev, next } = await (async () => {
                                                 href={`/tag/${encodeURIComponent(
                                                     slugConvert(tag)
                                                 )}`}
+                                                transition:name={`post-tag-${slug}-${slugConvert(tag)}`}
                                             >
                                                 {tag}
                                             </a>
@@ -134,7 +136,7 @@ const { prev, next } = await (async () => {
                                         <span class="page-nav__item__label">
                                             PREV
                                         </span>
-                                            <span transition:name={`post-title-${prev.slug}`}>{prev.data.title}</span>
+                                            <span>{prev.data.title}</span>
                                     </div>
                                 </a>
                             )
@@ -162,7 +164,7 @@ const { prev, next } = await (async () => {
                                         <span class="page-nav__item__label">
                                             NEXT
                                         </span>
-                                            <span transition:name={`post-title-${next.slug}`}>{next.data.title}</span>
+                                            <span>{next.data.title}</span>
                                     </div>
                                 </a>
                             )
