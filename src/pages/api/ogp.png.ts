@@ -8,6 +8,10 @@ import { getImageDataUri } from "../../util/getImageDataUri";
 
 export const prerender = false;
 
+export const config = {
+    runtime: "edge",
+};
+
 export async function GET({ url }: APIContext) {
     await initResvg();
 

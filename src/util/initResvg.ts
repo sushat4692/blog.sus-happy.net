@@ -1,4 +1,5 @@
 import { initWasm } from "@resvg/resvg-wasm";
+import wasmModule from "../../public/index_bg.wasm?url";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
@@ -10,9 +11,5 @@ export const initResvg = async () => {
     }
     initialized = true;
 
-    await initWasm(
-        readFile(
-            join(process.cwd(), "node_modules/@resvg/resvg-wasm/index_bg.wasm")
-        )
-    );
+    await initWasm(readFile(join(process.cwd(), wasmModule)));
 };

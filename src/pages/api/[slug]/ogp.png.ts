@@ -8,6 +8,10 @@ import { initResvg } from "../../../util/initResvg";
 
 export const prerender = false;
 
+export const config = {
+    runtime: "edge",
+};
+
 export async function GET({ params, url }: APIContext) {
     const entry = await getEntryBySlug("blog", params.slug || "");
 
