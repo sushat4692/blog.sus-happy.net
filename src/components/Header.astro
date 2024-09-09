@@ -1,33 +1,23 @@
 ---
 interface Props {
-    title?: string;
-    subTitle?: string;
-    body?: HTMLElement;
     isPageTitle?: boolean;
 }
-
-const { title, subTitle, body, isPageTitle = true } = Astro.props;
+const { isPageTitle = false } = Astro.props;
 ---
-
 <div class="wrap">
     <div class="l-container">
         <div class="inner">
-            {title && isPageTitle && <h1 class="title">{title}</h1>}
-            {title && !isPageTitle && <p class="title"><a href="/">{title}</a></p>}
-            {subTitle && <p class="sub_title">{subTitle}</p>}
-            {body}
+            {isPageTitle && <h1 class="title">SUSH-i LOG</h1>}
+            {!isPageTitle && <p class="title"><a href="/">SUSH-i LOG</a></p>}
+            <p class="sub_title">名古屋のWeb制作会社につとめるプログラマーのつぶやき</p>
         </div>
     </div>
 </div>
 
 <style lang="scss">
-    // .wrap {
-    //     @apply pt-20;
-
-    //     @screen sm {
-    //         @apply pt-10;
-    //     }
-    // }
+    .wrap {
+        @apply pt-10;
+    }
 
     .inner {
         @apply pb-8 border-0;

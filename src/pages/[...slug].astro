@@ -9,6 +9,7 @@ import { slug as slugConvert } from "github-slugger";
 import removeMd from 'remove-markdown'
 import Side from "../components/Side.astro";
 import defaultImage from '../assets/background.jpg'
+import Header from "../components/Header.astro";
 
 type Props = {
     entry: CollectionEntry<"blog">;
@@ -62,6 +63,8 @@ const { prev, next } = await (async () => {
         description={excerpt}
         image={slug ? `/api/${slug}/ogp.png` : undefined}
     />
+
+    <Header />
 
     <main>
         <figure class="visual">
@@ -174,8 +177,6 @@ const { prev, next } = await (async () => {
             </nav>
         </div>
     </main>
-
-    <Side headings={headings} />
 </BaseLayout>
 
 <style lang="scss">
@@ -200,10 +201,10 @@ const { prev, next } = await (async () => {
     }
 
     .header {
-        @apply pb-10 mb-10 border-0 border-b border-solid border-slate-300;
+        @apply mb-10;
 
         @screen sm {
-            @apply pb-14 mb-14;
+            @apply mb-14;
         }
 
         &__title {
@@ -393,6 +394,7 @@ const { prev, next } = await (async () => {
             padding: 0.4em;
             margin: 0 -1.5rem;
             font-size: .9em;
+            border: 1px solid #444;
 
             @screen sm {
                 margin: 0 -4rem;

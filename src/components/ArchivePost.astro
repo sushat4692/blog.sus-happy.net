@@ -15,15 +15,6 @@ const { slug, data } = post;
 
 <div class="archive-post">
     <a href={`/${slug}/`} class="archive-post__anchor">
-        <figure class="archive-post__visual">
-            <Image
-                src={data.thumbnail ? data.thumbnail : defaultImage}
-                alt={data.title}
-                class="archive-post__visual__image"
-                transition:name={`post-thumbnail-${slug}`}
-            />
-        </figure>
-
         <h2 class="archive-post__title" transition:name={`post-title-${slug}`}>
             {data.title}
         </h2>
@@ -60,27 +51,11 @@ const { slug, data } = post;
         }
 
         &__anchor {
-            @apply no-underline grid grid-cols-1 gap-1;
+            @apply no-underline hover:underline grid grid-cols-1 gap-1;
 
             @screen sm {
                 @apply gap-2;
             }
-        }
-
-        &__visual {
-            @apply h-32 overflow-hidden;
-
-            @screen sm {
-                @apply h-48;
-            }
-
-            &__image {
-                @apply w-full h-full object-cover transition-all;
-            }
-        }
-
-        &__anchor:hover &__visual__image {
-            @apply scale-105 brightness-125;
         }
 
         &__meta {
@@ -102,10 +77,10 @@ const { slug, data } = post;
         }
 
         &__title {
-            @apply font-bold text-xl;
+            @apply font-bold text-lg;
 
             @screen sm {
-                @apply text-2xl;
+                @apply text-lg;
             }
         }
     }

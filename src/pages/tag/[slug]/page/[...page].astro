@@ -8,6 +8,7 @@ import Hero from "../../../../components/Hero.astro";
 import Side from "../../../../components/Side.astro";
 import ArchivePost from "../../../../components/ArchivePost.astro";
 import type { GetStaticPathsOptions, Page } from "astro";
+import Header from "../../../../components/Header.astro";
 
 type Props = {
     page: Page<CollectionEntry<"blog">>;
@@ -66,6 +67,8 @@ const { page, name, slug } = Astro.props;
         noindex
     />
 
+    <Header />
+
     <main>
         <Hero title={`${name} - Page: ${page.currentPage}`} />
 
@@ -102,8 +105,6 @@ const { page, name, slug } = Astro.props;
             </nav>
         </div>
     </main>
-
-    <Side />
 </BaseLayout>
 
 <style lang="scss">

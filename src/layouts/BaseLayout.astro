@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import GTMHead from "../components/GTMHead.astro";
 import GTMBody from "../components/GTMBody.astro";
@@ -75,15 +76,15 @@ import GTMBody from "../components/GTMBody.astro";
                 @apply px-6;
 
                 @screen sm {
-                    @apply px-16 mx-auto;
+                    @apply px-16 max-w-screen-lg mx-auto;
                 }
             }
 
             .c-archive {
-                @apply my-6 grid grid-cols-1 gap-6;
+                @apply mb-6 grid grid-cols-1 gap-6;
 
                 @screen sm {
-                    @apply my-10 gap-10 grid-cols-2 items-start;
+                    @apply mb-10 gap-10 grid-cols-1 items-start;
                 }
             }
 
@@ -119,10 +120,6 @@ import GTMBody from "../components/GTMBody.astro";
         <style lang="scss">
             .wrapper {
                 position: relative;
-
-                @screen sm {
-                    @apply pl-60;
-                }
             }
         </style>
     </head>

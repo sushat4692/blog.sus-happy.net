@@ -1,22 +1,23 @@
-import satori, { Font } from "satori";
+import satori, { type SatoriOptions } from "satori";
 import { Resvg } from "@resvg/resvg-wasm";
 import type { APIContext } from "astro";
 
 import { loadGoogleFont } from "../../util/loadGoogleFont";
 import { initResvg } from "../../util/initResvg";
+import { getImageDataUri } from "../../util/getImageDataUri";
 
 export const prerender = false;
 
-export async function get({ url }: APIContext) {
+export async function GET({ url }: APIContext) {
     await initResvg();
 
     const title = "SUSH-i LOG";
     const subTitle = "名古屋のWeb制作会社につとめるプログラマーのつぶやき";
 
     const fontData = await loadGoogleFont(title, subTitle).then((resp) =>
-        resp?.arrayBuffer()
+        resp?.arrayBuffer(),
     );
-    const fonts: Font[] = [];
+    const fonts: SatoriOptions["fonts"] = [];
     if (fontData) {
         fonts.push({
             name: "NotoSansJapanese",
@@ -38,6 +39,8 @@ export async function get({ url }: APIContext) {
                         type: "img",
                         props: {
                             src: dataUri,
+                            width: 1800,
+                            height: 1200,
                             style: {
                                 position: "absolute",
                                 left: 0,
@@ -93,7 +96,7 @@ export async function get({ url }: APIContext) {
             width: 1200,
             height: 630,
             fonts,
-        }
+        },
     );
 
     const resvg = new Resvg(svg, {

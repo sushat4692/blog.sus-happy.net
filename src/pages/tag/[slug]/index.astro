@@ -8,6 +8,7 @@ import Hero from "../../../components/Hero.astro";
 import Side from "../../../components/Side.astro";
 import ArchivePost from "../../../components/ArchivePost.astro";
 import type { GetStaticPathsResult } from "astro";
+import Header from "../../../components/Header.astro";
 
 type Props = {
     name: string;
@@ -59,6 +60,8 @@ const { name, posts, hasNext } = Astro.props;
 <BaseLayout>
     <PageMeta slot="head" title={`${name} - Tags`} />
 
+    <Header />
+
     <main>
         <Hero title={name} />
 
@@ -89,6 +92,4 @@ const { name, posts, hasNext } = Astro.props;
             </nav>
         </div>
     </main>
-
-    <Side />
 </BaseLayout>

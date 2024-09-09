@@ -1,5 +1,5 @@
 import type { APIContext } from "astro";
-import satori, { Font } from "satori";
+import satori, { type SatoriOptions } from "satori";
 import { Resvg } from "@resvg/resvg-wasm";
 import { getEntryBySlug } from "astro:content";
 
@@ -8,7 +8,7 @@ import { initResvg } from "../../../util/initResvg";
 
 export const prerender = false;
 
-export async function get({ params, url }: APIContext) {
+export async function GET({ params, url }: APIContext) {
     const entry = await getEntryBySlug("blog", params.slug || "");
 
     if (!entry) {
@@ -24,9 +24,9 @@ export async function get({ params, url }: APIContext) {
     const subTitle = "SUSH-i LOG";
 
     const fontData = await loadGoogleFont(title, subTitle).then((resp) =>
-        resp?.arrayBuffer()
+        resp?.arrayBuffer(),
     );
-    const fonts: Font[] = [];
+    const fonts: SatoriOptions["fonts"] = [];
     if (fontData) {
         fonts.push({
             name: "NotoSansJapanese",
@@ -36,9 +36,10 @@ export async function get({ params, url }: APIContext) {
         });
     }
 
-    const dataUri = entry.data.thumbnail
-        ? url.origin + entry.data.thumbnail
-        : `${url.origin}/content/background.jpg`;
+    // const dataUri = entry.data.thumbnail
+    //     ? url.origin + entry.data.thumbnail.src
+    //     : `${url.origin}/content/background.jpg`;
+    const dataUri = `${url.origin}/content/background.jpg`;
 
     const svg = await satori(
         {
@@ -49,6 +50,14 @@ export async function get({ params, url }: APIContext) {
                         type: "img",
                         props: {
                             src: dataUri,
+                            width: 1800,
+                            height: 1200,
+                            // width: entry.data.thumbnail
+                            //     ? entry.data.thumbnail.width
+                            //     : 1800,
+                            // height: entry.data.thumbnail
+                            //     ? entry.data.thumbnail.height
+                            //     : 1200,
                             style: {
                                 position: "absolute",
                                 left: 0,
@@ -104,7 +113,7 @@ export async function get({ params, url }: APIContext) {
             width: 1200,
             height: 630,
             fonts,
-        }
+        },
     );
 
     const resvg = new Resvg(svg, {

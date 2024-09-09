@@ -6,6 +6,7 @@ import PageMeta from "../components/PageMeta.astro";
 import Hero from "../components/Hero.astro";
 import Side from "../components/Side.astro";
 import ArchivePost from "../components/ArchivePost.astro";
+import Header from "../components/Header.astro";
 
 const allPosts = (await getCollection("blog")).sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime()
@@ -15,14 +16,11 @@ const hasNext = allPosts.length > PER_PAGE;
 ---
 
 <BaseLayout>
-    <PageMeta slot="head" />
+    <PageMeta slot="head" description="名古屋のWeb制作会社につとめるプログラマーのつぶやき" />
+
+    <Header isPageTitle />
 
     <main>
-        <Hero
-            title="SUSH-i LOG"
-            subTitle="名古屋のWeb制作会社につとめるプログラマーのつぶやき"
-        />
-
         <div class="l-container">
             <div class="c-archive">
                 {posts.map((post) => <ArchivePost post={post} />)}
@@ -48,8 +46,6 @@ const hasNext = allPosts.length > PER_PAGE;
             </nav>
         </div>
     </main>
-
-    <Side />
 </BaseLayout>
 
 <style lang="scss">

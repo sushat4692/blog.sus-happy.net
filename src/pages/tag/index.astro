@@ -5,6 +5,7 @@ import { slug } from "github-slugger";
 import PageMeta from "../../components/PageMeta.astro";
 import Hero from "../../components/Hero.astro";
 import Side from "../../components/Side.astro";
+import Header from "../../components/Header.astro";
 
 const blogEntries = await getCollection("blog");
 const tags: string[] = [];
@@ -25,6 +26,8 @@ blogEntries.map((entry) => {
 <BaseLayout>
     <PageMeta slot="head" title="Tags" />
 
+    <Header />
+
     <main>
         <Hero title="Tags" />
 
@@ -40,8 +43,6 @@ blogEntries.map((entry) => {
             </ul>
         </div>
     </main>
-
-    <Side />
 </BaseLayout>
 
 <style lang="scss">
