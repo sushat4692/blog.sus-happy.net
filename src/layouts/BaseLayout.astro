@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import GTMHead from "../components/GTMHead.astro";
 import GTMBody from "../components/GTMBody.astro";
+import "../styles/global.css";
 ---
 
 <html lang="ja">
@@ -41,6 +42,8 @@ import GTMBody from "../components/GTMBody.astro";
         <slot name="head" />
 
         <style is:global lang="scss">
+            @reference "tailwindcss";
+
             :root {
                 --transition-speed: 0.1s;
                 --sidebar-width: 16rem;

@@ -85,6 +85,8 @@ const { headings } = Astro.props;
 </aside>
 
 <style lang="scss">
+    @reference "tailwindcss";
+
     .nav {
         &__trigger {
             @apply fixed z-10 top-1 left-1 w-12 h-12 bg-slate-900 overflow-hidden;
@@ -161,7 +163,7 @@ const { headings } = Astro.props;
         }
 
         &__toc {
-            @apply flex-grow overflow-auto text-sm;
+            @apply grow overflow-auto text-sm;
 
             overscroll-behavior-y: none;
             min-height: 1px;
@@ -175,7 +177,7 @@ const { headings } = Astro.props;
             }
 
             &::-webkit-scrollbar-thumb {
-                @apply bg-slate-300 bg-opacity-20 rounded-full;
+                @apply bg-slate-300/20 rounded-full;
             }
 
             &__list {
@@ -187,7 +189,7 @@ const { headings } = Astro.props;
             }
 
             &__anchor {
-                @apply block px-3 py-3 no-underline bg-slate-400 bg-opacity-0 text-slate-400;
+                @apply block px-3 py-3 no-underline bg-slate-400/0 text-slate-400;
 
                 &.is-depth-3 {
                     @apply pl-6 py-2;
@@ -201,7 +203,7 @@ const { headings } = Astro.props;
                 }
 
                 &:hover {
-                    @apply bg-opacity-10 text-white;
+                    @apply bg-slate-400/10 text-white;
                 }
             }
         }
