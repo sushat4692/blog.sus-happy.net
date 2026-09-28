@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@astrojs/markdown-satteri": "^0.4.2",
     "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/luxon": "^3.7.5",
@@ -44,6 +45,7 @@
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
     "sass": "^1.105.0",
+    "satteri": "^0.10.5",
     "textlint": "^15.8.0",
     "textlint-rule-ja-no-abusage": "^3.0.0",
     "textlint-rule-no-double-negative-ja": "^2.0.1",

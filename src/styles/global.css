@@ -1,1 +1,16 @@
 @import "tailwindcss";
+
+.content .header-anchor {
+    margin-left: 0.5rem;
+    opacity: 0.4;
+    transition: opacity 0.1s;
+}
+
+.content .header-anchor::after {
+    content: "#";
+}
+
+.content .header-anchor:hover,
+.content .header-anchor:focus-visible {
+    opacity: 1;
+}
