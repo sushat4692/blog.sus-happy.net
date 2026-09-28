@@ -4,7 +4,6 @@ import { getCollection } from "astro:content";
 import { slug } from "github-slugger";
 import PageMeta from "../../components/PageMeta.astro";
 import Hero from "../../components/Hero.astro";
-import Side from "../../components/Side.astro";
 import Header from "../../components/Header.astro";
 
 const blogEntries = await getCollection("blog");
@@ -46,6 +45,8 @@ blogEntries.map((entry) => {
 </BaseLayout>
 
 <style lang="scss">
+    @reference "tailwindcss";
+
     .tag-list {
         @apply my-6 flex flex-wrap items-center justify-center gap-4;
     }

@@ -4,17 +4,28 @@ interface Props {
 }
 const { isPageTitle = false } = Astro.props;
 ---
+
 <div class="wrap">
     <div class="l-container">
         <div class="inner">
             {isPageTitle && <h1 class="title">SUSH-i LOG</h1>}
-            {!isPageTitle && <p class="title"><a href="/">SUSH-i LOG</a></p>}
-            <p class="sub_title">名古屋のWeb制作会社につとめるプログラマーのつぶやき</p>
+            {
+                !isPageTitle && (
+                    <p class="title">
+                        <a href="/">SUSH-i LOG</a>
+                    </p>
+                )
+            }
+            <p class="sub_title">
+                名古屋のWeb制作会社につとめるプログラマーのつぶやき
+            </p>
         </div>
     </div>
 </div>
 
 <style lang="scss">
+    @reference "tailwindcss";
+
     .wrap {
         @apply pt-10;
     }
@@ -22,7 +33,7 @@ const { isPageTitle = false } = Astro.props;
     .inner {
         @apply pb-8 border-0;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply pb-9;
         }
     }
@@ -30,7 +41,7 @@ const { isPageTitle = false } = Astro.props;
     .title {
         @apply text-2xl font-black tracking-wide m-0;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply text-2xl;
         }
     }
@@ -38,7 +49,7 @@ const { isPageTitle = false } = Astro.props;
     .sub_title {
         @apply text-sm font-normal mt-2;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply text-base;
         }
     }

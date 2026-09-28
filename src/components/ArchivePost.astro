@@ -1,16 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import { Image } from 'astro:assets'
 import { DateTime } from "luxon";
 import { slug as slugConvert } from "github-slugger";
-import defaultImage from '../assets/background.jpg'
 
 type Props = {
     post: CollectionEntry<"blog">;
 };
 
 const { post } = Astro.props;
-const { slug, data } = post;
+const { id: slug, data } = post;
 ---
 
 <div class="archive-post">
@@ -43,17 +41,19 @@ const { slug, data } = post;
 </div>
 
 <style lang="scss">
+    @reference "tailwindcss";
+
     .archive-post {
         @apply grid grid-cols-1 gap-1;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply gap-2;
         }
 
         &__anchor {
             @apply no-underline hover:underline grid grid-cols-1 gap-1;
 
-            @screen sm {
+            @media (min-width: 640px) {
                 @apply gap-2;
             }
         }
@@ -79,7 +79,7 @@ const { slug, data } = post;
         &__title {
             @apply font-bold text-lg;
 
-            @screen sm {
+            @media (min-width: 640px) {
                 @apply text-lg;
             }
         }
