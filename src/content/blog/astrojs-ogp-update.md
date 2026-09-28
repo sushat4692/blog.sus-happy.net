@@ -131,11 +131,33 @@ return new Response(new Uint8Array(pngBuffer), {
 });
 ```
 
+### 7. satoriが使うharfbuzzjsのwasmが本番で見つからない
+
+satori 0.33では文字のシェーピングに**harfbuzzjs**を使うようになり、実行時に`node_modules/harfbuzzjs/hb.wasm`を`fs`で読み込みます。
+
+ローカルでは`node_modules`があるので問題ありませんが、Vercelの関数には自動で同梱されないため、本番で次のエラーが出て500になりました。
+
+```text
+ENOENT: no such file or directory, open '/var/task/node_modules/harfbuzzjs/hb.wasm'
+```
+
+resvg-wasmのときと同じで、アダプタの`includeFiles`に追加すれば解決します。
+
+```ts
+adapter: vercel({
+    includeFiles: [
+        "./node_modules/@resvg/resvg-wasm/index_bg.wasm",
+        "./node_modules/harfbuzzjs/hb.wasm",
+    ],
+}),
+```
+
 ## まとめ
 
 アップデートでOGP生成が壊れる要因は、大きく分けると次の3つでした。
 
 - Astro側のAPI・設定の変更（メソッド名、`output`、Content Layer API）
 - satoriのSSRF保護で画像のURL取得が使えなくなった
+- satoriが使うwasm（harfbuzzjs）がVercelの関数に同梱されず本番で失敗した
 
-特に後者は、ビルドは通るのに本番や開発で500になるタイプで気付きにくいので、同じ構成でOGP画像を生成している方の参考になれば幸いです。
+特に後ろ2つは、ビルドは通るのに開発や本番で500になるタイプで気付きにくいので、同じ構成でOGP画像を生成している方の参考になれば幸いです。

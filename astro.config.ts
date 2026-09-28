@@ -22,7 +22,10 @@ export default defineConfig({
     },
     output: "static",
     adapter: vercel({
-        includeFiles: ["./node_modules/@resvg/resvg-wasm/index_bg.wasm"],
+        includeFiles: [
+            "./node_modules/@resvg/resvg-wasm/index_bg.wasm",
+            "./node_modules/harfbuzzjs/hb.wasm",
+        ],
     }),
     vite: { plugins: [tailwindcss()] },
 });
