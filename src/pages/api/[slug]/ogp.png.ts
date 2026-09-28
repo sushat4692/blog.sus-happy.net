@@ -3,14 +3,11 @@ import satori, { type SatoriOptions } from "satori";
 import { Resvg } from "@resvg/resvg-wasm";
 import { getEntry } from "astro:content";
 
+import backgroundImage from "../../../assets/background.jpg?inline";
 import { loadGoogleFont } from "../../../util/loadGoogleFont";
 import { initResvg } from "../../../util/initResvg";
 
 export const prerender = false;
-
-export const config = {
-    runtime: "edge",
-};
 
 export async function GET({ params, url }: APIContext) {
     const entry = await getEntry("blog", params.slug || "");
@@ -40,10 +37,24 @@ export async function GET({ params, url }: APIContext) {
         });
     }
 
-    // const dataUri = entry.data.thumbnail
-    //     ? url.origin + entry.data.thumbnail.src
-    //     : `${url.origin}/content/background.jpg`;
-    const dataUri = `${url.origin}/content/background.jpg`;
+    const toDataUri = async (source: string) => {
+        const res = await fetch(source);
+        if (!res.ok) {
+            throw new Error(`Failed to fetch image: ${source}`);
+        }
+        const contentType = res.headers.get("content-type") ?? "image/jpeg";
+        const buffer = Buffer.from(await res.arrayBuffer());
+        return `data:${contentType};base64,${buffer.toString("base64")}`;
+    };
+
+    const { thumbnail } = entry.data;
+    const image = thumbnail
+        ? {
+              src: await toDataUri(`${url.origin}${thumbnail.src}`),
+              width: thumbnail.width,
+              height: thumbnail.height,
+          }
+        : { src: backgroundImage, width: 1800, height: 1200 };
 
     const svg = await satori(
         {
@@ -53,15 +64,9 @@ export async function GET({ params, url }: APIContext) {
                     {
                         type: "img",
                         props: {
-                            src: dataUri,
-                            width: 1800,
-                            height: 1200,
-                            // width: entry.data.thumbnail
-                            //     ? entry.data.thumbnail.width
-                            //     : 1800,
-                            // height: entry.data.thumbnail
-                            //     ? entry.data.thumbnail.height
-                            //     : 1200,
+                            src: image.src,
+                            width: image.width,
+                            height: image.height,
                             style: {
                                 position: "absolute",
                                 left: 0,
