@@ -7,6 +7,9 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
     site: "https://blog.sus-happy.net",
     trailingSlash: "ignore",
+    redirects: {
+        "/feed": "/rss.xml",
+    },
     integrations: [
         partytown({ config: { forward: ["dataLayer.push"] } }),
         sitemap(),

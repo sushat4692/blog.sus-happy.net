@@ -36,6 +36,13 @@ import "../styles/global.css";
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
 
+        <link
+            rel="alternate"
+            type="application/rss+xml"
+            title="SUSH-i LOG"
+            href={new URL("rss.xml", Astro.site)}
+        />
+
         <ClientRouter />
 
         <slot name="head" />

@@ -30,6 +30,7 @@ Node: Astro 7 requires Node 22+. `.nvmrc` and Volta both pin `22.22.3` (`eslint-
 - `[...slug].astro` — individual post page; uses `getStaticPaths()` over the collection, renders Markdown, and computes prev/next by sorting all posts by date.
 - `page/[...page].astro` — paginated archive (pages 2+).
 - `tag/index.astro` — list of all tags; `tag/[slug]/index.astro` and `tag/[slug]/page/[...page].astro` — per-tag archives, paginated. Tag slugs use `github-slugger`.
+- `rss.xml.ts` — RSS 2.0 feed (latest `PER_PAGE` posts, title/excerpt/tags per post) built by `@astrojs/rss`; `/feed` and `/feed/` redirect to `/rss.xml` via `astro.config.ts` `redirects`. Auto-discovery `<link>` lives in `BaseLayout.astro`.
 
 **Dynamic OG images** are the one piece of server-rendered logic. `src/pages/api/[slug]/ogp.png.ts` and `src/pages/api/ogp.png.ts` have `export const prerender = false` and run as a Node serverless function on Vercel (the `@astrojs/vercel` v11 adapter ignores per-route `runtime` config, so `node:fs` is available). They build an OG card with **Satori** (HTML/JSX → SVG) and rasterize it with **@resvg/resvg-wasm** (SVG → PNG). Supporting utils in `src/util/`:
 - `initResvg.ts` — lazily initializes the resvg WASM module by reading `node_modules/@resvg/resvg-wasm/index_bg.wasm` relative to `process.cwd()` (the same file is copied into the deployed function via `astro.config.ts` `includeFiles`). Do **not** import it with Vite's `?url` — that resolves to a hashed `/_astro/*.wasm` path that doesn't exist inside the function.
