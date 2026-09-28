@@ -13,7 +13,13 @@ const { title, subTitle, body, isPageTitle = true } = Astro.props;
     <div class="l-container">
         <div class="inner">
             {title && isPageTitle && <h1 class="title">{title}</h1>}
-            {title && !isPageTitle && <p class="title"><a href="/">{title}</a></p>}
+            {
+                title && !isPageTitle && (
+                    <p class="title">
+                        <a href="/">{title}</a>
+                    </p>
+                )
+            }
             {subTitle && <p class="sub_title">{subTitle}</p>}
             {body}
         </div>
@@ -26,7 +32,7 @@ const { title, subTitle, body, isPageTitle = true } = Astro.props;
     // .wrap {
     //     @apply pt-20;
 
-    //     @screen sm {
+    //     @media (min-width: 640px) {
     //         @apply pt-10;
     //     }
     // }
@@ -34,7 +40,7 @@ const { title, subTitle, body, isPageTitle = true } = Astro.props;
     .inner {
         @apply pb-8 border-0;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply pb-9;
         }
     }
@@ -42,7 +48,7 @@ const { title, subTitle, body, isPageTitle = true } = Astro.props;
     .title {
         @apply text-2xl font-black tracking-wide m-0;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply text-2xl;
         }
     }
@@ -50,7 +56,7 @@ const { title, subTitle, body, isPageTitle = true } = Astro.props;
     .sub_title {
         @apply text-sm font-normal mt-2;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply text-base;
         }
     }

@@ -1,7 +1,7 @@
 import type { APIContext } from "astro";
 import satori, { type SatoriOptions } from "satori";
 import { Resvg } from "@resvg/resvg-wasm";
-import { getEntryBySlug } from "astro:content";
+import { getEntry } from "astro:content";
 
 import { loadGoogleFont } from "../../../util/loadGoogleFont";
 import { initResvg } from "../../../util/initResvg";
@@ -13,7 +13,7 @@ export const config = {
 };
 
 export async function GET({ params, url }: APIContext) {
-    const entry = await getEntryBySlug("blog", params.slug || "");
+    const entry = await getEntry("blog", params.slug || "");
 
     if (!entry) {
         return new Response(null, {
@@ -130,7 +130,7 @@ export async function GET({ params, url }: APIContext) {
     const pngData = resvg.render();
     const pngBuffer = pngData.asPng();
 
-    return new Response(pngBuffer, {
+    return new Response(new Uint8Array(pngBuffer), {
         headers: {
             "content-type": "image/png",
             "cache-control":

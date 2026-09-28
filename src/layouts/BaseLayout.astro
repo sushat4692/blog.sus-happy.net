@@ -1,6 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import Header from "../components/Header.astro";
+import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import GTMHead from "../components/GTMHead.astro";
 import GTMBody from "../components/GTMBody.astro";
@@ -37,7 +36,7 @@ import "../styles/global.css";
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
 
-        <ViewTransitions />
+        <ClientRouter />
 
         <slot name="head" />
 
@@ -58,7 +57,7 @@ import "../styles/global.css";
                 scroll-behavior: smooth;
                 scroll-padding-top: 4rem;
 
-                @screen sm {
+                @media (min-width: 640px) {
                     scroll-padding-top: 3rem;
                 }
             }
@@ -78,7 +77,7 @@ import "../styles/global.css";
             .l-container {
                 @apply px-6;
 
-                @screen sm {
+                @media (min-width: 640px) {
                     @apply px-16 max-w-screen-lg mx-auto;
                 }
             }
@@ -86,7 +85,7 @@ import "../styles/global.css";
             .c-archive {
                 @apply mb-6 grid grid-cols-1 gap-6;
 
-                @screen sm {
+                @media (min-width: 640px) {
                     @apply mb-10 gap-10 grid-cols-1 items-start;
                 }
             }
@@ -94,14 +93,14 @@ import "../styles/global.css";
             .c-navigation {
                 @apply m-0 p-0 py-10 list-none border-0 border-t border-solid border-slate-300 flex flex-wrap justify-between;
 
-                @screen sm {
+                @media (min-width: 640px) {
                     @apply py-20;
                 }
 
                 &.has-sm-padding {
                     @apply py-5;
 
-                    @screen sm {
+                    @media (min-width: 640px) {
                         @apply py-10;
                     }
                 }
