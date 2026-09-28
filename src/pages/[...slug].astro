@@ -1,14 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Image } from 'astro:assets'
+import { Image } from "astro:assets";
 import PageMeta from "../components/PageMeta.astro";
 import { DateTime } from "luxon";
 import type { CollectionEntry } from "astro:content";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { slug as slugConvert } from "github-slugger";
-import removeMd from 'remove-markdown'
-import Side from "../components/Side.astro";
-import defaultImage from '../assets/background.jpg'
+import removeMd from "remove-markdown";
+import defaultImage from "../assets/background.jpg";
 import Header from "../components/Header.astro";
 
 type Props = {
@@ -18,7 +17,7 @@ type Props = {
 export async function getStaticPaths() {
     const blogEntries = await getCollection("blog");
     return blogEntries.map((entry) => ({
-        params: { slug: entry.slug },
+        params: { slug: entry.id },
         props: { entry },
     }));
 }
@@ -26,15 +25,17 @@ export async function getStaticPaths() {
 const { slug } = Astro.params;
 const { entry } = Astro.props;
 const { title, date, tags, thumbnail } = entry.data;
-const { Content, headings, } = await entry.render();
-const excerpt = removeMd(entry.body).replace(/\n\r|\n|\r/g, "").substring(0, 200);
+const { Content } = await render(entry);
+const excerpt = removeMd(entry.body ?? "")
+    .replace(/\n\r|\n|\r/g, "")
+    .substring(0, 200);
 
 const { prev, next } = await (async () => {
     const allPosts = (await getCollection("blog")).sort(
-        (a, b) => b.data.date.getTime() - a.data.date.getTime()
+        (a, b) => b.data.date.getTime() - a.data.date.getTime(),
     );
 
-    const index = allPosts.findIndex((post) => post.slug === slug);
+    const index = allPosts.findIndex((post) => post.id === slug);
 
     const prev = (() => {
         if (index <= 0) {
@@ -79,7 +80,12 @@ const { prev, next } = await (async () => {
         <div class="l-container">
             <article class="main">
                 <div class="header">
-                    <h1 class="header__title" transition:name={`post-title-${slug}`}>{title}</h1>
+                    <h1
+                        class="header__title"
+                        transition:name={`post-title-${slug}`}
+                    >
+                        {title}
+                    </h1>
                     <div class="header__meta">
                         <time
                             class="header__meta__time"
@@ -96,7 +102,7 @@ const { prev, next } = await (async () => {
                                         <li class="header__meta__tag__item">
                                             <a
                                                 href={`/tag/${encodeURIComponent(
-                                                    slugConvert(tag)
+                                                    slugConvert(tag),
                                                 )}`}
                                                 transition:name={`post-tag-${slug}-${slugConvert(tag)}`}
                                             >
@@ -122,12 +128,16 @@ const { prev, next } = await (async () => {
                             prev && (
                                 <a
                                     rel="prev"
-                                    href={`/${prev.slug}/`}
+                                    href={`/${prev.id}/`}
                                     class="page-nav__item__anchor"
                                 >
                                     <figure class="page-nav__item__visual">
                                         <Image
-                                            src={prev.data.thumbnail ? prev.data.thumbnail : defaultImage}
+                                            src={
+                                                prev.data.thumbnail
+                                                    ? prev.data.thumbnail
+                                                    : defaultImage
+                                            }
                                             alt={prev.data.title}
                                             class="page-nav__item__visual__image"
                                             width={1600}
@@ -139,7 +149,7 @@ const { prev, next } = await (async () => {
                                         <span class="page-nav__item__label">
                                             PREV
                                         </span>
-                                            <span>{prev.data.title}</span>
+                                        <span>{prev.data.title}</span>
                                     </div>
                                 </a>
                             )
@@ -150,12 +160,16 @@ const { prev, next } = await (async () => {
                             next && (
                                 <a
                                     rel="next"
-                                    href={`/${next.slug}/`}
+                                    href={`/${next.id}/`}
                                     class="page-nav__item__anchor"
                                 >
                                     <figure class="page-nav__item__visual">
                                         <Image
-                                            src={next.data.thumbnail ? next.data.thumbnail : defaultImage}
+                                            src={
+                                                next.data.thumbnail
+                                                    ? next.data.thumbnail
+                                                    : defaultImage
+                                            }
                                             alt={next.data.title}
                                             class="page-nav__item__visual__image"
                                             width={1600}
@@ -167,7 +181,7 @@ const { prev, next } = await (async () => {
                                         <span class="page-nav__item__label">
                                             NEXT
                                         </span>
-                                            <span>{next.data.title}</span>
+                                        <span>{next.data.title}</span>
                                     </div>
                                 </a>
                             )
@@ -180,10 +194,12 @@ const { prev, next } = await (async () => {
 </BaseLayout>
 
 <style lang="scss">
+    @reference "tailwindcss";
+
     .main {
         @apply pt-10 pb-10;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply pt-20 pb-20;
         }
     }
@@ -191,7 +207,7 @@ const { prev, next } = await (async () => {
     .visual {
         @apply h-48;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply h-64;
         }
 
@@ -203,14 +219,14 @@ const { prev, next } = await (async () => {
     .header {
         @apply mb-10;
 
-        @screen sm {
+        @media (min-width: 640px) {
             @apply mb-14;
         }
 
         &__title {
             @apply mt-0 text-3xl font-bold leading-tight;
 
-            @screen sm {
+            @media (min-width: 640px) {
                 @apply text-4xl leading-tight;
             }
         }
@@ -263,29 +279,29 @@ const { prev, next } = await (async () => {
         */
         :global(h2) {
             @apply text-3xl font-bold;
-            margin: 2em 0 0.5em;
+            margin: 3em 0 1em;
 
-            @screen sm {
+            @media (min-width: 640px) {
                 @apply text-4xl;
             }
         }
 
         :global(h3) {
             @apply text-2xl font-bold;
-            margin: 2em 0 0.5em;
+            margin: 3em 0 1em;
 
-            @screen sm {
+            @media (min-width: 640px) {
                 @apply text-3xl;
             }
         }
 
         :global(h4) {
             @apply font-bold;
-            margin: 2em 0 0.5em;
+            margin: 3em 0 1em;
         }
         :global(h5) {
             @apply font-bold;
-            margin: 2em 0 0.5em;
+            margin: 3em 0 1em;
         }
 
         :global(h2 a),
@@ -335,7 +351,7 @@ const { prev, next } = await (async () => {
             width: 100%;
             max-height: 40rem;
 
-            @screen sm {
+            @media (min-width: 640px) {
                 max-height: none;
             }
         }
@@ -378,7 +394,7 @@ const { prev, next } = await (async () => {
         * Code
         */
         :global(code) {
-            @apply text-red-900 border border-solid border-red-900  dark:text-[#FF7B72] dark:border-[#FF7B72];
+            @apply text-slate-700 bg-slate-200 dark:text-slate-200 dark:bg-slate-700;
 
             padding: 0.1em 0.25em;
             border-radius: 0.3em;
@@ -393,15 +409,16 @@ const { prev, next } = await (async () => {
             overflow: auto;
             padding: 0.4em;
             margin: 0 -1.5rem;
-            font-size: .9em;
+            font-size: 0.9em;
             border: 1px solid #444;
 
-            @screen sm {
+            @media (min-width: 640px) {
                 margin: 0 -4rem;
             }
         }
         :global(pre code) {
             border: none;
+            background: transparent;
             color: inherit;
             display: block;
             line-height: 1.4;

@@ -1,18 +1,13 @@
 import satori, { type SatoriOptions } from "satori";
 import { Resvg } from "@resvg/resvg-wasm";
-import type { APIContext } from "astro";
 
+import backgroundImage from "../../assets/background.jpg?inline";
 import { loadGoogleFont } from "../../util/loadGoogleFont";
 import { initResvg } from "../../util/initResvg";
-import { getImageDataUri } from "../../util/getImageDataUri";
 
 export const prerender = false;
 
-export const config = {
-    runtime: "edge",
-};
-
-export async function GET({ url }: APIContext) {
+export async function GET() {
     await initResvg();
 
     const title = "SUSH-i LOG";
@@ -31,8 +26,7 @@ export async function GET({ url }: APIContext) {
         });
     }
 
-    // const dataUri = await getImageDataUri("/content/background.jpg");
-    const dataUri = `${url.origin}/content/background.jpg`;
+    const dataUri = backgroundImage;
 
     const svg = await satori(
         {
@@ -113,7 +107,7 @@ export async function GET({ url }: APIContext) {
     const pngData = resvg.render();
     const pngBuffer = pngData.asPng();
 
-    return new Response(pngBuffer, {
+    return new Response(new Uint8Array(pngBuffer), {
         headers: {
             "content-type": "image/png",
             "cache-control":

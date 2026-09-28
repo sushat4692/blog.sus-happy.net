@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import { CollectionEntry, getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import { slug as githubSlug } from "github-slugger";
 import { PER_PAGE } from "../../../const";
 import PageMeta from "../../../components/PageMeta.astro";
 import Hero from "../../../components/Hero.astro";
-import Side from "../../../components/Side.astro";
 import ArchivePost from "../../../components/ArchivePost.astro";
 import type { GetStaticPathsResult } from "astro";
 import Header from "../../../components/Header.astro";
@@ -39,7 +38,7 @@ export async function getStaticPaths() {
                 "blog",
                 (data) =>
                     Array.isArray(data.data.tags) &&
-                    data.data.tags.some((t) => t === tag)
+                    data.data.tags.some((t) => t === tag),
             )
         ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
         const filteredPosts = allPosts.slice(0, PER_PAGE);
@@ -79,7 +78,7 @@ const { name, posts, hasNext } = Astro.props;
                                 <a
                                     rel="next"
                                     href={`/tag/${encodeURIComponent(
-                                        githubSlug(name)
+                                        githubSlug(name),
                                     )}/page/2`}
                                     class="c-navigation__anchor"
                                 >

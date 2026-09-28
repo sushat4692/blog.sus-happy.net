@@ -13,7 +13,7 @@ export const loadGoogleFont = async (title: string, subTitle: string) => {
     ).text();
 
     const resource = css.match(
-        /src: url\((.+)\) format\('(opentype|truetype)'\)/
+        /src: url\((.+)\) format\('(opentype|truetype)'\)/,
     );
 
     if (!resource) return;

@@ -3,20 +3,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import { PER_PAGE } from "../const";
 import PageMeta from "../components/PageMeta.astro";
-import Hero from "../components/Hero.astro";
-import Side from "../components/Side.astro";
 import ArchivePost from "../components/ArchivePost.astro";
 import Header from "../components/Header.astro";
 
 const allPosts = (await getCollection("blog")).sort(
-    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+    (a, b) => b.data.date.getTime() - a.data.date.getTime(),
 );
 const posts = allPosts.slice(0, PER_PAGE);
 const hasNext = allPosts.length > PER_PAGE;
 ---
 
 <BaseLayout>
-    <PageMeta slot="head" description="名古屋のWeb制作会社につとめるプログラマーのつぶやき" />
+    <PageMeta
+        slot="head"
+        description="名古屋のWeb制作会社につとめるプログラマーのつぶやき"
+    />
 
     <Header isPageTitle />
 
@@ -49,6 +50,8 @@ const hasNext = allPosts.length > PER_PAGE;
 </BaseLayout>
 
 <style lang="scss">
+    @reference "tailwindcss";
+
     .wrap {
         @apply grid grid-cols-1 gap-10 pb-8;
     }
